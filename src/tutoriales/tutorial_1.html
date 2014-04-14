@@ -1,0 +1,44 @@
+<!--
+  Ejemplo adaptado para la comunidad de Geo Developers
+  Ver en editor online: http://bit.ly/1p3sGqV
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Tutorial 1: Mostrar un mapa con ArcGIS</title>
+
+  <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">
+  <style>
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+
+  <!-- Cargamos la versión 3.9 de la API a través del CDN de ArcGIS -->
+  <script src="http://js.arcgis.com/3.9/"></script>
+  <script>
+    var map;
+
+    // Cargamos los módulos que vamos a usar de la API:
+    require([
+      "esri/map",       // esri/map: Para poder crear el mapa -> http://bit.ly/1t0G4vn
+      "dojo/domReady!"  // Para asegurar que el DOM termine de cargar antes de ejecutar el código
+    ], function(Map) { 
+
+      //Generamos un nuevo mapa
+      map = new Map("mapDiv", {
+        center: [-56.049, 38.485], //Latitud y longitud
+        zoom: 3,
+        basemap: "streets" // Otros valores: "satellite", "hybrid", "topo", "gray", "oceans", "national-geographic", "osm". 
+      });
+    });
+  </script>
+</head>
+<body class="claro">
+  <div id="mapDiv"></div>
+</body>
+</html>
