@@ -18,10 +18,14 @@ Tutoriales
 [Jugar](http://bit.ly/1p6jFgS) | 
 [Previsualizar](http://bit.ly/P2B5Kl)
 
-* Capas CSV
-[Código](http://bit.ly/1hHmyk6) | 
-[Jugar](http://bit.ly/1p6jFgS) | 
-[Previsualizar](http://bit.ly/P2B5Kl)
+* Cargar datos desde CSV externos
+[Código](http://bit.ly/1eu045l) | 
+[Jugar](http://bit.ly/1jHY7S3) | 
+[Previsualizar](http://bit.ly/1eEiYHg)
+
+Configura tu entorno en local
+---------------
+TODO: Documentar cómo clonarse el repositorio en local para empezar a hacer pruebas más avanzadas que requieran autenticación, etc.
 
 Introducción al desarrollo GIS
 ---------------
@@ -37,7 +41,7 @@ La geocodificación hace referencia a la posibilidad de traducir una o varias di
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocoding.png" />&nbsp;
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/locator_suffix.png" />
 
-La clase utilizada para hacer geocodificación en la API es **Locator** ([Ver documentación](http://bit.ly/RlGn5I).
+La clase utilizada para hacer geocodificación en la API es **Locator** ([Ver documentación](http://bit.ly/RlGn5I)).
 
 *Para aquellos que tengan una organización propia en ArcGIS Online y un servicio REST pueden configurar la clase Locator para que las peticiones se hagan a esta organización.*
 
@@ -58,7 +62,7 @@ El servicio de direcciones te permita crear rutas que pasen por múltiples punto
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/route_barriers.png" />&nbsp;
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/route_directions.png" />&nbsp;
 
-La clase utilizada para hacer cálculos de direcciones es **RouteTask** ([Ver documentación](http://bit.ly/1kWUvzw).
+La clase utilizada para hacer cálculos de direcciones es **RouteTask** ([Ver documentación](http://bit.ly/1kWUvzw)).
 
 **Limite mensual gratuito:**
 

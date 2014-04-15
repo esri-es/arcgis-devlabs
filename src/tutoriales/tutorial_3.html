@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Cargar datos desde CSV externos</title>
+    
+    <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    </style>
+    
+    <script src="http://js.arcgis.com/3.9/"></script>
+    <script>
+      var map, csv;
+      require([
+        "esri/map", 
+        "esri/layers/CSVLayer",
+        "esri/Color",
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/renderers/SimpleRenderer",
+        "esri/InfoTemplate",
+        "dojo/domReady!"
+      ], function(
+        Map, CSVLayer, Color, SimpleMarkerSymbol, SimpleRenderer, InfoTemplate, urlUtils
+      ) {
+        
+        // Configuramos el fichero esri_request para que use un proxy
+        // ya que mediante AJAX vamos a hacer una petición fuera de
+        // nuestro dominio (http://bit.ly/1nom026)
+        esriConfig.defaults.io.corsEnabledServers.push("www.corsproxy.com");
+
+        map = new Map("map", {
+          basemap: "gray",
+          center: [-3.833027, 43.465379],
+          zoom: 13 
+        });
+        
+        // En la URL usamos un proxy público que soporta CORS:
+        // http://www.corsproxy.com/
+        // Configuramos la instancia para que entienda el formato
+        //en el que llega el CSV: http://bit.ly/1jHXDvm
+        csv = new CSVLayer("http://www.corsproxy.com/datos.santander.es/api/rest/datasets/paradas_bus.csv",{
+            columnDelimiter: ";",
+            latitudeFieldName: "wgs84_pos:lat",
+            longitudeFieldName: "wgs84_pos:long"
+        });
+        
+        var orangeRed = new Color([238, 69, 0, 0.5]);
+        var marker = new SimpleMarkerSymbol("solid", 10, null, orangeRed);
+        
+        // Establecemos el símbolo que se utilizará para
+        // representar los datos
+        var renderer = new SimpleRenderer(marker);
+        csv.setRenderer(renderer);
+        
+        // Y asociamos un pequeño modal con información extra.
+        var template = new InfoTemplate( 
+          "Datos de la parada", 
+          "<a href='${id}' target='_blank'>Más info"
+        );
+        csv.setInfoTemplate(template);
+        map.addLayer(csv);
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
