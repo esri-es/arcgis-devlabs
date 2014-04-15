@@ -3,7 +3,7 @@ JavascriptAPI
 
 Toda la documentación y ejemplos de este repositorio se han creado usando la [API Javascript de ArcGIS](https://developers.arcgis.com/javascript/).
 
-Si quieres más información o tienes dudas puedes unirte al grupo de [Geo Developers](http://meetup.com/Geo-Developers/) y preguntar a través de [la lista de correo](http://www.meetup.com/Geo-Developers/messages/archive/).
+Si quieres saber dónde encontrar datos para hacer tus proyectos o tienes dudas puedes unirte al grupo de [Geo Developers](http://meetup.com/Geo-Developers/) y preguntar a través de [la lista de correo](http://www.meetup.com/Geo-Developers/messages/archive/).
 
 Tutoriales
 ---------------
@@ -18,12 +18,16 @@ Tutoriales
 [Jugar](http://bit.ly/1p6jFgS) | 
 [Previsualizar](http://bit.ly/P2B5Kl)
 
+* Capas CSV
+[Código](http://bit.ly/1hHmyk6) | 
+[Jugar](http://bit.ly/1p6jFgS) | 
+[Previsualizar](http://bit.ly/P2B5Kl)
+
 Introducción al desarrollo GIS
 ---------------
 Después de jugar un poco con los tutoriales, vamos a ver cómo resolver problemas complejos usando GIS. Para ello tendremos que ir aprendiendo conceptos, formatos y vocabulario para no volvernos locos.
 
 * [Geocodificación](#geocodificacin)
-* [Capas CSV](#capas-csv)
 * [Direcciones](#direcciones)
 
 ### Geocodificación
@@ -33,14 +37,14 @@ La geocodificación hace referencia a la posibilidad de traducir una o varias di
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocoding.png" />&nbsp;
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/locator_suffix.png" />
 
-La clase utilizada para hacer geocodificación en la API es **Locator** ([Ver documentación](https://developers.arcgis.com/javascript/jsapi/locator-amd.html).
+La clase utilizada para hacer geocodificación en la API es **Locator** ([Ver documentación](http://bit.ly/RlGn5I).
 
 *Para aquellos que tengan una organización propia en ArcGIS Online y un servicio REST pueden configurar la clase Locator para que las peticiones se hagan a esta organización.*
 
-Consumo de créditos:
+**Limite mensual gratuito:**
 
-* **Geosearch**: hacer una búsqueda de una dirección y pintar dónde está en el mapa no consume créditos.
-* **Geocoding**: hacer búsquedas masivas y poder almacenar localmente los datos de latitud/longitud sí ([**máximo 1.250 geocodificaciones al mes**](https://developers.arcgis.com/en/credits/)).
+* **Geosearch**: hacer una búsqueda de una dirección y pintar dónde está (gratuito).
+* **Geocoding**: hacer búsquedas masivas y poder almacenar localmente los datos de latitud/longitud sí ([**máximo 1.250 geocodificaciones al mes**](http://bit.ly/1n8JESE)).
 
 Otros datos de interés:
 
@@ -48,5 +52,22 @@ Otros datos de interés:
 
 <hr class="clear:both">
 ### Direcciones
-*Todo*
+El servicio de direcciones te permita crear rutas que pasen por múltiples puntos pudiendo crear rutas optimizadas (incluyendo variables como el tráfico) o determinar el lugar más cercano a una serie de puntos varios puntos
+
+<img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/mobile_findnearby.png" />&nbsp;
+<img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/route_barriers.png" />&nbsp;
+<img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/route_directions.png" />&nbsp;
+
+La clase utilizada para hacer cálculos de direcciones es **RouteTask** ([Ver documentación](http://bit.ly/1kWUvzw).
+
+**Limite mensual gratuito:**
+
+* **Direcciones simples**: realizar cálculos entre dos puntos ([**máximo 1.250 al mes**](http://bit.ly/1n8JESE)).
+* **Direcciones optimizadas**: calcular la ruta optimizada entre N puntos ([**máximo 100 al mes**](http://bit.ly/1n8JESE)).
+* **Lugar más cercano**: calcular el lugar más cercano a N puntos ([**máximo 100 al mes**](http://bit.ly/1n8JESE)).
+* **Tiempo de conducción** (isocrona): calcular el área máxima que podrías cubrir en coche en N minutos desde un punto ([**máximo 100 al mes**](http://bit.ly/1n8JESE)).
+
+Otros datos de interés:
+
+* [**Ejemplos que usar cálculos de direcciones**](http://bit.ly/1m54Gl6)
 
