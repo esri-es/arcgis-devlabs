@@ -10,13 +10,13 @@ Tutoriales
 
 * Cómo pintar un mapa con el API JS de ArcGIS - 
 [Código](http://bit.ly/Qn55l8) | 
-[Jugar](http://bit.ly/P2B5Kl) | 
-[Previsualizar](http://bit.ly/Qn55l8)
+[Jugar](http://bit.ly/1iTEPWO) | 
+[Previsualizar](http://bit.ly/P2B5Kl)
 
 * Usar el widget de Geocodificación y personalizar el diseño - 
 [Código](http://bit.ly/1hHmyk6) | 
 [Jugar](http://bit.ly/1p6jFgS) | 
-[Previsualizar](http://bit.ly/P2B5Kl)
+[Previsualizar](http://bit.ly/1hI0aHr)
 
 * Cargar datos desde CSV externos
 [Código](http://bit.ly/1eu045l) | 
