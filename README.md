@@ -19,12 +19,18 @@ Tutoriales
 
 ### Geocodificación
 
-[[/img/geocodificacion.png|align=center]]
+<img align="center" src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocodificacion.png" />
+<img align="center" src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocoding.png" />
+
 
 La geocodificación hace referencia a la posibilidad de traducir una dirección a unas coodernadas.
 
-El Geocoder se puede utilizar para *Todo*.... **No consume créditos**
+El Geocoder se puede utilizar para *Todo*....
 
+Consumo de créditos:
+
+* **Geosearch**: hacer una búsqueda de una dirección y pintar dónde está en el mapa no consume créditos
+* **Geocoding**: hacer búsquedas masivas y recuperar los datos de latitud/longitud para poder almacenarlos sí
 
 **Código de ejemplo** | [**Previsualizar**]() | [**Más ejemplos**](http://bit.ly/1eqqbKs) 
 
