@@ -24,16 +24,21 @@
     var map;
 
     // Cargamos los módulos que vamos a usar de la API:
+    // esri/map:      Para poder crear el mapa -> http://bit.ly/1t0G4vn
+    // dojo/domReady! Para asegurar que el DOM termine de cargar antes  
+    //                de ejecutar el código
     require([
-      "esri/map",       // esri/map: Para poder crear el mapa -> http://bit.ly/1t0G4vn
-      "dojo/domReady!"  // Para asegurar que el DOM termine de cargar antes de ejecutar el código
+      "esri/map",       
+      "dojo/domReady!"
     ], function(Map) { 
 
-      //Generamos un nuevo mapa
+      // Generamos un nuevo mapa con un mapa base tipo callejero
+      // Otros tipos: "satellite", "hybrid", "topo", "gray", "oceans",
+      // "national-geographic", "osm".
       map = new Map("mapDiv", {
         center: [-56.049, 38.485], //Latitud y longitud
         zoom: 3,
-        basemap: "streets" // Otros valores: "satellite", "hybrid", "topo", "gray", "oceans", "national-geographic", "osm". 
+        basemap: "streets" 
       });
     });
   </script>
