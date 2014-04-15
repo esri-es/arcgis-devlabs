@@ -19,7 +19,7 @@ Tutoriales
 
 ### Geocodificación
 
-<img style="float: right" src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocodificacion.png" />
+[https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocodificacion.png|align=center]
 
 La geocodificación hace referencia a la posibilidad de traducir una dirección a unas coodernadas.
 
