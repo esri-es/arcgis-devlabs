@@ -19,8 +19,10 @@ Tutoriales
 
 ### Geocodificación
 
-<img align="center" src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocodificacion.png" />
-<img align="center" src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocoding.png" />
+<img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocodificacion.png" />&nbsp;
+<img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocoding.png" />&nbsp;
+<img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/locator_suffix.png" />
+
 
 
 La geocodificación hace referencia a la posibilidad de traducir una dirección a unas coodernadas.
