@@ -12,28 +12,39 @@ Tutoriales
 
 * Cómo pintar un mapa con el API JS de ArcGIS -
 [Código](http://bit.ly/Qn55l8) |
-[Jugar](http://bit.ly/1iTEPWO) |
-[Previsualizar](http://bit.ly/P2B5Kl)
+[Jugar](http://jsbin.com/rudeq/1/) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_1.html)
 
 * Usar el widget de Geocodificación y personalizar el diseño -
 [Código](http://bit.ly/1hHmyk6) |
-[Jugar](http://bit.ly/1p6jFgS) |
-[Previsualizar](http://bit.ly/1hI0aHr)
+[Jugar](http://jsbin.com/saxino/1/) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_2.html)
 
 * Cargar datos desde CSV externos
 [Código](http://bit.ly/1eu045l) |
-[Jugar](http://bit.ly/1ABYXsg) |
+[Jugar](http://jsbin.com/ruzeyuri/1/) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
 * Cargar una capa de entidades (Feature Layer)
 [Código](http://bit.ly/1hsSHHd) |
-[Jugar](http://bit.ly/1mweYMe) |
-[Previsualizar](http://bit.ly/1ijQvkU)
+[Jugar](http://jsbin.com/hasota/1/) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_4.html)
 
 Configura tu entorno en local
 ---------------
-TODO: Documentar cómo clonarse el repositorio en local para empezar a hacer pruebas más avanzadas que requieran autenticación, etc.
+
+1. [Descarga e instala GIT](http://git-scm.com/downloads)
+
+2. Clona el repositorio, tienes dos opciones
+
+  2.1 [Usando la línea de comandos](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository) (para usuarios avanzados)
+
+  2.2 Haciendo clic en Clone in Desktop
+
+  <img src="https://github-images.s3.amazonaws.com/help/repository/remotes-url.png">
+
+  2.3 Para poder ejecutar correctamente los ejemplos necesitarás un servidor de páginas estáticas. Te recomendamos [Node.js](http://nodejs.org/) + [http-server](https://www.npmjs.org/package/http-server)
 
 Introducción al desarrollo GIS
 ---------------
