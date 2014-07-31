@@ -12,23 +12,23 @@ Tutoriales
 
 * Cómo pintar un mapa con el API JS de ArcGIS -
 [Código](http://bit.ly/Qn55l8) |
-[Jugar](http://jsbin.com/rudeq/1/) |
+[Jugar](http://jsbin.com/rudeq/1/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_1.html)
 
 * Usar el widget de Geocodificación y personalizar el diseño -
 [Código](http://bit.ly/1hHmyk6) |
-[Jugar](http://jsbin.com/saxino/2/) |
+[Jugar](http://jsbin.com/saxino/2/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_2.html)
 
 * Cargar datos desde CSV externos
 [Código](http://bit.ly/1eu045l) |
-[Jugar](http://jsbin.com/ruzeyuri/1/) |
+[Jugar](http://jsbin.com/ruzeyuri/1/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
 * Cargar una capa de entidades (Feature Layer)
 [Código](http://bit.ly/1hsSHHd) |
-[Jugar](http://jsbin.com/hasota/1/) |
+[Jugar](http://jsbin.com/hasota/1/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_4.html)
 
 Configura tu entorno en local
