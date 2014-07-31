@@ -22,13 +22,13 @@ Tutoriales
 
 * Cargar datos desde CSV externos
 [Código](http://bit.ly/1eu045l) |
-[Jugar](http://bit.ly/1jHY7S3) |
-[Previsualizar](http://bit.ly/1eEiYHg)
+[Jugar](http://bit.ly/1ABYXsg) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
 * Cargar una capa de entidades (Feature Layer)
-[Código](http://bit.ly/1hsSHHd) | 
-[Jugar](http://bit.ly/1mweYMe) | 
+[Código](http://bit.ly/1hsSHHd) |
+[Jugar](http://bit.ly/1mweYMe) |
 [Previsualizar](http://bit.ly/1ijQvkU)
 
 Configura tu entorno en local
