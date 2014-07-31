@@ -22,7 +22,7 @@ Tutoriales
 
 * Cargar datos desde CSV externos
 [Código](http://bit.ly/1eu045l) |
-[Jugar](http://jsbin.com/ruzeyuri/1/edit) |
+[Jugar](http://jsbin.com/ruzeyuri/2/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
