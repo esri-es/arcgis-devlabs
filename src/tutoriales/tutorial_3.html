@@ -42,18 +42,18 @@
 
         map = new Map("map", {
           basemap: "gray",
-          center: [-3.833027, 43.465379],
-          zoom: 13
+          center: [2.971085	, 39.587848],
+          zoom: 10
         });
 
         // En la URL usamos un proxy público que soporta CORS:
         // http://www.corsproxy.com/
         // Configuramos la instancia para que entienda el formato
         //en el que llega el CSV: http://bit.ly/1jHXDvm
-        csv = new CSVLayer("http://www.corsproxy.com/datos.santander.es/api/rest/datasets/paradas_bus.csv",{
-            columnDelimiter: ";",
-            latitudeFieldName: "wgs84_pos:lat",
-            longitudeFieldName: "wgs84_pos:long"
+        csv = new CSVLayer("http://www.corsproxy.com/esri-es.github.io/JavascriptAPI/data/playas_de_mallorca.csv",{
+            columnDelimiter: ",",
+            latitudeFieldName: "lat",
+            longitudeFieldName: "long"
         });
 
         var orangeRed = new Color([238, 69, 0, 0.5]);
@@ -66,8 +66,9 @@
 
         // Y asociamos un pequeño modal con información extra.
         var template = new InfoTemplate(
-          "Datos de la parada",
-          "<a href='${id}' target='_blank'>Más info"
+          "Playa: ${name}",
+          "<iframe src='${pic_url}' frameborder='0' allowfullscreen style='width:100%'></iframe>",
+          "<a href='${thumb_url}' target='_blank'>Más info"
         );
         csv.setInfoTemplate(template);
         map.addLayer(csv);
