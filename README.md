@@ -17,7 +17,7 @@ Tutoriales
 
 * Usar el widget de Geocodificación y personalizar el diseño -
 [Código](http://bit.ly/1hHmyk6) |
-[Jugar](http://jsbin.com/saxino/1/) |
+[Jugar](http://jsbin.com/saxino/2/) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_2.html)
 
 * Cargar datos desde CSV externos
