@@ -5,22 +5,24 @@ Toda la documentación y ejemplos de este repositorio se han creado usando la [A
 
 Si quieres saber dónde encontrar datos para hacer tus proyectos o tienes dudas puedes unirte al grupo de [Geo Developers](http://meetup.com/Geo-Developers/) y preguntar a través de [la lista de correo](http://www.meetup.com/Geo-Developers/messages/archive/).
 
+Si nunca antes has trabajado con esta plataforma (Github), aquí tienes un [curso práctico en vídeo y gratuito sobre Git](https://www.codeschool.com/courses/try-git) ^_^. Nota: *se hace en un par de horas*
+
 Tutoriales
 ---------------
 
-* Cómo pintar un mapa con el API JS de ArcGIS - 
-[Código](http://bit.ly/Qn55l8) | 
-[Jugar](http://bit.ly/1iTEPWO) | 
+* Cómo pintar un mapa con el API JS de ArcGIS -
+[Código](http://bit.ly/Qn55l8) |
+[Jugar](http://bit.ly/1iTEPWO) |
 [Previsualizar](http://bit.ly/P2B5Kl)
 
-* Usar el widget de Geocodificación y personalizar el diseño - 
-[Código](http://bit.ly/1hHmyk6) | 
-[Jugar](http://bit.ly/1p6jFgS) | 
+* Usar el widget de Geocodificación y personalizar el diseño -
+[Código](http://bit.ly/1hHmyk6) |
+[Jugar](http://bit.ly/1p6jFgS) |
 [Previsualizar](http://bit.ly/1hI0aHr)
 
 * Cargar datos desde CSV externos
-[Código](http://bit.ly/1eu045l) | 
-[Jugar](http://bit.ly/1jHY7S3) | 
+[Código](http://bit.ly/1eu045l) |
+[Jugar](http://bit.ly/1jHY7S3) |
 [Previsualizar](http://bit.ly/1eEiYHg)
 
 Configura tu entorno en local
@@ -74,4 +76,3 @@ La clase utilizada para hacer cálculos de direcciones es **RouteTask** ([Ver do
 Otros datos de interés:
 
 * [**Ejemplos que usar cálculos de direcciones**](http://bit.ly/1m54Gl6)
-
