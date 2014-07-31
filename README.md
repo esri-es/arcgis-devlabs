@@ -25,6 +25,12 @@ Tutoriales
 [Jugar](http://bit.ly/1jHY7S3) |
 [Previsualizar](http://bit.ly/1eEiYHg)
 
+
+* Cargar una capa de entidades (Feature Layer)
+[Código](http://bit.ly/1hsSHHd) | 
+[Jugar](http://bit.ly/1mweYMe) | 
+[Previsualizar](http://bit.ly/1ijQvkU)
+
 Configura tu entorno en local
 ---------------
 TODO: Documentar cómo clonarse el repositorio en local para empezar a hacer pruebas más avanzadas que requieran autenticación, etc.
