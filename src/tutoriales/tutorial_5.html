@@ -1,0 +1,128 @@
+<!--
+  Ejemplo adaptado para la comunidad de Geo Developers
+  Ver en editor online: http://bit.ly/1mweYMe
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Tutorial 5: Mostrar un servicio de entidades</title>
+
+  <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">
+  <style>
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+
+  <!-- Cargamos la versión 3.10 de la API a través del CDN de ArcGIS -->
+  <script src="http://js.arcgis.com/3.10/"></script>
+  <script>
+    var map;
+
+    // Cargamos los módulos que vamos a usar de la API:
+    // esri/map:      Para poder crear el mapa -> http://bit.ly/1t0G4vn
+    // dojo/domReady! Para asegurar que el DOM termine de cargar antes
+    //                de ejecutar el código
+    // esri/layers/featureLayer Para poder cargar la capa de entidades
+    // esri/geometry/Polyline   Para poder dibujar la polilínea
+    require([
+      "esri/map",
+      "esri/layers/FeatureLayer",
+      "esri/layers/GraphicsLayer",
+      "esri/geometry/Polyline",
+      "esri/geometry/Point",
+      "esri/symbols/SimpleLineSymbol",
+      "esri/symbols/PictureMarkerSymbol",
+      "esri/graphic",
+      "dojo/_base/Color",
+      "dojo/domReady!",
+    ], function(
+      Map,
+      FeatureLayer,
+      GraphicsLayer,
+      Polyline,
+      Point,
+      SimpleLineSymbol,
+      PictureMarkerSymbol,
+      Graphic,
+      Color
+    ) {
+
+        // Generamos un nuevo mapa con un mapa base tipo callejero
+        // Otros tipos: "satellite", "hybrid", "topo", "gray", "oceans",
+        // "national-geographic", "osm".
+        map = new Map("mapDiv", {
+            center: [-3.674, 40.439],
+            zoom: 5,
+            basemap: "gray"
+        });
+
+        //Añadimos una capa de entidades al mapa
+        //var featureLayer = new esri.layers.FeatureLayer("http://services3.arcgis.com/gzPLi0vbk0c1QVGb/arcgis/rest/services/Gasolinerasshape/FeatureServer/0");
+        //map.addLayer(featureLayer);
+
+        // Añadimos una capa gráfica para pintar las estaciones
+        var capaEstaciones = new GraphicsLayer();
+        map.addLayer(capaEstaciones);
+
+        // Añadimos una capa gráfica al mapa sobre la que posicionar la ruta
+        var capaGrafica = new GraphicsLayer();
+        map.addLayer(capaGrafica);
+
+        // Definimos la posición de la estación
+        var punto = new Point( {
+          "x": -3.674,
+          "y": 40.439,
+          "spatialReference": {
+            "wkid": 4326
+          }
+        });
+
+        // Definimos la simbología
+        var pictureMarkerSymbol = new PictureMarkerSymbol(
+          "http://esri-es.github.io/youtube-video-tour/images/rounded_marker.png",
+          20,
+          20
+        );
+
+        // Añadimos la estación al mapa
+        capaEstaciones.add(new Graphic(punto, pictureMarkerSymbol));
+
+        // Definimos el recorrido de la ruta
+        var ruta = new Polyline({
+          "paths":[
+            [
+              [-3.63417,40.42547],
+              [-3.6302276,40.41740],
+              [-3.638212,40.44235]
+            ]
+          ],
+          "spatialReference":{
+            "wkid": 4326
+          }
+        });
+
+        // map.__LOD.scale
+        capaEstaciones.minScale = 288000;
+
+        // Definimos el estilo de la ruta
+        var estilo = new SimpleLineSymbol(
+          SimpleLineSymbol.STYLE_SOLID, // Estilo
+          new Color([255,0,0]),         // Color
+          4                            // Ancho
+        );
+
+        // La añadimos al mapa
+        capaGrafica.add(new Graphic(ruta,estilo));
+
+    });
+  </script>
+</head>
+<body class="claro">
+  <div id="mapDiv"></div>
+</body>
+</html>

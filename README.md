@@ -54,7 +54,7 @@ La clase utilizada para hacer geocodificación en la API es **Locator** ([Ver do
 **Limite mensual gratuito:**
 
 * **Geosearch**: hacer una búsqueda de una dirección y pintar dónde está (gratuito).
-* **Geocoding**: hacer búsquedas masivas y poder almacenar localmente los datos de latitud/longitud sí ([**máximo 1.250 geocodificaciones al mes**](http://bit.ly/1n8JESE)).
+* **Geocoding**: hacer búsquedas masivas y *poder almacenar localmente los datos* de latitud/longitud ([**máximo 1.250 geocodificaciones al mes**](http://bit.ly/1n8JESE)).
 
 Otros datos de interés:
 

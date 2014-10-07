@@ -8,8 +8,8 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
     <link rel="stylesheet" href="css/tutorial_2.css">
-    
-    <script src="http://js.arcgis.com/3.8/"></script>
+
+    <script src="http://js.arcgis.com/3.10/"></script>
     <script>
       require([
         "esri/map",
@@ -29,8 +29,8 @@
         Map, Geocoder,
         Graphic, SimpleMarkerSymbol, screenUtils,
         dom, domConstruct, query, Color
-      ) { 
-        
+      ) {
+
         // Creamos un mapa
         var map = new Map("map", {
           center: [-3.674, 40.439],
@@ -42,7 +42,7 @@
         var geocoder =  new Geocoder({
           arcgisGeocoder: {
             placeholder: "Escribe una dirección"
-          }, 
+          },
           autoComplete: true,
           map: map,
           zoomScale: 14
@@ -58,8 +58,8 @@
 
           // Recuperamos el punto con la localización (lat,long)
           var point = evt.result.feature.geometry;
-          
-          // Dibujamos un símbolo dinámicamente usando la clase 
+
+          // Dibujamos un símbolo dinámicamente usando la clase
           // SimpleMarkerSymbol -> http://bit.ly/1t46I6J
           var symbol = new SimpleMarkerSymbol().setStyle(
             SimpleMarkerSymbol.STYLE_SQUARE).setColor(
@@ -68,10 +68,10 @@
 
           // Usando la clase Graphic -> http://bit.ly/1esXP2n
           // creamos una gráfica que contiene la localización
-          // y el símbolo y lo agregamos a la capa gráfica (graphics).  
+          // y el símbolo y lo agregamos a la capa gráfica (graphics).
           var graphic = new Graphic(point, symbol);
           map.graphics.add(graphic);
-          
+
           // Configuramos la información que mostramos
           // en la ventanita emergente
           map.infoWindow.setTitle("Resultado");
@@ -83,6 +83,6 @@
   </head>
   <body class="nihilo">
     <div id="search"></div>
-    <div id="map"></div>            
-  </body> 
+    <div id="map"></div>
+  </body>
 </html>

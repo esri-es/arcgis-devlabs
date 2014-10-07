@@ -3,8 +3,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>Cargar datos desde CSV externos</title>
-    
+    <title>Tutorial 3: Cargar datos desde CSV externos</title>
+
     <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">
     <style>
       html, body, #map {
@@ -19,12 +19,12 @@
         font-family: "Trebuchet MS";
       }
     </style>
-    
-    <script src="http://js.arcgis.com/3.9/"></script>
+
+    <script src="http://js.arcgis.com/3.10/"></script>
     <script>
       var map, csv;
       require([
-        "esri/map", 
+        "esri/map",
         "esri/layers/CSVLayer",
         "esri/Color",
         "esri/symbols/SimpleMarkerSymbol",
@@ -34,7 +34,7 @@
       ], function(
         Map, CSVLayer, Color, SimpleMarkerSymbol, SimpleRenderer, InfoTemplate, urlUtils
       ) {
-        
+
         // Configuramos el fichero esri_request para que use un proxy
         // ya que mediante AJAX vamos a hacer una petición fuera de
         // nuestro dominio (http://bit.ly/1nom026)
@@ -43,9 +43,9 @@
         map = new Map("map", {
           basemap: "gray",
           center: [-3.833027, 43.465379],
-          zoom: 13 
+          zoom: 13
         });
-        
+
         // En la URL usamos un proxy público que soporta CORS:
         // http://www.corsproxy.com/
         // Configuramos la instancia para que entienda el formato
@@ -55,18 +55,18 @@
             latitudeFieldName: "wgs84_pos:lat",
             longitudeFieldName: "wgs84_pos:long"
         });
-        
+
         var orangeRed = new Color([238, 69, 0, 0.5]);
         var marker = new SimpleMarkerSymbol("solid", 10, null, orangeRed);
-        
+
         // Establecemos el símbolo que se utilizará para
         // representar los datos
         var renderer = new SimpleRenderer(marker);
         csv.setRenderer(renderer);
-        
+
         // Y asociamos un pequeño modal con información extra.
-        var template = new InfoTemplate( 
-          "Datos de la parada", 
+        var template = new InfoTemplate(
+          "Datos de la parada",
           "<a href='${id}' target='_blank'>Más info"
         );
         csv.setInfoTemplate(template);
