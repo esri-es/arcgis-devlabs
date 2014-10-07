@@ -7,9 +7,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <title>Tutorial 4: Mostrar un servicio de entidades</title>
 
-  <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">
   <style>
     html, body, #mapDiv {
       padding: 0;
@@ -29,31 +30,23 @@
     //                de ejecutar el código
     // esri/layers/featureLayer Para poder cargar la
     require([
-        "esri/map",
-        "dojo/domReady!",
-        "esri/layers/FeatureLayer",
-        //"esri/tasks/query"
-    ], function(Map, FeatureLayer) {
+      "esri/map",
+      "dojo/domReady!",
+      "esri/layers/FeatureLayer"
+    ], function(Map) {
 
-        // Generamos un nuevo mapa con un mapa base tipo callejero
-        // Otros tipos: "satellite", "hybrid", "topo", "gray", "oceans",
-        // "national-geographic", "osm".
-        map = new Map("mapDiv", {
-            center: [-3.674, 40.439],
-            zoom: 7,
-            basemap: "streets"
-        });
+      // Generamos un nuevo mapa con un mapa base tipo callejero
+      // Otros tipos: "satellite", "hybrid", "topo", "gray", "oceans",
+      // "national-geographic", "osm".
+      map = new Map("mapDiv", {
+        center: [-3.674, 40.439],
+        zoom: 7,
+        basemap: "streets"
+      });
 
-        //Añadimos una capa de entidades al mapa
-        var featureLayer = new esri.layers.FeatureLayer("http://services3.arcgis.com/gzPLi0vbk0c1QVGb/arcgis/rest/services/Gasolinerasshape/FeatureServer/0");
-        map.addLayer(featureLayer);
-
-        //http://developers.arcgis.com/javascript/sandbox/sandbox.html?sample=fl_hover
-        //http://developers.arcgis.com/javascript/sandbox/sandbox.html?sample=query_buffer
-        // var query = new esri.tasks.Query();
-        // query.where = "Precio95 > 1.41";
-
-        // featureLayer.queryFeatures
+      //Anñadimos una capa de entidades al mapa
+      var featureLayer = new esri.layers.FeatureLayer("http://services3.arcgis.com/gzPLi0vbk0c1QVGb/arcgis/rest/services/Gasolinerasshape/FeatureServer/0");
+      map.addLayer(featureLayer);
 
     });
   </script>

@@ -5,33 +5,46 @@ Toda la documentación y ejemplos de este repositorio se han creado usando la [A
 
 Si quieres saber dónde encontrar datos para hacer tus proyectos o tienes dudas puedes unirte al grupo de [Geo Developers](http://meetup.com/Geo-Developers/) y preguntar a través de [la lista de correo](http://www.meetup.com/Geo-Developers/messages/archive/).
 
+Si nunca antes has trabajado con esta plataforma (Github), aquí tienes un [curso práctico en vídeo y gratuito sobre Git](https://www.codeschool.com/courses/try-git) ^_^. Nota: *se hace en un par de horas*
+
 Tutoriales
 ---------------
 
-* Cómo pintar un mapa con el API JS de ArcGIS - 
-[Código](http://bit.ly/Qn55l8) | 
-[Jugar](http://bit.ly/1iTEPWO) | 
-[Previsualizar](http://bit.ly/P2B5Kl)
+* Cómo pintar un mapa con el API JS de ArcGIS -
+[Código](http://bit.ly/Qn55l8) |
+[Jugar](http://jsbin.com/rudeq/1/edit) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_1.html)
 
-* Usar el widget de Geocodificación y personalizar el diseño - 
-[Código](http://bit.ly/1hHmyk6) | 
-[Jugar](http://bit.ly/1p6jFgS) | 
-[Previsualizar](http://bit.ly/1hI0aHr)
+* Usar el widget de Geocodificación y personalizar el diseño -
+[Código](http://bit.ly/1hHmyk6) |
+[Jugar](http://jsbin.com/saxino/2/edit) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_2.html)
 
 * Cargar datos desde CSV externos
-[Código](http://bit.ly/1eu045l) | 
-[Jugar](http://bit.ly/1jHY7S3) | 
-[Previsualizar](http://bit.ly/1eEiYHg)
+[Código](http://bit.ly/1eu045l) |
+[Jugar](http://jsbin.com/ruzeyuri/2/edit) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
 * Cargar una capa de entidades (Feature Layer)
-[Código](http://bit.ly/1hsSHHd) | 
-[Jugar](http://bit.ly/1mweYMe) | 
-[Previsualizar](http://bit.ly/1ijQvkU)
+[Código](http://bit.ly/1hsSHHd) |
+[Jugar](http://jsbin.com/hasota/1/edit) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_4.html)
 
 Configura tu entorno en local
 ---------------
-TODO: Documentar cómo clonarse el repositorio en local para empezar a hacer pruebas más avanzadas que requieran autenticación, etc.
+
+1. [Descarga e instala GIT](http://git-scm.com/downloads)
+
+2. Clona el repositorio, tienes dos opciones
+
+  2.1 [Usando la línea de comandos](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository) (para usuarios avanzados)
+
+  2.2 Haciendo clic en Clone in Desktop
+
+  <img src="https://github-images.s3.amazonaws.com/help/repository/remotes-url.png">
+
+  2.3 Para poder ejecutar correctamente los ejemplos necesitarás un servidor de páginas estáticas. Te recomendamos [Node.js](http://nodejs.org/) + [http-server](https://www.npmjs.org/package/http-server)
 
 Introducción al desarrollo GIS
 ---------------
@@ -80,4 +93,3 @@ La clase utilizada para hacer cálculos de direcciones es **RouteTask** ([Ver do
 Otros datos de interés:
 
 * [**Ejemplos que usar cálculos de direcciones**](http://bit.ly/1m54Gl6)
-
