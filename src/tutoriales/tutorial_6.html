@@ -1,0 +1,88 @@
+<!--
+  Ejemplo adaptado para la comunidad de Geo Developers
+  Ver en editor online: http://bit.ly/1mweYMe
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Tutorial 6: Cargar un marcador personalizado con información extra</title>
+  <link rel="stylesheet" href="http://js.arcgis.com/3.11/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.11/esri/css/esri.css">
+  
+  <style>
+    html, body, #map {
+      height:100%;
+      width:100%;
+      margin:0;
+      padding:0;
+    }
+
+    .esriPopup  img{
+      max-width: 200px;
+      max-height: 133px;
+      border: solid 2px #000;
+    }
+    body {
+      background-color:#FFF;
+      overflow:hidden;
+      font-family:"Trebuchet MS";
+    }
+  </style>
+
+  <!-- Cargamos la versión 3.11 de la API a través del CDN de ArcGIS -->
+  <script src="http://js.arcgis.com/3.11/"></script>
+  <script>
+    var map;
+
+    require([
+      "esri/map",
+      "esri/layers/GraphicsLayer",
+      "esri/geometry/Point",
+      "esri/symbols/PictureMarkerSymbol",
+      "esri/dijit/PopupTemplate",
+      "esri/graphic",
+      "dojo/domReady!",
+    ], function(
+      Map,
+      GraphicsLayer,
+      Point,
+      PictureMarkerSymbol,
+      PopupTemplate,
+      Graphic
+    ) {
+
+      map = new Map("map", {
+          center: [-3.674, 40.439],
+          zoom: 5,
+          basemap: "gray"
+      });
+
+      var capaGrafica = new GraphicsLayer();
+      map.addLayer(capaGrafica)
+
+      var item = {
+          "title": "sunset",
+          "description": " <p><a href=\"http://www.flickr.com/people/jmzamora2012/\">JMZAMORA2012<\/a> posted a photo:<\/p> <p><a href=\"http://www.flickr.com/photos/jmzamora2012/15280154097/\" title=\"sunset\"><img src=\"http://farm4.staticflickr.com/3932/15280154097_c04281bd0a_m.jpg\" width=\"240\" height=\"160\" alt=\"sunset\" /><\/a><\/p> <p>Joan Manel ZAMORA©<br /> <br /> Andorra - pyrenees - europe<br /> zone: encamp<br /> <br /> Joan Manel ZAMORA©<br /> MAS INFROMACION EN : <a href=\"http://www.joanmanelzamora.com\" rel=\"nofollow\">www.joanmanelzamora.com<\/a><br /> <br /> SHOP<br /> <a href=\"http://www.joanmanelzamora.com/#!shop/c1sf3\" rel=\"nofollow\">www.joanmanelzamora.com/#!shop/c1sf3<\/a><br /> <br /> TODAS LAS FOTOS TIENEN TODOS LOS DERECHOS RESERVADOS ©.<br /> Todas las imágenes/ fotografías de este blog son propiedad exclusiva de “Joan Manel Zamora Muñoz”. las imágenes no deben ser copiadas/ reproducidas sin la autorización expresa por escrito y firmada por el autor Joan Manel Zamora Muñoz. Si quiere utilizar o adquirir alguna de las imágenes publicadas en este blog,Por favor ponerse en contacto conmigo por e-mail<br /> ALL PHOTOS ARE ALL RIGHTS RESERVED ©.<br /> All images / photographs on this blog are the exclusive property of “Joan Manel Zamora Muñoz”. the images should not be copied / reproduced without the express written and signed by the author Joan Manel Zamora Muñoz. If you want to use or purchase any of the images <br /> posted on this blog,Please contact me by e-mail.<\/p>",
+          "latitude" : "42.565977",
+          "longitude" : "1.733264"
+      }
+      var loc = new Point(item.longitude, item.latitude);
+      var symbol = new PictureMarkerSymbol("http://dl.dropbox.com/u/52777651/flickr.png", 24, 24);
+
+
+      var template = new PopupTemplate({
+        title: "{title}",
+        description:"{description}"
+      });
+
+      capaGrafica.add(new Graphic(loc, symbol, item, template));
+
+    });
+  </script>
+</head>
+<body class="claro">
+  <div id="map"></div>
+</body>
+</html>
