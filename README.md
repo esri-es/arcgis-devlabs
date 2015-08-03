@@ -20,16 +20,26 @@ Tutoriales
 [Jugar](http://jsbin.com/saxino/2/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_2.html)
 
-* Cargar datos desde CSV externos
+* Cargar datos desde CSV externos - 
 [Código](http://bit.ly/1eu045l) |
 [Jugar](http://jsbin.com/ruzeyuri/2/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
-* Cargar una capa de entidades (Feature Layer)
+* Cargar una capa de entidades (Feature Layer) - 
 [Código](http://bit.ly/1hsSHHd) |
 [Jugar](http://jsbin.com/hasota/1/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_4.html)
+
+* Pintar un marcador personalizado en un mapa - 
+[Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_5.html) |
+[Jugar](http://jsbin.com/havuco/2/edit) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_5.html)
+
+* Pintar un marcador personalizado en un mapa con un popup - 
+[Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_6.html) |
+[Jugar](http://jsbin.com/habiha/3/edit) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_6.html)
 
 Configura tu entorno en local
 ---------------
