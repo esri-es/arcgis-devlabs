@@ -3,10 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>Tutorial 3: Cargar datos desde CSV externos</title>
+    <title>Cargar datos desde CSV externos</title>
 
-    <link rel="stylesheet" href="http://js.arcgis.com/3.11/esri/css/esri.css">
-    
+    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">
     <style>
       html, body, #map {
         height: 100%;
@@ -21,7 +20,7 @@
       }
     </style>
 
-    <script src="http://js.arcgis.com/3.11/"></script>
+    <script src="http://js.arcgis.com/3.10/"></script>
     <script>
       var map, csv;
       require([
@@ -33,17 +32,17 @@
         "esri/InfoTemplate",
         "dojo/domReady!"
       ], function(
-        Map, CSVLayer, Color, SimpleMarkerSymbol, SimpleRenderer, InfoTemplate, urlUtils
+        Map, CSVLayer, Color, SimpleMarkerSymbol, SimpleRenderer, InfoTemplate
       ) {
 
         // Configuramos el fichero esri_request para que use un proxy
         // ya que mediante AJAX vamos a hacer una petición fuera de
         // nuestro dominio (http://bit.ly/1nom026)
-        esriConfig.defaults.io.corsEnabledServers.push("www.corsproxy.com");
+        esriConfig.defaults.io.corsEnabledServers.push("www.googledrive.com");
 
         map = new Map("map", {
           basemap: "gray",
-          center: [2.971085	, 39.587848],
+          center: [2.971085 , 39.587848],
           zoom: 10
         });
 
@@ -51,7 +50,8 @@
         // http://www.corsproxy.com/
         // Configuramos la instancia para que entienda el formato
         //en el que llega el CSV: http://bit.ly/1jHXDvm
-        csv = new CSVLayer("http://www.corsproxy.com/esri-es.github.io/JavascriptAPI/src/tutoriales/datasets/playas_de_mallorca.csv",{
+        //csv = new CSVLayer("http://www.cors.io/?u=http://esri-es.github.io/JavascriptAPI/src/tutoriales/datasets/playas_de_mallorca.csv",{
+        csv = new CSVLayer("http://www.googledrive.com/host/0Bzgk_dG_CbQBWC1GVExGUFFselk",{
             columnDelimiter: ",",
             latitudeFieldName: "lat",
             longitudeFieldName: "long"
