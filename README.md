@@ -22,7 +22,7 @@ Tutoriales
 
 * Cargar datos desde CSV externos - 
 [Código](http://bit.ly/1eu045l) |
-[Jugar](http://jsbin.com/ruzeyuri/2/edit) |
+[Jugar](http://jsbin.com/panura/1/edit?html,output) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
 
 
@@ -40,6 +40,11 @@ Tutoriales
 [Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_6.html) |
 [Jugar](http://jsbin.com/habiha/3/edit) |
 [Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_6.html)
+
+* Cargar un webmap - 
+[Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_7.html) |
+[Jugar](http://jsbin.com/huqake/edit?html,output) |
+[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_7.html)
 
 Configura tu entorno en local
 ---------------
