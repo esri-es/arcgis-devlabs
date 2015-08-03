@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tutorial 7: Cargar un webmap</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+<style>
+  html,body,#mapDiv,.map.container{
+    padding:0;
+    margin:0;
+    height:100%;
+  }
+</style>
+
+<script>var dojoConfig = { parseOnLoad:true };</script>
+<script src="http://js.arcgis.com/3.14compact/"></script>
+<script>
+  require([
+    "esri/map",
+    "esri/arcgis/utils",
+    "dojo/domReady!"
+  ], function(Map, arcgisUtils){
+    arcgisUtils.createMap("64c9b7fe34304c0fae24e8d9edc86924", "mapDiv").then(function (response) {
+      map = response.map;
+    });
+  });
+</script>
+</head>
+
+<body>
+  <div id="mapDiv"></div>
+</body>
+</html>
+
