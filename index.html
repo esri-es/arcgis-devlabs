@@ -95,11 +95,18 @@
 
 			$tutosli.detach().appendTo($tutos);
 
-			$($("#tutos option")[0]).attr("selected","selected");
+			var selected = window.location.hash.substr(1);
+			if(selected){
+				$($("#tutos option")[parseInt(selected)-1]).attr("selected","selected");
+			}else{
+				$($("#tutos option")[0]).attr("selected","selected");
+			}
+			$("#tutos").change();
 		}, 1000);
 
 			
 		});
+
 		$("#tutos").change(function(elem){
 			var html_url = $(this).find(":selected").data("url"),
 				url = $(this).val();
