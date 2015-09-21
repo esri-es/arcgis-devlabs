@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Tutorial 8: Mostrar un escenario 3D</title>
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    
+    #buttonsDiv {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 12px;
+      background-color: rgba(200, 200, 200, 0.5);
+      border: 1px solid black;
+    }
+    
+    #indicatorSpan {
+      display: inline-block;
+      vertical-align: middle;
+      width: 30px;
+      height: 30px;
+      background-color: rgba(100, 100, 100, 0.8);
+      border: 2px solid #ccc;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0beta1/esri/css/esri.css">
+  <script src="https://js.arcgis.com/4.0beta1/"></script>
+
+  <script>
+    var map, view;
+
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "dojo/dom",
+      "dojo/on",
+      "dojo/domReady!"
+    ], function(Map, SceneView, dom, on) {
+
+      //Creamos el mapa
+      map = new Map({
+        basemap: "hybrid"
+      });
+
+      //Creamos la vista
+      view = new SceneView({
+        map: map,
+        container: "viewDiv",
+        camera: {
+          position: [7.654, 45.919, 5183],
+          tilt: 80
+        }
+      });
+
+      //Asignamos el comportamiento a los botones de rotar
+      var rotateAntiClockwiseSpan = dom.byId("rotateAntiClockwiseSpan");
+      var rotateClockwiseSpan = dom.byId("rotateClockwiseSpan");
+      var indicatorSpan = dom.byId("indicatorSpan");
+      on(rotateClockwiseSpan, "click", function() {
+        rotateView(-1);
+      });
+      on(rotateAntiClockwiseSpan, "click", function() {
+        rotateView(1);
+      });
+      on(indicatorSpan, "click", tiltView);
+
+      //Creamos las llamadas asociadas a los eventos
+      function rotateView(direction) {
+        var heading = view.camera.heading;
+
+        // Ajustamos la rumbo de la vista al múltiplo más cercano a 90º
+        // dependiendo de la rotación
+        if (direction > 0) {
+          heading = Math.floor((heading + 1e-3) / 90) * 90 + 90;
+        } else {
+          heading = Math.ceil((heading - 1e-3) / 90) * 90 - 90;
+        }
+
+        view.animateTo({
+          heading: heading
+        });
+      }
+
+      function tiltView() {
+        // Obtener la inclinación de la cámara y añadir un pequeño número de imprecisiones
+        var tilt = view.camera.tilt + 1e-3;
+
+        // Alternamos entre 3 niveles de inclinación
+        if (tilt >= 80) {
+          tilt = 0;
+        } else if (tilt >= 40) {
+          tilt = 80;
+        } else {
+          tilt = 40;
+        }
+
+        view.animateTo({
+          tilt: tilt
+        });
+      }
+
+      //Vigilamos los cambios en la propiedad view.camera
+      view.watch("camera", updateIndicator);
+
+      function updateIndicator(camera) {
+        var tilt = camera.tilt;
+        var heading = camera.heading;
+
+        // Actualizamos el indicador para reflejar la inclinación actual usando
+        // transformaciones CSS
+        var transform = "rotateX(" + 0.8 * tilt +
+          "deg) rotateY(0) rotateZ(" + -heading + "deg)";
+
+        indicatorSpan.style["transform"] = transform;
+        indicatorSpan.style["-webkit-transform"] = transform; //Solución para Safari
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <div id="buttonsDiv">
+    <button id="rotateAntiClockwiseSpan" title="Rotate 90°">↻</button>
+    <button id="indicatorSpan"></button>
+    <button id="rotateClockwiseSpan" title="Rotate 90°">↺</button>
+  </div>
+</body>
+</html>
