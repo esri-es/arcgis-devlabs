@@ -98,7 +98,7 @@
 			
 		});
 		$("#tutos").change(function(elem){
-			var html_url = $(this).data("url"),
+			var html_url = $(this).find(":selected").data("url"),
 				url = $(this).val();
 
 			$("#preview").attr("src",url);
