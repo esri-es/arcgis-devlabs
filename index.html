@@ -1,11 +1,24 @@
 <html>
 <head>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<title>Tutoriales</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<style type="text/css">
+		body{
+			font-family: 'Open Sans', sans-serif;
+		}
 		iframe{
 			width: 100%;
 			height: 400px;
 			border: 1px solid #efefef;
+		}
+		h2{
+			font-size: 1.3em;
+    		text-transform: uppercase;
 		}
 	</style>
 </head>
@@ -15,26 +28,34 @@
 			<div class="col-md-12">
 				<h1 class="text-center">Tutoriales</h1>
 			</div>
-			<div class="col-md-6">
-				<ul id="tutos">
-				</ul>
+			<div class="col-md-12 text-center" style="margin-bottom: 1em;">
+				<div class="form-inline">
+					<div class="form-group">
+						<label for="tutos" class="control-label">Selecciona uno:</label> <select id="tutos" class="form-control" ></select>
+					</div>
+				</div>
 			</div>
 			
 			<div class="col-md-6">
+				<h2 class="text-center">Preview</h2>
 				<iframe id="preview" src="./src/tutoriales/tutorial_1.html"></iframe>
 				<p><a href="https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_1.html" id="code" class="btn btn-block btn-primary" style="margin-top:1em" target="blank">Ver código</a></p>
+			</div>
+			<div class="col-md-6">
+				<h2 class="text-center">Código</h2>
+				<pre id="htmlCode" class="prettyprint lang-html">
+				</pre>
+
 			</div>
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
 	
 	<script>
 		$.getJSON("https://api.github.com/repos/esri-es/JavascriptAPI/contents/src/tutoriales", function(data){
@@ -44,10 +65,8 @@
 				if(elem.name.indexOf(".html") !== -1){
 					$.get("./"+elem.path, function(html){
 						var name = getTitle(html);
-						$("<li data-name='"+name+"'><a href='./"+elem.path+"' onclick='preview(\"./"+elem.path+"\",\""+elem.html_url+"\");return false;'>"+name+"</a></li>").appendTo("#tutos");
 						
-						
-
+						$("<option data-name='"+name+"' value='./"+elem.path+"' data-url=\""+elem.html_url+"\">"+name+"</option>").appendTo("#tutos");
 					});
 					
 
@@ -56,12 +75,12 @@
 			);
 			setTimeout(function(){
 			var $tutos = $('#tutos'),
-				$tutosli = $tutos.children('li');
+				$tutosli = $tutos.children('option');
 
 			$tutosli.sort(function(a,b){
 				var an = a.getAttribute('data-name').split(":")[0],
 					bn = b.getAttribute('data-name').split(":")[0];
-					console.log("an=",an)
+					
 				if(an > bn) {
 					return 1;
 				}
@@ -72,17 +91,33 @@
 			});
 
 			$tutosli.detach().appendTo($tutos);
+
+			$($("#tutos option")[0]).attr("selected","selected");
 		}, 1000);
 
 			
 		});
-		var preview = function(url, html_url){
+		$("#tutos").change(function(elem){
+			var html_url = $(this).data("url"),
+				url = $(this).val();
+
 			$("#preview").attr("src",url);
 			$("#code").attr("href",html_url);
 			
-			return -1;
-		};
+			$.get("./"+url, function(html){
+				$("#htmlCode").text(html);
+				$("#htmlCode").removeClass("prettyprinted");
+        		PR.prettyPrint()
+			});
+		});
 
+		// Load first
+		$.get("./src/tutoriales/tutorial_1.html", function(html){
+			$("#htmlCode").text(html);
+			$("#htmlCode").removeClass("prettyprinted");
+    		PR.prettyPrint()
+		});
+		
 		
 
 		function getTitle(html) {
