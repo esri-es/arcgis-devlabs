@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>Tutoriales</title>
+</head>
+<body>
+	<h1>Tutoriales</h1>
+	<ul id="tutos">
+		
+	</ul>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		$.getJSON("https://api.github.com/repos/esri-es/JavascriptAPI/contents/src/tutoriales", function(data){
+			//debugger
+			data.forEach(function(elem){
+				//debugger
+				if(elem.name.indexOf(".html") !== -1){
+					$.get("./"+elem.path, function(html){
+						
+						$("<li><a href='./"+elem.path+"'>"+getTitle(html)+"</a></li>").appendTo("#tutos");
+					});
+					
+				}
+			});
+		});
+
+		var items = $('#tutos').get();
+		items.sort(function(a,b){
+		  var keyA = $(a).text();
+		  var keyB = $(b).text();
+
+		  if (keyA < keyB) return -1;
+		  if (keyA > keyB) return 1;
+		  return 0;
+		});
+		var ul = $('#tutos');
+		$.each(items, function(i, li){
+		  ul.append(li);
+		});
+
+		function getTitle(html) {
+		  return (html.replace( /<!\[CDATA\[(.+?)\]\]>/g
+		                      , function (_match, body) {
+		                          return body.replace(/&/g, '&amp;')
+		                                     .replace(/</g, '&lt;')
+		                                     .replace(/>/g, '&gt;')
+		                        } )
+		              .replace(/<!--.+?-->/g, '')
+		              .match(/<title>.+?<\/title>/ig) || [])
+		              .map(function (t) { return t.substring(7, t.length - 8) })
+		              .join(' ')
+		}
+
+
+	</script>
+</body>
+</html>
+
+<!-- http://rawgit.com/showdownjs/showdown/master/dist/showdown.js -->
