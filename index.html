@@ -21,10 +21,18 @@
 			<div class="col-md-12 text-center" style="margin-bottom: 1em;">
 				<div class="form-inline">
 					<div class="form-group">
-						<label for="tutos" class="control-label">Selecciona uno:</label> 
+						<label for="tutos" class="control-label">Selecciona uno: </label>
 						<select id="tutos" class="form-control" ng-model="tuto" ng-change="update()">
 							<option ng-repeat="t in tutorials | orderBy: 'o'" value='{{t.i}}'>{{t.name}}</option>
 						</select>
+                        <p style="margin-top: .5em;">
+                            <small>
+                                Compartir:
+                                <a ng-href="http://esri-es.github.io/JavascriptAPI/#/{{tutorials[tuto].o}}">
+                                    http://esri-es.github.io/JavascriptAPI/#/{{tutorials[tuto].o}}
+                                </a>
+                            </small>
+                        </p>
 					</div>
 				</div>
 			</div>

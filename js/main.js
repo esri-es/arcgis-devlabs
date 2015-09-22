@@ -51,10 +51,18 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                 setTimeout(function () {
                     var selected = window.location.hash;
                     if(selected.indexOf("#/") !== -1){
-                        selected = selected.substr(2);
+                        selected = parseInt(selected.substr(2));
                     }
+
+                    var i;
+                    $scope.tutorials.forEach(function(elem){
+                        if(elem.o === selected){
+                            i = elem.i;
+                            return 0;
+                        }
+                    });
                     if (selected) {
-                        $scope.tuto = parseInt(selected) - 1;
+                        $scope.tuto = i;
                     } else {
                         $scope.tuto = 0;
                     }
@@ -86,8 +94,18 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         };
 
         $scope.update = function () {
-            var elem = $scope.tutorials[$scope.tuto];
-            $scope.tutoTitle = $scope.tutorials[$scope.tuto].name;
+            var i, elem;
+            $scope.tutorials.forEach(function(elem){
+                if(elem.o === parseInt($scope.tuto)){
+                    i = elem.o;
+                    return 0;
+                }
+            });
+            if(!i)
+                return -1;
+            elem = $scope.tutorials[i];
+            $scope.tuto = i;
+            $scope.tutoTitle = elem.name;
             $scope.html_url = elem.url;
             $scope.url = elem.path;
 
