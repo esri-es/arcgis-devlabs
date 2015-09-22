@@ -19,7 +19,9 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
 
         $scope.access_token = localStorageService.get('access_token');
 
-        $http.defaults.headers.common.Authorization = 'token ' + $scope.access_token;
+        if($scope.access_token){
+            $http.defaults.headers.common.Authorization = 'token ' + $scope.access_token;
+        }
 
         $http.get('https://api.github.com/repos/esri-es/JavascriptAPI/issues').
             then(function (response) {
