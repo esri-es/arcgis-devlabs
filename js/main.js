@@ -61,6 +61,7 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                             return 0;
                         }
                     });
+
                     if (selected) {
                         $scope.tuto = i;
                     } else {
@@ -94,14 +95,14 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         };
 
         $scope.update = function () {
-            var i, elem;
+            var i = -1, elem;
             $scope.tutorials.forEach(function(elem){
-                if(elem.o === parseInt($scope.tuto)){
-                    i = elem.o;
+                if(elem.i === parseInt($scope.tuto)){
+                    i = elem.i;
                     return 0;
                 }
             });
-            if(!i)
+            if(i === -1)
                 return -1;
             elem = $scope.tutorials[i];
             $scope.tuto = i;
