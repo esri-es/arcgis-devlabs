@@ -41,6 +41,7 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                                     name: name,
                                     path: elem.path,
                                     url: elem.html_url,
+                                    o: parseInt(name.substr(8,name.indexOf(":")-8)),
                                     i: $scope.tutorials.length
                                 })
                             });
@@ -150,4 +151,20 @@ tutorialsApp.filter('num', function() {
     return function(input) {
         return parseInt(input, 10);
     };
+});
+
+tutorialsApp.filter('customSort',function(){
+    var sort = function (a, b) {
+        if (a > b) { return 1; }
+        if (a < b) { return -1; }
+
+        return 0;
+    };
+
+    return function(arrInput, prop) {
+        var arr = arrInput.sort(function(a, b) {
+            return sort(+a[prop], +b[prop]);
+        });
+        return arr;
+    }
 });

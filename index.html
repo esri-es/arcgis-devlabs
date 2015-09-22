@@ -22,14 +22,18 @@
 					<div class="form-group">
 						<label for="tutos" class="control-label">Selecciona uno:</label> 
 						<select id="tutos" class="form-control" ng-model="tuto" ng-change="update()">
-							<option ng-repeat="t in tutorials | orderBy: 'name'" value='{{t.i}}'>{{t.name}}</option>
+							<option ng-repeat="t in tutorials | orderBy: 'o'" value='{{t.i}}'>{{t.name}}</option>
 						</select>
 					</div>
 				</div>
 			</div>
 			
 			<div class="col-md-4">
-				<h2 class="text-center">Preview</h2>
+				<h2 class="text-center">
+                    <a ng-href="{{url | trusted}}" target="_blank">
+                        Preview <i class="fa fa-external-link"></i>
+                    </a>
+                </h2>
 				<iframe id="preview" ng-src="{{url | trusted}}"></iframe>
 
 
