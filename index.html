@@ -45,7 +45,7 @@
                         <div class="col-md-9">
                             <p><strong><a href="{{i.html_url}}">{{i.title}}</a></strong></p>
                             <p>{{i.body}}</p>
-                            <p><small>Enviada: {{i.created_at | date:'dd/MM/yyyy HH:mm:ss'}}</small></p>
+                            <p><small><i class="fa fa-calendar"></i> {{i.created_at | date:'dd/MM/yyyy'}} | <i class="fa fa-comments"></i> <a href="{{i.html_url}}"> <ng-pluralize count="i.comments" when="{'1': '{{i.comments}} respuesta', 'other': '{{i.comments}} respuestas'}"></a></small></p>
                         </div>
                     </li>
                 </ul>

@@ -145,3 +145,9 @@ tutorialsApp.filter('escapeHtml', function () {
         });
     }
 });
+
+tutorialsApp.filter('num', function() {
+    return function(input) {
+        return parseInt(input, 10);
+    };
+});
