@@ -15,10 +15,20 @@
     </style>
 </head>
 <body ng-controller="MapController">
+
 <p>Lat: {{ map.center.lat | number:3 }}, Lng: {{ map.center.lng | number:3 }}, Zoom: {{map.zoom}}</p>
+
+<!-- Cargamos el mapa -->
 <esri-map id="map" center="map.center" zoom="map.zoom" basemap="topo">
-    <esri-feature-layer url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Portland_Parks/FeatureServer/0"></esri-feature-layer>
-    <esri-feature-layer url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0"></esri-feature-layer>
+
+    <!-- Cargamos los servicios de entidades -->
+    <esri-feature-layer
+         url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Portland_Parks/FeatureServer/0"
+    ></esri-feature-layer>
+    <esri-feature-layer
+         url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0"
+    ></esri-feature-layer>
+
 </esri-map>
 
 <script type="text/javascript" src="http://js.arcgis.com/3.14compact"></script>
@@ -26,15 +36,15 @@
 <script src="http://esri.github.io/angular-esri-map/lib/angular-esri-map.js"></script>
 <script type="text/javascript">
     angular.module('esri-map-example', ['esri.map'])
-            .controller('MapController', function ($scope) {
-                $scope.map = {
-                    center: {
-                        lng: -122.676207,
-                        lat: 45.523452
-                    },
-                    zoom: 12
-                };
-            });
+        .controller('MapController', function ($scope) {
+            $scope.map = {
+                center: {
+                    lng: -122.676207,
+                    lat: 45.523452
+                },
+                zoom: 12
+            };
+        });
 </script>
 </body>
 </html>
