@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	
+	<link rel="stylesheet" href="http://js.arcgis.com/3.7/js/esri/css/esri.css" />
+	<!-- css used to customize the UI of the application -->
+	<link rel="stylesheet" href="css/main.css" />
+	<script src="http://js.arcgis.com/3.7compact/"></script>
+
+	
+	<script>
+		require([
+			"esri/map", 
+			"dojox/mobile", 
+			"dojox/mobile/parser", 
+			"esri/sniff", 
+			"dojox/mobile/deviceTheme", 
+			"dojo/dom", 
+			"dijit/registry", 
+			"dojo/on", 
+			"dojox/mobile/ToolBarButton", 
+			"dojox/mobile/View"
+		],function(Map, mobile, parser, has, dTheme, dom, registry, on) {
+			parser.parse();
+			mobile.hideAddressBar();
+
+			// onorientationchange doesn't always fire in a timely manner in Android so check for both orientationchange and resize
+			var resizeEvt = (window.onorientationchange !== undefined && !has('android')) ? "orientationchange" : "resize";
+			on(window, resizeEvt, resizeMap);
+			
+			function resizeMap() {
+				mobile.hideAddressBar();
+				adjustMapHeight();
+				map.resize();
+				map.reposition();
+			}
+			
+			function adjustMapHeight() {
+				var availHeight = mobile.getScreenSize().h - registry.byId('header').domNode.clientHeight - 1;
+				if (has('iphone') || has('ipod')) {
+					availHeight += iphoneAdjustment();
+				}
+				dom.byId("map").style.height = availHeight + "px";
+			}
+			
+			function iphoneAdjustment() {
+				var sz = mobile.getScreenSize();
+				if (sz.h > sz.w) { //portrait
+					//Need to add address bar height back to map because it has not been hidden yet
+					/* 44 = height of bottom safari button bar */
+					return screen.availHeight - window.innerHeight - 44; 
+				} else { //landscape
+					//Need to react to full screen / bottom button bar visible toggles
+					var _conn = on(window, 'resize', function() {
+						_conn.remove();
+						resizeMap();
+					});
+					return 0;
+				}
+			}
+			
+			function mapLoadHandler(evt) {
+				debugger
+				resizeMap();
+				registry.byId('mapView').on('AfterTransitionIn', resizeMap);
+			}
+
+			var map = new esri.Map("mapDiv", {
+				basemap: "topo",
+				center: [-56.049, 38.485],
+				zoom: 3,
+				slider: false
+			});
+			
+			
+			map.on("load", mapLoadHandler);
+		});
+
+	</script>
+	<style>
+		html, body, #mapDiv,.map.container {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+		}
+		#legendDiv{
+			background-color: #fff;
+			position: absolute !important;
+			z-index: 99;
+			top:10px;
+			right:20px;
+		}
+	</style>
+	<title></title>
+</head>
+<body>
+	<div id="mapDiv"></div>
+</body>
+</html>

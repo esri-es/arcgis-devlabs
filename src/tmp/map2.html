@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+	<link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css ">
+
+
+	<script>var dojoConfig = { parseOnLoad:true };</script>
+	<script src="https://js.arcgis.com/3.8/"></script>
+	<script>
+		var map;
+		require([
+			"esri/map", 
+			"esri/arcgis/utils",
+			"esri/dijit/Legend",
+			"dojo/domReady!"
+			], function(Map, arcgisUtils, Legend) { 
+
+				arcgisUtils.createMap("0a83a78096ac4f5798af58f124174c4f", "mapDiv").then(function (response) {
+					map = response.map;   
+
+					var legend = new Legend({
+						map: map,
+						layerInfos:(arcgisUtils.getLegendLayers(response))
+					}, "legendDiv");
+					
+					legend.startup();
+				});
+			});
+	</script>
+	<style>
+		html, body, #mapDiv,.map.container {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+		}
+		#legendDiv{
+			background-color: #fff;
+			position: absolute !important;
+			z-index: 99;
+			top:10px;
+			right:20px;
+		}
+	</style>
+	<title></title>
+</head>
+<body class="claro">
+	<div id="mapDiv"></div>
+	<div id="legendDiv"></div>
+</body>
+</html>
