@@ -15,6 +15,7 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         $scope.access_token = getParameterByName("access_token");
         if($scope.access_token){
             localStorageService.set('access_token', $scope.access_token);
+            window.location.search = '';
         }
 
         $scope.access_token = localStorageService.get('access_token');
@@ -47,7 +48,10 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                 });
 
                 setTimeout(function () {
-                    var selected = window.location.hash.substr(1);
+                    var selected = window.location.hash;
+                    if(selected.indexOf("#/") !== -1){
+                        selected = selected.substr(2);
+                    }
                     if (selected) {
                         $scope.tuto = parseInt(selected) - 1;
                     } else {
