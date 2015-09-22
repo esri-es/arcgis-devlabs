@@ -1,26 +1,15 @@
 <html ng-app="tutorialsApp">
 <head>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-	<title>Tutoriales</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>Tutoriales</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-	<style type="text/css">
-		body{
-			font-family: 'Open Sans', sans-serif;
-		}
-		iframe{
-			width: 100%;
-			height: 400px;
-			border: 1px solid #efefef;
-		}
-		h2{
-			font-size: 1.3em;
-    		text-transform: uppercase;
-		}
-	</style>
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
 <body ng-controller="MainCtrl">
 	<div class="container">
@@ -42,25 +31,93 @@
 			<div class="col-md-4">
 				<h2 class="text-center">Preview</h2>
 				<iframe id="preview" ng-src="{{url | trusted}}"></iframe>
-				<p><a ng-href="{{html_url | trusted}}" id="code" class="btn btn-block btn-primary" style="margin-top:1em" target="blank">Abrir código en otra pestaña</a></p>
 
-				<p><a href="https://github.com/login/oauth/authorize?client_id=ce4e38e910c46181cfaf&scope=public_repo" id="code" class="btn btn-block btn-primary" style="margin-top:1em" target="blank">Autorizar</a></p>
-				
-				<ul id="widget-list">
-                <li ng-repeat="i in issues" ng-click='preview(w.id)'>
-                    <strong>{{i.title}} {{i.body}} {{i.created_at | date:'dd/MM/yyyy HH:mm:ss'}}  <a ng-href="{{i.user.html_url}}"><img ng-src="{{i.user.avatar_url}}"></a> {{i.user.login}} </strong>
-                </li>
-            </ul>				
+
+                <h2 class="questions"><a href="https://github.com/esri-es/JavascriptAPI/issues">Preguntas de la comunidad</a></h2>
+				<p ng-hide="issues.length" style="margin:1em 0 0">No hay preguntas sin responder</p>
+                <ul id="questions" class="row">
+                    <li ng-repeat="i in issues">
+                        <div class="col-md-12 separator"><hr></div>
+                        <div class="col-md-3 text-center">
+                            <a ng-href="{{i.user.html_url}}"><img ng-src="{{i.user.avatar_url}}" class="thumbnail"></a>
+                            <small><a href="{{i.user.html_url}}">@{{i.user.login}}</a></small>
+                        </div>
+                        <div class="col-md-9">
+                            <p><strong><a href="{{i.html_url}}">{{i.title}}</a></strong></p>
+                            <p>{{i.body}}</p>
+                            <p><small>Enviada: {{i.created_at | date:'dd/MM/yyyy HH:mm:ss'}}</small></p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="row">
+
+                    <p class="col-md-12" ng-hide="access_token">
+                        <a href="https://github.com/login/oauth/authorize?client_id=ce4e38e910c46181cfaf&scope=public_repo" id="code" class="btn btn-block btn-default" style="margin-top:1em" target="blank">
+                            <i class="fa fa-github"></i> Autentifícate para poder preguntar
+                        </a>
+                    </p>
+
+                    <div ng-show="access_token" class="ng-hide" style="margin-top:1em" >
+                        <div class="col-md-5">
+                            <p>
+                                <button class="btn btn-block btn-danger" ng-click="close()">
+                                    <i class="fa fa-times"></i> Cerrar
+                                </button>
+                            </p>
+                        </div>
+                        <div class="col-md-7">
+                            <p>
+                                <button class="btn btn-block btn-default"  data-toggle="modal" data-target="#askModal">
+                                    <i class="fa fa-paper-plane"></i> Hacer una pregunta
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
 
 			</div>
 			<div class="col-md-8">
-				<h2 class="text-center">Código</h2>
-				<pre id="htmlCode" class="prettyprint lang-html" ng-class="class" ng-bind-html="htmlCode | escapeHtml | pretty"></pre>
+				<h2>
+                    Código
+                    <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
+                </h2>
+
+                <pre id="htmlCode" class="prettyprint lang-html" ng-class="class" ng-bind-html="htmlCode | escapeHtml | pretty"></pre>
 
 			</div>
 		</div>
 	</div>
+
+    <div class="modal large fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form ng-submit="submit()">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Enviar pregunta</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tutorial</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" value="{{tutoTitle}}" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Pregunta</label>
+                            <textarea class="form-control" id="exampleInputPassword1" ng-model="question"></textarea>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 
 	<a href="https://github.com/esri-es/JavascriptAPI/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
@@ -69,38 +126,11 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
-	
-	<script>
-        /*
-        var getQuestions = function(){
-            $.ajax({
-              method: 'GET',
-              url: "https://api.github.com/repos/esri-es/JavascriptAPI/issues",
-
-              success: function(data){debugger},
-              dataType: 'json'
-            });
-        }
-
-        var askQuestion = function(){
-            $.ajax({
-              method: 'POST',
-              url: "https://api.github.com/repos/esri-es/JavascriptAPI/issues",
-              headers: {"Authorization": "token b751cfeb0f636c9474739f7da2f07a3936d0eec3"},
-              data: JSON.stringify({
-              "title": "Question - Tutorial 1",
-              "body": "I'm having a problem with this."
-
-            }),
-              success: function(data){debugger},
-              dataType: 'json'
-            });
-        }*/
-
-	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js"></script>
 	<script src="js/main.js"></script>
 
