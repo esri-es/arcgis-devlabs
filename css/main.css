@@ -1,0 +1,39 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+iframe{
+    width: 100%;
+    height: 300px;
+    border: 1px solid #efefef;
+}
+h1{
+    font-size: 1.7em;
+    margin-bottom: 1em;
+}
+h2{
+    font-size: 1.3em;
+}
+
+h2.questions{
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+#questions {
+    list-style: none;
+    padding: 0;
+}
+    #questions .thumbnail{
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    #questions li hr{
+        margin: 1em 0;
+        border-top: 1px solid #dcdcdc;
+    }
+
+    #askModal textarea{
+        height: 200px;
+    }
