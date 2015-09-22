@@ -1,4 +1,4 @@
-<html>
+<html ng-app="tutorialsApp">
 <head>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<title>Tutoriales</title>
@@ -22,7 +22,7 @@
 		}
 	</style>
 </head>
-<body>
+<body ng-controller="MainCtrl">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -31,20 +31,32 @@
 			<div class="col-md-12 text-center" style="margin-bottom: 1em;">
 				<div class="form-inline">
 					<div class="form-group">
-						<label for="tutos" class="control-label">Selecciona uno:</label> <select id="tutos" class="form-control" ></select>
+						<label for="tutos" class="control-label">Selecciona uno:</label> 
+						<select id="tutos" class="form-control" ng-model="tuto" ng-change="update()">
+							<option ng-repeat="t in tutorials | orderBy: 'name'" value='{{t.i}}'>{{t.name}}</option>
+						</select>
 					</div>
 				</div>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<h2 class="text-center">Preview</h2>
-				<iframe id="preview" src="./src/tutoriales/tutorial_1.html"></iframe>
-				<p><a href="https://github.com/esri-es/JavascriptAPI/blob/gh-pages/src/tutoriales/tutorial_1.html" id="code" class="btn btn-block btn-primary" style="margin-top:1em" target="blank">Ver código</a></p>
+				<iframe id="preview" ng-src="{{url | trusted}}"></iframe>
+				<p><a ng-href="{{html_url | trusted}}" id="code" class="btn btn-block btn-primary" style="margin-top:1em" target="blank">Abrir código en otra pestaña</a></p>
+
+				<p><a href="https://github.com/login/oauth/authorize?client_id=ce4e38e910c46181cfaf&scope=public_repo" id="code" class="btn btn-block btn-primary" style="margin-top:1em" target="blank">Autorizar</a></p>
+				
+				<ul id="widget-list">
+                <li ng-repeat="i in issues" ng-click='preview(w.id)'>
+                    <strong>{{i.title}} {{i.body}} {{i.created_at | date:'dd/MM/yyyy HH:mm:ss'}}  <a ng-href="{{i.user.html_url}}"><img ng-src="{{i.user.avatar_url}}"></a> {{i.user.login}} </strong>
+                </li>
+            </ul>				
+
+
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<h2 class="text-center">Código</h2>
-				<pre id="htmlCode" class="prettyprint lang-html">
-				</pre>
+				<pre id="htmlCode" class="prettyprint lang-html" ng-class="class" ng-bind-html="htmlCode | escapeHtml | pretty"></pre>
 
 			</div>
 		</div>
@@ -57,94 +69,41 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
 	
 	<script>
-		$.getJSON("https://api.github.com/repos/esri-es/JavascriptAPI/contents/src/tutoriales", function(data){
-			//debugger
-			data.forEach(function(elem){
-				//debugger
-				if(elem.name.indexOf(".html") !== -1){
-					$.get("./"+elem.path, function(html){
-						var name = getTitle(html);
-						
-						$("<option data-name='"+name+"' value='./"+elem.path+"' data-url=\""+elem.html_url+"\">"+name+"</option>").appendTo("#tutos");
-					});
-					
+        /*
+        var getQuestions = function(){
+            $.ajax({
+              method: 'GET',
+              url: "https://api.github.com/repos/esri-es/JavascriptAPI/issues",
 
-				}
-			}
-			);
-			setTimeout(function(){
-			var $tutos = $('#tutos'),
-				$tutosli = $tutos.children('option');
+              success: function(data){debugger},
+              dataType: 'json'
+            });
+        }
 
-			$tutosli.sort(function(a,b){
-				var an = a.getAttribute('data-name').split(":")[0],
-					bn = b.getAttribute('data-name').split(":")[0];
-					
-				if(an > bn) {
-					return 1;
-				}
-				if(an < bn) {
-					return -1;
-				}
-				return 0;
-			});
+        var askQuestion = function(){
+            $.ajax({
+              method: 'POST',
+              url: "https://api.github.com/repos/esri-es/JavascriptAPI/issues",
+              headers: {"Authorization": "token b751cfeb0f636c9474739f7da2f07a3936d0eec3"},
+              data: JSON.stringify({
+              "title": "Question - Tutorial 1",
+              "body": "I'm having a problem with this."
 
-			$tutosli.detach().appendTo($tutos);
-
-			var selected = window.location.hash.substr(1);
-			if(selected){
-				$($("#tutos option")[parseInt(selected)-1]).attr("selected","selected");
-			}else{
-				$($("#tutos option")[0]).attr("selected","selected");
-			}
-			$("#tutos").change();
-		}, 1000);
-
-			
-		});
-
-		$("#tutos").change(function(elem){
-			var html_url = $(this).find(":selected").data("url"),
-				url = $(this).val();
-
-			$("#preview").attr("src",url);
-			$("#code").attr("href",html_url);
-			
-			$.get("./"+url, function(html){
-				$("#htmlCode").text(html);
-				$("#htmlCode").removeClass("prettyprinted");
-        		PR.prettyPrint()
-			});
-		});
-
-		// Load first
-		$.get("./src/tutoriales/tutorial_1.html", function(html){
-			$("#htmlCode").text(html);
-			$("#htmlCode").removeClass("prettyprinted");
-    		PR.prettyPrint()
-		});
-		
-		
-
-		function getTitle(html) {
-		  return (html.replace( /<!\[CDATA\[(.+?)\]\]>/g
-		                      , function (_match, body) {
-		                          return body.replace(/&/g, '&amp;')
-		                                     .replace(/</g, '&lt;')
-		                                     .replace(/>/g, '&gt;')
-		                        } )
-		              .replace(/<!--.+?-->/g, '')
-		              .match(/<title>.+?<\/title>/ig) || [])
-		              .map(function (t) { return t.substring(7, t.length - 8) })
-		              .join(' ')
-		}
-
+            }),
+              success: function(data){debugger},
+              dataType: 'json'
+            });
+        }*/
 
 	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js"></script>
+	<script src="js/main.js"></script>
+
 </body>
 </html>
 
