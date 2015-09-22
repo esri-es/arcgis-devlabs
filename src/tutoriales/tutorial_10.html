@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo 10: Cargar jQuery como un módulo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+    <style>
+        html, body, #mapDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+        #btn{
+            position: absolute;
+            z-index: 1;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+    <script>
+        var dojoConfig = (function () {
+            return {
+                async: true,
+                isDebug: true,
+                parseOnLoad: false,
+                packages: [
+                    {
+                        name: 'jquery',
+                        location: 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1',
+                        main: 'jquery'
+                    }
+                ]
+            };
+        })();
+    </script>
+    <script src="http://js.arcgis.com/3.14/"></script>
+    <script>
+
+        require([
+            'esri/map',
+            'jquery',
+            'dojo/domReady!'
+        ], function (Map, $) {
+            $("#contenedor").html("Ya funciona jQuery ^_^");
+            map = new Map("mapDiv", {
+                center: [-56.049, 38.485], //Latitud y longitud
+                zoom: 3,
+                basemap: "streets"
+            });
+
+            $("#btn").click(function(){
+                alert("Evento capturado!");
+            })
+        });
+    </script>
+
+<body>
+<div id="mapDiv"></div>
+<button id="btn">Capturar evento</button>
+</body>
+</html>
