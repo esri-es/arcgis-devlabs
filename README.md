@@ -1,50 +1,11 @@
 JavascriptAPI
 =============
 
-Toda la documentación y ejemplos de este repositorio se han creado usando la [API Javascript de ArcGIS](https://developers.arcgis.com/javascript/).
+Toda la documentación y [ejemplos](http://esri-es.github.io/JavascriptAPI) de este repositorio se han creado usando la [API Javascript de ArcGIS](https://developers.arcgis.com/javascript/).
 
 Si quieres saber dónde encontrar datos para hacer tus proyectos o tienes dudas puedes unirte al grupo de [Geo Developers](http://meetup.com/Geo-Developers/) y preguntar a través de [la lista de correo](http://www.meetup.com/Geo-Developers/messages/archive/).
 
 Si nunca antes has trabajado con esta plataforma (Github), aquí tienes un [curso práctico en vídeo y gratuito sobre Git](https://www.codeschool.com/courses/try-git) ^_^. Nota: *se hace en un par de horas*
-
-Tutoriales
----------------
-
-* Cómo pintar un mapa con el API JS de ArcGIS -
-[Código](http://bit.ly/Qn55l8) |
-[Jugar](http://jsbin.com/rudeq/1/edit) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_1.html)
-
-* Usar el widget de Geocodificación y personalizar el diseño -
-[Código](http://bit.ly/1hHmyk6) |
-[Jugar](http://jsbin.com/saxino/2/edit) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_2.html)
-
-* Cargar datos desde CSV externos - 
-[Código](http://bit.ly/1eu045l) |
-[Jugar](http://jsbin.com/panura/1/edit?html,output) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_3.html)
-
-
-* Cargar una capa de entidades (Feature Layer) - 
-[Código](http://bit.ly/1hsSHHd) |
-[Jugar](http://jsbin.com/hasota/1/edit) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_4.html)
-
-* Pintar un marcador personalizado en un mapa - 
-[Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_5.html) |
-[Jugar](http://jsbin.com/havuco/2/edit) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_5.html)
-
-* Pintar un marcador personalizado en un mapa con un popup - 
-[Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_6.html) |
-[Jugar](http://jsbin.com/habiha/3/edit) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_6.html)
-
-* Cargar un webmap - 
-[Código](https://github.com/esri-es/JavascriptAPI/blob/master/src/tutoriales/tutorial_7.html) |
-[Jugar](http://jsbin.com/huqake/edit?html,output) |
-[Previsualizar](http://esri-es.github.io/JavascriptAPI/src/tutoriales/tutorial_7.html)
 
 Configura tu entorno en local
 ---------------
