@@ -18,14 +18,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="text-center">Ejemplos: API JavaScript de ArcGIS</h1>
+				<h1 class="text-center">Ejemplos: API JavaScript de ArcGIS <small ng-click="addToFavourites()">Añadir a favoritos</small></h1>
 			</div>
 			<div class="col-md-12 text-center" style="margin-bottom: 1em;">
 				<div class="form-inline">
 					<div class="form-group">
 						<label for="tutos" class="control-label">Selecciona uno: </label>
 						<select id="tutos" class="form-control" ng-model="tuto" ng-change="update()">
-							<option ng-repeat="t in tutorials | orderBy: 'o'" value='{{t.i}}'>{{t.name}}</option>
+							<option ng-repeat="t in tutorials | filter : { name : '!!' } | orderBy: 'o'" value='{{t.i}}' on-finish-render="ngRepeatFinished">{{t.name}}</option>
 						</select>
                         <p style="margin-top: .5em;">
                             <small>
@@ -46,7 +46,6 @@
                     </a>
                 </h2>
 				<iframe id="preview" ng-src="{{url | trusted}}"></iframe>
-
 
                 <h2 class="questions"><a href="https://github.com/esri-es/JavascriptAPI/issues">Preguntas de la comunidad</a></h2>
 				<p ng-hide="issues.length" style="margin:1em 0 0">No hay preguntas sin responder</p>
@@ -98,11 +97,20 @@
                     Código
                     <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
                 </h2>
+                <p ng-bind-html="description"></p>
 
                 <pre id="htmlCode" class="prettyprint lang-html" ng-class="class" ng-bind-html="htmlCode | escapeHtml | pretty"></pre>
 
+
+                <div id="sharethis">¿Crees que merece la pena compartirlo?</div> <div class="addthis_sharing_toolbox"></div>
+
 			</div>
 		</div>
+
+        <footer class="text-center">
+            <strong>Made with <i class="fa fa-heart-o"></i> using HTML5</strong> | <a href="https://github.com/esri-es/JavascriptAPI/labels/bugs">Errores</a> |
+            <a href="https://github.com/esri-es/JavascriptAPI/labels/enhancement">Sugerir nuevos tutoriales</a><!--| Live Editing |-->
+        </footer>
 	</div>
 
     <div class="modal large fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -132,9 +140,12 @@
             </div>
 
         </div>
+
+
     </div>
 
 	<a href="https://github.com/esri-es/JavascriptAPI/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	
@@ -149,6 +160,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js"></script>
 	<script src="js/main.js"></script>
 
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56026e6347d3e8f6" async="async"></script>
 </body>
 </html>
 

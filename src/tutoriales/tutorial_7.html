@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ejemplo 7: Cargar un webmap</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ejemplo 7: Cargar un webmap</title>
+    <meta name="description" content="Los <a href='https://doc.arcgis.com/es/arcgis-online/reference/what-is-web-map.htm'>webmaps</a> en definitiva son ficheros JSON que incluyen <a href='http://resources.arcgis.com/en/help/arcgis-web-map-json/index.html#//02qt00000007000000'>la configuración de un mapa</a> (capas incluidas, mapa base, marcadores, etc.). En este ejemplo vemos cómo cargar <a href='http://hhkaos2.maps.arcgis.com/home/webmap/viewer.html?webmap=64c9b7fe34304c0fae24e8d9edc86924'>este webmap</a>." />
 
-<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.14/esri/css/esri.css">
-<style>
-  html,body,#mapDiv,.map.container{
-    padding:0;
-    margin:0;
-    height:100%;
-  }
-</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<script>var dojoConfig = { parseOnLoad:true };</script>
-<script src="http://js.arcgis.com/3.14/"></script>
-<script>
-  require([
-    "esri/map",
-    "esri/arcgis/utils",
-    "dojo/domReady!"
-  ], function(Map, arcgisUtils){
-    arcgisUtils.createMap("64c9b7fe34304c0fae24e8d9edc86924", "mapDiv").then(function (response) {
-      map = response.map;
-    });
-  });
-</script>
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+    <style>
+        html,body,#mapDiv,.map.container{
+            padding:0;
+            margin:0;
+            height:100%;
+        }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad:true };</script>
+    <script src="http://js.arcgis.com/3.14/"></script>
+    <script>
+        require([
+            "esri/map",
+            "esri/arcgis/utils",
+            "dojo/domReady!"
+        ], function(Map, arcgisUtils){
+            arcgisUtils.createMap("64c9b7fe34304c0fae24e8d9edc86924", "mapDiv").then(function (response) {
+                map = response.map;
+            });
+        });
+    </script>
 </head>
 
 <body>
-  <div id="mapDiv"></div>
+<div id="mapDiv"></div>
 </body>
 </html>
 

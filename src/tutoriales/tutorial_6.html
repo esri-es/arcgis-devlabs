@@ -1,13 +1,11 @@
-<!--
-  Ejemplo adaptado para la comunidad de Geo Developers
-  Ver en editor online: http://bit.ly/1mweYMe
--->
 <!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Ejemplo 6: Pintar un marcador personalizado en un mapa con un popup</title>
+    <meta name="description" content="Este es un ejemplo muy simple de cómo pintar un <a href='https://developers.arcgis.com/javascript/jsapi/picturemarkersymbol-amd.html'>marcador</a> en una posición que muestra una <a href='https://developers.arcgis.com/javascript/jsapi/popuptemplate-amd.html'>ventana emergente</a> (popup) al hacer clic." />
+
   <link rel="stylesheet" href="http://js.arcgis.com/3.14/dijit/themes/claro/claro.css">
   <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
   
@@ -54,22 +52,22 @@
     ) {
 
       map = new Map("map", {
-          center: [-3.674, 40.439],
-          zoom: 5,
-          basemap: "gray"
+          center: [1.733264, 42.565977],
+          zoom: 17,
+          basemap: "satellite"
       });
 
       var capaGrafica = new GraphicsLayer();
       map.addLayer(capaGrafica)
 
       var item = {
-          "title": "sunset",
-          "description": " <p><a href=\"http://www.flickr.com/people/jmzamora2012/\">JMZAMORA2012<\/a> posted a photo:<\/p> <p><a href=\"http://www.flickr.com/photos/jmzamora2012/15280154097/\" title=\"sunset\"><img src=\"http://farm4.staticflickr.com/3932/15280154097_c04281bd0a_m.jpg\" width=\"240\" height=\"160\" alt=\"sunset\" /><\/a><\/p> <p>Joan Manel ZAMORA©<br /> <br /> Andorra - pyrenees - europe<br /> zone: encamp<br /> <br /> Joan Manel ZAMORA©<br /> MAS INFROMACION EN : <a href=\"http://www.joanmanelzamora.com\" rel=\"nofollow\">www.joanmanelzamora.com<\/a><br /> <br /> SHOP<br /> <a href=\"http://www.joanmanelzamora.com/#!shop/c1sf3\" rel=\"nofollow\">www.joanmanelzamora.com/#!shop/c1sf3<\/a><br /> <br /> TODAS LAS FOTOS TIENEN TODOS LOS DERECHOS RESERVADOS ©.<br /> Todas las imágenes/ fotografías de este blog son propiedad exclusiva de “Joan Manel Zamora Muñoz”. las imágenes no deben ser copiadas/ reproducidas sin la autorización expresa por escrito y firmada por el autor Joan Manel Zamora Muñoz. Si quiere utilizar o adquirir alguna de las imágenes publicadas en este blog,Por favor ponerse en contacto conmigo por e-mail<br /> ALL PHOTOS ARE ALL RIGHTS RESERVED ©.<br /> All images / photographs on this blog are the exclusive property of “Joan Manel Zamora Muñoz”. the images should not be copied / reproduced without the express written and signed by the author Joan Manel Zamora Muñoz. If you want to use or purchase any of the images <br /> posted on this blog,Please contact me by e-mail.<\/p>",
+          "title": "Atardecer en Zamora",
+          "description": " <p><a href=\"http://www.flickr.com/photos/jmzamora2012/15280154097/\" title=\"sunset\"><img src=\"http://farm4.staticflickr.com/3932/15280154097_c04281bd0a_m.jpg\" width=\"240\" height=\"160\" alt=\"sunset\" /><\/a><\/p><a href=\"http://www.joanmanelzamora.com\" rel=\"nofollow\">www.joanmanelzamora.com<\/a><\/p>",
           "latitude" : "42.565977",
           "longitude" : "1.733264"
       }
       var loc = new Point(item.longitude, item.latitude);
-      var symbol = new PictureMarkerSymbol("http://dl.dropbox.com/u/52777651/flickr.png", 24, 24);
+      var symbol = new PictureMarkerSymbol("http://dl.dropbox.com/u/52777651/flickr.png", 24, 28);
 
 
       var template = new PopupTemplate({

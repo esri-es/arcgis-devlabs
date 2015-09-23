@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Ejemplo 3: Cargar datos desde CSV externos</title>
+    <meta name="description" content="En este ejemplo de <a href='http://www.googledrive.com/host/0Bzgk_dG_CbQBWC1GVExGUFFselk'>playas de Mayorca</a> no se ha utilizado <a href='https://developers.arcgis.com/javascript/jshelp/ags_proxy.html'>proxy</a> ya que el CSV está alojado en Google Drive que tiene <a href='http://enable-cors.org/'>CORS</a> habilitado. También se ha añadido y personalizado una ventana emergente (popup)." />
 
     <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
     <style>
@@ -43,14 +44,11 @@
         map = new Map("map", {
           basemap: "gray",
           center: [2.971085 , 39.587848],
-          zoom: 10
+          zoom: 8
         });
 
-        // En la URL usamos un proxy público que soporta CORS:
-        // http://www.corsproxy.com/
+
         // Configuramos la instancia para que entienda el formato
-        //en el que llega el CSV: http://bit.ly/1jHXDvm
-        //csv = new CSVLayer("http://www.cors.io/?u=http://esri-es.github.io/JavascriptAPI/src/tutoriales/datasets/playas_de_mallorca.csv",{
         csv = new CSVLayer("http://www.googledrive.com/host/0Bzgk_dG_CbQBWC1GVExGUFFselk",{
             columnDelimiter: ",",
             latitudeFieldName: "lat",

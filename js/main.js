@@ -42,47 +42,32 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                 $scope.issues = issues;
             });
 
+        $scope.tutorials = [];
         $http.get('https://api.github.com/repos/esri-es/JavascriptAPI/contents/src/tutoriales').
             then(function (response) {
-                $scope.tutorials = [];
                 response.data.forEach(function (elem) {
                     if (elem.name.indexOf(".html") !== -1) {
                         $http.get("./" + elem.path).
                             then(function (html) {
                                 var name = $scope.getTitle(html.data);
+                                var description = $scope.getDescription(html.data);
+                                if(name){
                                 $scope.tutorials.push({
                                     name: name,
+                                    description: description,
                                     path: elem.path,
                                     url: elem.html_url,
                                     o: parseInt(name.substr(8,name.indexOf(":")-8)),
                                     i: $scope.tutorials.length
-                                })
+                                });
+                                }
                             });
                     }
                 });
 
-                setTimeout(function () {
-                    var selected = window.location.hash;
-                    if(selected.indexOf("#/") !== -1){
-                        selected = parseInt(selected.substr(2));
-                    }
+                $scope.init = function () {
 
-                    var i;
-                    $scope.tutorials.forEach(function(elem){
-                        if(elem.o === selected){
-                            i = elem.i;
-                            return 0;
-                        }
-                    });
-
-                    if (selected) {
-                        $scope.tuto = i;
-                    } else {
-                        $scope.tuto = 0;
-                    }
-
-                    $scope.update();
-                }, 1000)
+                };
 
             });
 
@@ -107,7 +92,10 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
             delete $scope.access_token;
         };
 
-        $scope.update = function () {
+        $scope.update = function (j) {
+            if(typeof j !== "undefined"){
+                $scope.tuto = j;
+            }
             var i = -1, elem;
             $scope.tutorials.forEach(function(elem){
                 if(elem.i === parseInt($scope.tuto)){
@@ -119,6 +107,7 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                 return -1;
             elem = $scope.tutorials[i];
             $scope.tuto = i;
+            $scope.description = elem.description;
             $scope.tutoTitle = elem.name;
             $scope.html_url = elem.url;
             $scope.url = elem.path;
@@ -129,6 +118,17 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                     $scope.htmlCode = response.data;
 
                 });
+        };
+
+        $scope.addToFavourites = function(){
+            if (window.sidebar) { // Mozilla Firefox Bookmark
+                window.sidebar.addPanel(location.href,document.title,"");
+            } else if(window.external) { // IE Favorite
+                window.external.AddFavorite(location.href,document.title); }
+            else if(window.opera && window.print) { // Opera Hotlist
+                this.title = document.title;
+                return true;
+            }
         };
 
         $scope.getTitle = function (html) {
@@ -144,8 +144,24 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
                     return t.substring(7, t.length - 8)
                 })
                 .join(' ')
-        }
+        };
 
+        $scope.getDescription = function (html) {
+
+            var i, metas, el = document.createElement( 'html' );
+
+            el.innerHTML = html.replace("<!DOCTYPE html>", "");
+            metas = el.getElementsByTagName('meta');
+
+
+            for (i=0; i<metas.length; i++) {
+                if (metas[i].getAttribute("name") == "description") {
+                    return metas[i].getAttribute("content");
+                }
+            }
+
+             return "";
+        };
     }
 ]);
 
@@ -159,7 +175,7 @@ tutorialsApp.filter('pretty', function () {
     return function (text) {
         return PR.prettyPrintOne(text);
     }
-})
+});
 
 tutorialsApp.filter('escapeHtml', function () {
 
@@ -198,5 +214,45 @@ tutorialsApp.filter('customSort',function(){
             return sort(+a[prop], +b[prop]);
         });
         return arr;
+    }
+});
+
+tutorialsApp.directive('postRepeatInit', function() {
+    return function(scope, element, attrs) {
+        if (scope.$last) {
+
+        }
+    };
+});
+
+tutorialsApp.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    //scope.$emit('ngRepeatFinished');
+                    var selected = window.location.hash;
+                    if (selected.indexOf("#/") !== -1) {
+                        selected = parseInt(selected.substr(2));
+                    }
+
+                    var i;
+                    scope.tutorials.forEach(function (elem) {
+                        if (elem.o === selected) {
+                            i = elem.i;
+                            return 0;
+                        }
+                    });
+
+                    if (selected) {
+                        scope.update(i);
+                    } else {
+                        scope.update(0);
+                        console.log("Mostramos 0")
+                    }
+                });
+            }
+        }
     }
 });

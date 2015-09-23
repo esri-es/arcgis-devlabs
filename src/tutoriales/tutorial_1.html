@@ -4,6 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Ejemplo 1: Cómo pintar un mapa con el API JS de ArcGIS</title>
+  <meta name="description" content="Este es un ejemplo de HolaMundo usando la API" />
 
   <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
   
@@ -30,12 +31,15 @@
     ], function(Map) {
 
       // Generamos un nuevo mapa con un mapa base tipo callejero
-      // Otros tipos: "satellite", "hybrid", "topo", "gray", "oceans",
+      // Otros tipos: "streets", "hybrid", "topo", "gray", "oceans",
       // "national-geographic", "osm".
       map = new Map("mapDiv", {
-        center: [-56.049, 38.485], //Latitud y longitud
-        zoom: 3,
-        basemap: "streets"
+        center: [
+            -3.688510, // Longitud
+            40.453010  // Latitud
+        ],
+        zoom: 16,
+        basemap: "satellite"
       });
     });
   </script>
