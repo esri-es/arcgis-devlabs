@@ -2,8 +2,10 @@
 
 var tutorialsApp = angular.module('tutorialsApp', ['ngSanitize', 'LocalStorageModule']);
 
-tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'localStorageService',
-    function ($scope, $http, $sce, $location, localStorageService) {
+tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'localStorageService', 'sharedData',
+    function ($scope, $http, $sce, $location, localStorageService, sharedData) {
+
+        $scope.sharedData = sharedData;
 
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -92,7 +94,10 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
             delete $scope.access_token;
         };
 
+        $scope.jsfiddle = "jsfiddle.html";
         $scope.update = function (j) {
+            $scope.trigger = false;
+            document.getElementById("jsfiddle").src = "jsfiddle.html";
             if(typeof j !== "undefined"){
                 $scope.tuto = j;
             }
@@ -164,6 +169,76 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
 
              return "";
         };
+
+        $scope.getInnerByTag = function(tag){
+            var el = document.createElement( 'html' );
+            el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
+            var tags = el.getElementsByTagName(tag)
+            if(tags.length > 0){
+                return el.getElementsByTagName(tag)[0].innerHTML;
+            }else{
+                return "";
+            }
+        };
+
+        $scope.getResources = function(){
+            var i, el = document.createElement( 'html' );
+            var resources = "";
+            el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
+
+            var scripts = el.getElementsByTagName("script");
+            for (i = 0 ; i < scripts.length ; i++){
+                if(scripts[i].src){
+                    resources += scripts[i].src + ",";
+                }
+            }
+
+            var links = el.getElementsByTagName("link");
+            for (i = 0 ; i < links.length ; i++){
+                if(links[i].href){
+                    resources += links[i].href + ",";
+                }
+            }
+
+            return resources.substr(0,resources.length-1);
+        };
+
+        $scope.deactivate = function(){
+            $scope.trigger = false;
+        }
+
+        $scope.getJS = function(){
+            var i, el = document.createElement( 'html' );
+            el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
+            var js = "";
+
+            var scripts = el.getElementsByTagName("script");
+            for (i = 0 ; i < scripts.length ; i++){
+                if(!scripts[i].src){
+
+                    js += scripts[i].innerHTML;
+                }
+
+            }
+            return js;
+
+        };
+
+        // Init iframe
+        $scope.trigger = false;
+        $scope.data= {};
+
+        // LoadFiddle
+        $scope.submit = function(){
+
+            $scope.trigger = true;
+            $scope.sharedData.send({
+                html: $scope.getInnerByTag("body"),
+                resources: $scope.getResources(),
+                js: $scope.getJS(),
+                css: $scope.getInnerByTag("style")
+            });
+        }
     }
 ]);
 
@@ -255,6 +330,42 @@ tutorialsApp.directive('onFinishRender', function ($timeout) {
                     }
                 });
             }
+        }
+    }
+});
+
+tutorialsApp.factory('sharedData', function(){
+    var mainScope;
+    var iframeScope;
+    var data = {};
+
+    function update(){
+
+        if(!mainScope){
+            mainScope = angular.element(document.body).scope();
+        }
+        mainScope.$applyAsync();
+
+        if(document.getElementById('jsfiddle').contentWindow.angular){
+            iframeScope = document.getElementById('jsfiddle').contentWindow.angular.element(document.body).scope();
+
+            iframeScope.trigger = mainScope.trigger;
+            iframeScope.data = data;
+            iframeScope.$applyAsync();
+        }
+
+    }
+
+    return {
+        send: function(values) {
+            data = values;
+            update();
+        },
+        getTrigger: function() {
+            return angular.element(document.body).scope().trigger
+        },
+        getData: function() {
+            return angular.element(document.body).scope().data
         }
     }
 });
