@@ -26,7 +26,20 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
 
         $http.get('https://api.github.com/repos/esri-es/JavascriptAPI/issues').
             then(function (response) {
-                $scope.issues = response.data;
+                var issues = [];
+
+                response.data.forEach(function(issue){
+                    var is_enhancement = false;
+                    issue.labels.forEach(function(label){
+                        if(label.name === "enhancement"){
+                            is_enhancement = true;
+                        }
+                    });
+                    if(!is_enhancement){
+                        issues.push(issue);
+                    }
+                });
+                $scope.issues = issues;
             });
 
         $http.get('https://api.github.com/repos/esri-es/JavascriptAPI/contents/src/tutoriales').
