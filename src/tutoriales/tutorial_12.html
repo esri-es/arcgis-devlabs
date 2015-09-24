@@ -22,7 +22,7 @@
     </style>
 
     <script>
-        (function() {
+        function init() {
             var map = L.map('map').setView([45.526, -122.667], 13);
 
             L.esri.basemapLayer("Gray").addTo(map);
@@ -31,10 +31,10 @@
             L.esri.clusteredFeatureLayer({
                 url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0'
             }).addTo(map);
-        })();
+        };
     </script>
 </head>
-<body>
+<body onload="init()">
 
 <div id="map"></div>
 
