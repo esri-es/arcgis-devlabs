@@ -97,7 +97,7 @@
                     Código
                     <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
 
-                    <button ng-click="submit()" class="btn btn-xs pull-right btn-success edition">Activar modo edición</button>
+                    <button ng-click="submit()" class="btn btn-xs pull-right btn-success edition">Activar modo edición (Beta)</button>
                 </h2>
                 <p ng-bind-html="description"></p>
 
@@ -109,6 +109,7 @@
 			</div>
 
             <div class="col-md-12" ng-show="trigger">
+                <p class="pull-left">El modo edición aún está en pruebas, puede que algunos ejemplos no funcionen correctamente.</p>
                 <button ng-click="deactivate()" class="btn btn-xs pull-right btn-success">Desactivar modo edición</button>
 
                 <iframe ng-src="{{jsfiddle}}" id="jsfiddle" style="height: 650px;margin-top: 1em;"></iframe>
