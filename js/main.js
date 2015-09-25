@@ -171,11 +171,26 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         };
 
         $scope.getInnerByTag = function(tag){
-            var el = document.createElement( 'html' );
+            var body, el = document.createElement( 'html' );
             el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
             var tags = el.getElementsByTagName(tag)
+
+            function stripScripts(s) {
+                var div = document.createElement('div');
+                div.innerHTML = s;
+                var scripts = div.getElementsByTagName('script');
+                var i = scripts.length;
+                while (i--) {
+                    scripts[i].parentNode.removeChild(scripts[i]);
+                }
+                return div.innerHTML;
+            }
+
             if(tags.length > 0){
-                return el.getElementsByTagName(tag)[0].innerHTML;
+                if(tag === "body"){
+                    body = stripScripts(el.getElementsByTagName(tag)[0].innerHTML);
+                }
+                return body;
             }else{
                 return "";
             }
@@ -186,17 +201,17 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
             var resources = "";
             el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
 
-            var scripts = el.getElementsByTagName("script");
-            for (i = 0 ; i < scripts.length ; i++){
-                if(scripts[i].src){
-                    resources += scripts[i].src + ",";
-                }
-            }
-
             var links = el.getElementsByTagName("link");
             for (i = 0 ; i < links.length ; i++){
                 if(links[i].href){
                     resources += links[i].href + ",";
+                }
+            }
+
+            var scripts = el.getElementsByTagName("script");
+            for (i = 0 ; i < scripts.length ; i++){
+                if(scripts[i].src){
+                    resources += scripts[i].src + ",";
                 }
             }
 

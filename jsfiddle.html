@@ -19,11 +19,12 @@
 
                         setTimeout(function(){
 
-                            //alert(JSON.stringify($scope.data, null, "\t"));
+                           /*
                            console.log("html = ", $scope.data.html);
                            console.log("css = ", $scope.data.css);
                            console.log("js = ", $scope.data.js);
-                            console.log("resources = ", $scope.data.resources);
+                           console.log("resources = ", $scope.data.resources);
+                           */
                            document.getElementById("form").submit();
                         }, 350);
                     }
@@ -36,11 +37,16 @@
 </head>
 <body ng-app="iframeApp" ng-controller="iFrameCtrl">
     <form id="form" action="http://jsfiddle.net/api/post/library/pure/" method="post" >
-        <!--{{trigger}},{{data.html}},{{data.css}}, {{data.js}},{{data.resources}}-->
+        <!--{{trigger}},{{data.html}},{{data.css}}, {{data.js}},{{data.resources}}
+        <p>{{data.html}}</p>
+        <p>{{data.css}}</p>
+        <p>{{data.js}}</p>
+        <p>{{data.resources}}</p>-->
         <input type="hidden" value="{{data.html}}" name="html"/>
         <input type="hidden" value="{{data.resources}}" name="resources"/>
         <input type="hidden" value="{{data.js}}" name="js"/>
         <input type="hidden" value="{{data.css}}" name="css"/>
+        <input type="hidden" name="wrap" value="d">
         <input type="submit" value="Enviar" style="visibility: hidden"/>
     </form>
 
