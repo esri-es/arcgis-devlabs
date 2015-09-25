@@ -96,9 +96,9 @@
 			<div class="col-md-8"  ng-hide="trigger">
 				<h2>
                     Código
-                    <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
+                    <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank"><i class="fa fa-external-link"></i> Abrir código en otra pestaña</a>
 
-                    <button ng-click="activate()" class="btn btn-xs pull-right btn-success edition">Activar modo edición</button>
+                    <button ng-click="activate()" class="btn btn-xs pull-right btn-success edition"><i class="fa fa-toggle-on"></i> Activar modo edición</button>
                 </h2>
                 <p ng-bind-html="description"></p>
 
@@ -121,9 +121,9 @@
                     <div class="col-md-12">
                         <h2>
                             Editor de código
-                            <a ng-href="{{html_url | trusted}}" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
+                            <a ng-href="{{html_url | trusted}}" class="btn btn-xs pull-right btn-primary"  target="blank"><i class="fa fa-external-link"></i> Abrir código en otra pestaña</a>
 
-                            <button ng-click="deactivate()" class="btn btn-xs pull-right btn-danger edition">Desactivar modo edición</button>
+                            <button ng-click="deactivate()" class="btn btn-xs pull-right btn-danger edition"><i class="fa fa-toggle-off"></i> Desactivar modo edición</button>
                         </h2>
 
                     </div>
@@ -154,7 +154,7 @@
 
         <footer class="text-center">
             <strong>Made with <i class="fa fa-heart-o"></i> using HTML5</strong> | <a href="https://github.com/esri-es/JavascriptAPI/labels/bugs">Errores</a> |
-            <a href="https://github.com/esri-es/JavascriptAPI/labels/enhancement">Sugerir nuevos tutoriales</a><!--| Live Editing |-->
+            <a href="https://github.com/esri-es/JavascriptAPI/labels/enhancement">Sugerir nuevos ejemplos</a><!--| Live Editing |-->
         </footer>
 	</div>
 
@@ -170,7 +170,7 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tutorial</label>
+                            <label for="exampleInputEmail1">Ejemplo</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" value="{{tutoTitle}}" readonly="readonly">
                         </div>
                         <div class="form-group">

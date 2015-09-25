@@ -69,6 +69,9 @@ footer{
 .squared{
     border-radius: 0;
 }
+strong{
+    text-decoration: underline;
+}
 [ui-ace]{
     border: 1px solid #ddd;
 }
