@@ -97,7 +97,8 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         $scope.jsfiddle = "jsfiddle.html";
         $scope.update = function (j) {
             $scope.trigger = false;
-            document.getElementById("jsfiddle").src = "jsfiddle.html";
+            //document.getElementById("jsfiddle").src = "jsfiddle.html";
+
             if(typeof j !== "undefined"){
                 $scope.tuto = j;
             }
@@ -120,7 +121,8 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
 
             $http.get("./" + $scope.url).
                 then(function (response) {
-                    $scope.htmlCode = response.data;
+                    $scope.source = $scope.htmlCode = response.data;
+                    //$scope.sendCode();
 
                 });
         };
@@ -242,18 +244,36 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         // Init iframe
         $scope.trigger = false;
         $scope.data= {};
+        $scope.reload = 1;
 
         // LoadFiddle
-        $scope.submit = function(){
+        $scope.activate = function(){
 
             $scope.trigger = true;
-            $scope.sharedData.send({
+            $scope.sendCode();
+            /*$scope.sharedData.send({
                 html: $scope.getInnerByTag("body"),
                 resources: $scope.getResources(),
                 js: $scope.getJS(),
                 css: $scope.getInnerByTag("style")
-            });
+            });*/
         }
+
+        $scope.sendCode = function(){
+            $scope.trigger = true;
+            $scope.reload++;
+            document.getElementById("jsfiddle").remove();
+            var iframe = document.createElement( 'iframe' );
+            iframe.src="jsfiddle.html";
+            iframe.id="jsfiddle";
+            iframe.style.height="650px";
+            document.getElementById("iframeContainer").appendChild(iframe);
+            setTimeout(function(){
+            $scope.sharedData.send({
+                source: btoa($scope.source)
+            });
+            },500);
+        };
     }
 ]);
 
@@ -384,3 +404,41 @@ tutorialsApp.factory('sharedData', function(){
         }
     }
 });
+
+tutorialsApp.directive('reloadOn', ['$timeout', function ($timeout) {
+
+    var getTemplate = function () {
+//        return '<iframe ng-src="jsfiddle.html" style="height: 650px;margin-top: 1em;" ></iframe>';
+        return '<div ng-if="doRefreshPageOnModeChange"><div ng-transclude=""></div></div>';
+
+    };
+
+    var linkFunction = function (scope, element, attrs) {
+        scope.doRefreshPageOnModeChange = true;
+
+        scope.$watch(attrs.csReloadOn, function (newVal, oldVal) {
+            if (newVal === oldVal) return;
+            scope.doRefreshPageOnModeChange = false;
+            console.log("llego");
+            $timeout(function () { scope.doRefreshPageOnModeChange = true; }, 100);
+        });
+    };
+
+    return {
+        restrict: 'AE',
+        transclude: true,
+        template: getTemplate,
+        link: linkFunction
+    };
+}]);
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
