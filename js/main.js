@@ -1,6 +1,6 @@
 "use strict";
 
-var tutorialsApp = angular.module('tutorialsApp', ['ngSanitize', 'LocalStorageModule']);
+var tutorialsApp = angular.module('tutorialsApp', ['ngSanitize', 'LocalStorageModule', 'ui.ace']);
 
 tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'localStorageService', 'sharedData',
     function ($scope, $http, $sce, $location, localStorageService, sharedData) {
