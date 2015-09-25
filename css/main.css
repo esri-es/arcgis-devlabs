@@ -65,3 +65,10 @@ footer{
     margin-right: 1em;
 }
 .ace_editor { height: 650px; }
+
+.squared{
+    border-radius: 0;
+}
+[ui-ace]{
+    border: 1px solid #ddd;
+}

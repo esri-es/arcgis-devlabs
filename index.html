@@ -98,7 +98,7 @@
                     Código
                     <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
 
-                    <button ng-click="activate()" class="btn btn-xs pull-right btn-success edition">Activar modo edición (Beta)</button>
+                    <button ng-click="activate()" class="btn btn-xs pull-right btn-success edition">Activar modo edición</button>
                 </h2>
                 <p ng-bind-html="description"></p>
 
@@ -119,13 +119,18 @@
             <div class="col-md-12" ng-show="trigger">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="pull-left">El modo edición aún está en pruebas, puede que algunos ejemplos no funcionen correctamente.</p>
-                        <button ng-click="deactivate()" class="btn btn-xs pull-right btn-success">Desactivar modo edición</button>
+                        <h2>
+                            Editor de código
+                            <a ng-href="{{html_url | trusted}}" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
+
+                            <button ng-click="deactivate()" class="btn btn-xs pull-right btn-danger edition">Desactivar modo edición</button>
+                        </h2>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button ng-click="sendCode()" class="btn btn-block">Actualizar</button>
+                        <button ng-click="sendCode()" class="btn btn-block btn-info squared">Actualizar código</button>
                         <!--<textarea ng-model="source" style="width:100%;height: 650px" id="editor"></textarea>-->
                         <div
                             ng-model="source"

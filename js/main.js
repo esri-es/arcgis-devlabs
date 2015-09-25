@@ -94,10 +94,8 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
             delete $scope.access_token;
         };
 
-        $scope.jsfiddle = "jsfiddle.html";
         $scope.update = function (j) {
             $scope.trigger = false;
-            //document.getElementById("jsfiddle").src = "jsfiddle.html";
 
             if(typeof j !== "undefined"){
                 $scope.tuto = j;
@@ -122,8 +120,6 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
             $http.get("./" + $scope.url).
                 then(function (response) {
                     $scope.source = $scope.htmlCode = response.data;
-                    //$scope.sendCode();
-
                 });
         };
 
@@ -172,101 +168,27 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
              return "";
         };
 
-        $scope.getInnerByTag = function(tag){
-            var body, el = document.createElement( 'html' );
-            el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
-            var tags = el.getElementsByTagName(tag)
-
-            function stripScripts(s) {
-                var div = document.createElement('div');
-                div.innerHTML = s;
-                var scripts = div.getElementsByTagName('script');
-                var i = scripts.length;
-                while (i--) {
-                    scripts[i].parentNode.removeChild(scripts[i]);
-                }
-                return div.innerHTML;
-            }
-
-            if(tags.length > 0){
-                if(tag === "body"){
-                    body = stripScripts(el.getElementsByTagName(tag)[0].innerHTML);
-                }
-                return body;
-            }else{
-                return "";
-            }
-        };
-
-        $scope.getResources = function(){
-            var i, el = document.createElement( 'html' );
-            var resources = "";
-            el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
-
-            var links = el.getElementsByTagName("link");
-            for (i = 0 ; i < links.length ; i++){
-                if(links[i].href){
-                    resources += links[i].href + ",";
-                }
-            }
-
-            var scripts = el.getElementsByTagName("script");
-            for (i = 0 ; i < scripts.length ; i++){
-                if(scripts[i].src){
-                    resources += scripts[i].src + ",";
-                }
-            }
-
-            return resources.substr(0,resources.length-1);
-        };
-
         $scope.deactivate = function(){
             $scope.trigger = false;
         }
 
-        $scope.getJS = function(){
-            var i, el = document.createElement( 'html' );
-            el.innerHTML = $scope.htmlCode.replace("<!DOCTYPE html>", "");
-            var js = "";
-
-            var scripts = el.getElementsByTagName("script");
-            for (i = 0 ; i < scripts.length ; i++){
-                if(!scripts[i].src){
-
-                    js += scripts[i].innerHTML;
-                }
-
-            }
-            return js;
-
-        };
-
         // Init iframe
         $scope.trigger = false;
-        $scope.data= {};
-        $scope.reload = 1;
 
-        // LoadFiddle
+        // Editor
         $scope.activate = function(){
 
             $scope.trigger = true;
             $scope.sendCode();
-            /*$scope.sharedData.send({
-                html: $scope.getInnerByTag("body"),
-                resources: $scope.getResources(),
-                js: $scope.getJS(),
-                css: $scope.getInnerByTag("style")
-            });*/
         }
 
         $scope.sendCode = function(){
             $scope.trigger = true;
-            $scope.reload++;
             document.getElementById("jsfiddle").remove();
             var iframe = document.createElement( 'iframe' );
             iframe.src="jsfiddle.html";
             iframe.id="jsfiddle";
-            iframe.style.height="650px";
+            iframe.style.height="684px";
             document.getElementById("iframeContainer").appendChild(iframe);
             setTimeout(function(){
             $scope.sharedData.send({
@@ -404,33 +326,6 @@ tutorialsApp.factory('sharedData', function(){
         }
     }
 });
-
-tutorialsApp.directive('reloadOn', ['$timeout', function ($timeout) {
-
-    var getTemplate = function () {
-//        return '<iframe ng-src="jsfiddle.html" style="height: 650px;margin-top: 1em;" ></iframe>';
-        return '<div ng-if="doRefreshPageOnModeChange"><div ng-transclude=""></div></div>';
-
-    };
-
-    var linkFunction = function (scope, element, attrs) {
-        scope.doRefreshPageOnModeChange = true;
-
-        scope.$watch(attrs.csReloadOn, function (newVal, oldVal) {
-            if (newVal === oldVal) return;
-            scope.doRefreshPageOnModeChange = false;
-            console.log("llego");
-            $timeout(function () { scope.doRefreshPageOnModeChange = true; }, 100);
-        });
-    };
-
-    return {
-        restrict: 'AE',
-        transclude: true,
-        template: getTemplate,
-        link: linkFunction
-    };
-}]);
 
 Element.prototype.remove = function() {
     this.parentElement.removeChild(this);
