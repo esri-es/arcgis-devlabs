@@ -60,3 +60,18 @@ footer{
     margin-left: .5em;
     margin-bottom: .3em;
 }
+
+.edition{
+    margin-right: 1em;
+}
+.ace_editor { height: 650px; }
+
+.squared{
+    border-radius: 0;
+}
+strong{
+    text-decoration: underline;
+}
+[ui-ace]{
+    border: 1px solid #ddd;
+}

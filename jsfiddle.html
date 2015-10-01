@@ -1,0 +1,58 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+    <script>
+        iframeApp = angular.module('iframeApp', []);
+
+
+        iframeApp.controller('iFrameCtrl', function($scope){
+
+            if(window.parent.angular.element(window.frameElement).scope()){
+                var sharedData = window.parent.angular.element(window.frameElement).scope().sharedData;
+
+                $scope.trigger = sharedData.getTrigger();
+                $scope.data = sharedData.getData();
+
+                $scope.$watch('trigger', function(newValue, oldValue) {
+
+                    if(newValue === true){
+
+                        setTimeout(function(){
+
+                           /*
+                           console.log("html = ", $scope.data.html);
+                           console.log("css = ", $scope.data.css);
+                           console.log("js = ", $scope.data.js);
+                           console.log("resources = ", $scope.data.resources);
+                           */
+                           document.getElementById("form").submit();
+                        }, 1000);
+                    }
+
+                });
+            }
+        });
+
+    </script>
+</head>
+<body ng-app="iframeApp" ng-controller="iFrameCtrl">
+    <form id="form" action="http://desarrolladores.esri.es/code/gitdoc/show.php" method="post" >
+        <!--{{data.source}}-->
+<!--<form id="form" action="http://jsfiddle.net/api/post/library/pure/" method="post" >
+    {{trigger}},{{data.html}},{{data.css}}, {{data.js}},{{data.resources}}
+    <p>{{data.html}}</p>
+    <p>{{data.css}}</p>
+    <p>{{data.js}}</p>
+    <p>{{data.resources}}</p>
+        <input type="hidden" value="{{data.html}}" name="html"/>
+        <input type="hidden" value="{{data.resources}}" name="resources"/>
+        <input type="hidden" value="{{data.js}}" name="js"/>
+        <input type="hidden" value="{{data.css}}" name="css"/>
+        <input type="hidden" name="wrap" value="d">-->
+        <input type="hidden" value="{{data.source}}" name="source"/>
+        <input type="submit" value="Enviar" style="visibility: hidden"/>
+    </form>
+
+</body>
+</html>
+

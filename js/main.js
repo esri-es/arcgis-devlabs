@@ -1,9 +1,11 @@
 "use strict";
 
-var tutorialsApp = angular.module('tutorialsApp', ['ngSanitize', 'LocalStorageModule']);
+var tutorialsApp = angular.module('tutorialsApp', ['ngSanitize', 'LocalStorageModule', 'ui.ace']);
 
-tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'localStorageService',
-    function ($scope, $http, $sce, $location, localStorageService) {
+tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'localStorageService', 'sharedData',
+    function ($scope, $http, $sce, $location, localStorageService, sharedData) {
+
+        $scope.sharedData = sharedData;
 
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -93,6 +95,8 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
         };
 
         $scope.update = function (j) {
+            $scope.trigger = false;
+
             if(typeof j !== "undefined"){
                 $scope.tuto = j;
             }
@@ -115,8 +119,7 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
 
             $http.get("./" + $scope.url).
                 then(function (response) {
-                    $scope.htmlCode = response.data;
-
+                    $scope.source = $scope.htmlCode = response.data;
                 });
         };
 
@@ -163,6 +166,35 @@ tutorialsApp.controller('MainCtrl', ['$scope', '$http', '$sce', '$location', 'lo
             }
 
              return "";
+        };
+
+        $scope.deactivate = function(){
+            $scope.trigger = false;
+        }
+
+        // Init iframe
+        $scope.trigger = false;
+
+        // Editor
+        $scope.activate = function(){
+
+            $scope.trigger = true;
+            $scope.sendCode();
+        }
+
+        $scope.sendCode = function(){
+            $scope.trigger = true;
+            document.getElementById("jsfiddle").remove();
+            var iframe = document.createElement( 'iframe' );
+            iframe.src="jsfiddle.html";
+            iframe.id="jsfiddle";
+            iframe.style.height="684px";
+            document.getElementById("iframeContainer").appendChild(iframe);
+            setTimeout(function(){
+            $scope.sharedData.send({
+                source: btoa($scope.source)
+            });
+            },500);
         };
     }
 ]);
@@ -258,3 +290,50 @@ tutorialsApp.directive('onFinishRender', function ($timeout) {
         }
     }
 });
+
+tutorialsApp.factory('sharedData', function(){
+    var mainScope;
+    var iframeScope;
+    var data = {};
+
+    function update(){
+
+        if(!mainScope){
+            mainScope = angular.element(document.body).scope();
+        }
+        mainScope.$applyAsync();
+
+        if(document.getElementById('jsfiddle').contentWindow.angular){
+            iframeScope = document.getElementById('jsfiddle').contentWindow.angular.element(document.body).scope();
+
+            iframeScope.trigger = mainScope.trigger;
+            iframeScope.data = data;
+            iframeScope.$applyAsync();
+        }
+
+    }
+
+    return {
+        send: function(values) {
+            data = values;
+            update();
+        },
+        getTrigger: function() {
+            return angular.element(document.body).scope().trigger
+        },
+        getData: function() {
+            return angular.element(document.body).scope().data
+        }
+    }
+});
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}

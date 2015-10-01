@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="esri-map-example">
+<html>
 <head>
     <title>Ejemplo 13: Esri-Angular, cargando capas y haciendo data-binding</title>
     <meta name="description" content="Usando la colección de <a href='https://github.com/Esri/angular-esri-map'>directivas esri-map</a> se muestra cómo hacer data-binding de forma que los valores de latitud, longitud y zoom se actualizan al mismo tiempo que se interactúa con el mapa. <a href='http://esri.github.io/angular-esri-map/#/examples'>Más ejemplos aquí</a>." />
@@ -15,38 +15,41 @@
             height: 100%;
         }
     </style>
+
+    <script type="text/javascript" src="http://js.arcgis.com/3.14compact"></script>
 </head>
-<body ng-controller="MapController">
+<body>
+<div ng-app="esri-map-example" ng-controller="MapController">
+    <p>Lat: {{ map.center.lat | number:3 }}, Lng: {{ map.center.lng | number:3 }}, Zoom: {{map.zoom}}</p>
 
-<p>Lat: {{ map.center.lat | number:3 }}, Lng: {{ map.center.lng | number:3 }}, Zoom: {{map.zoom}}</p>
+    <!-- Cargamos el mapa -->
+    <esri-map id="map" center="map.center" zoom="map.zoom" basemap="topo">
 
-<!-- Cargamos el mapa -->
-<esri-map id="map" center="map.center" zoom="map.zoom" basemap="topo">
+        <!-- Cargamos los servicios de entidades -->
+        <esri-feature-layer
+             url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Portland_Parks/FeatureServer/0"
+        ></esri-feature-layer>
+        <esri-feature-layer
+             url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0"
+        ></esri-feature-layer>
 
-    <!-- Cargamos los servicios de entidades -->
-    <esri-feature-layer
-         url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Portland_Parks/FeatureServer/0"
-    ></esri-feature-layer>
-    <esri-feature-layer
-         url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0"
-    ></esri-feature-layer>
+    </esri-map>
+</div>
 
-</esri-map>
-
-<script type="text/javascript" src="http://js.arcgis.com/3.14compact"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 <script src="http://esri.github.io/angular-esri-map/lib/angular-esri-map.js"></script>
 <script type="text/javascript">
     angular.module('esri-map-example', ['esri.map'])
-        .controller('MapController', function ($scope) {
-            $scope.map = {
-                center: {
-                    lng: -122.676207,
-                    lat: 45.523452
-                },
-                zoom: 12
-            };
-        });
+            .controller('MapController', function ($scope) {
+                $scope.map = {
+                    center: {
+                        lng: -122.676207,
+                        lat: 45.523452
+                    },
+                    zoom: 12
+                };
+            });
 </script>
+
 </body>
 </html>

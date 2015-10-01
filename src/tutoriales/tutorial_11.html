@@ -5,10 +5,8 @@
     <meta name="description" content="En este ejemplo se usa <a href='http://getbootstrap.com/'>Bootstrap</a> para crear una aplicación responsive que en este caso usa demás el componente de pestañas." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Safari iOS - apps only -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <!-- Chrome for Android - NEW! -->
     <meta name="mobile-web-app-capable" content="yes">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -24,9 +22,55 @@
 
     <!-- HTML5 IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="../assets/js/html5shiv.js"></script>
-    <script src="../assets/js/respond.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="//esri-es.github.io/JavascriptAPI/src/tutoriales/js/tutorial_11.js"></script>
+
+    <script src="//js.arcgis.com/3.13compact"></script>
+    <script>
+        var map;
+        require([
+            "application/bootstrapmap",
+            "dojo/domReady!"
+        ],
+            function(BootstrapMap) {
+                function showMap(div) {
+                    if (map) {
+                        map.destroy();
+                        BootstrapMap.destroy(map);
+                    }
+                    if(div === "Mapa") {
+                        map = BootstrapMap.create("mapDiv", {
+                            basemap: "national-geographic",
+                            center: [-122.45, 37.77],
+                            zoom: 12
+                        });
+                    }else if(div === "Webmap") {
+                        var deferred = BootstrapMap.createWebMap("64c9b7fe34304c0fae24e8d9edc86924", "webmapDiv", {
+                            slider: true,
+                            nav:false,
+                            smartNavigation:false
+                        });
+
+                        deferred.then(function (response) {
+                            map = response.map;
+                        });
+                    }
+                }
+
+                $(document).ready(function () {
+                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                        showMap(e.target.text);
+                    });
+                    showMap("Mapa");
+                });
+            });
+</script>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -56,58 +100,5 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    var package_path = "//esri.github.com/bootstrap-map-js/src/js";
-    var dojoConfig = {
-        packages: [{
-            name: "application",
-            location: package_path
-        }]
-    };
-</script>
-
-<script src="//js.arcgis.com/3.13compact"></script>
-<script>
-    var map;
-    require([
-      "application/bootstrapmap",
-      "dojo/domReady!"
-    ],
-    function(BootstrapMap) {
-        function showMap(div) {
-            if (map) {
-                map.destroy();
-                BootstrapMap.destroy(map);
-            }
-            if(div === "Mapa") {
-                map = BootstrapMap.create("mapDiv", {
-                    basemap: "national-geographic",
-                    center: [-122.45, 37.77],
-                    zoom: 12
-                });
-            }else if(div === "Webmap") {
-                var deferred = BootstrapMap.createWebMap("64c9b7fe34304c0fae24e8d9edc86924", "webmapDiv", {
-                    slider: true,
-                    nav:false,
-                    smartNavigation:false
-                });
-
-                deferred.then(function (response) {
-                    map = response.map;
-                });
-            }
-        }
-
-        $(document).ready(function () {
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                showMap(e.target.text);
-            });
-            showMap("Mapa");
-        });
-    });
-</script>
-
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

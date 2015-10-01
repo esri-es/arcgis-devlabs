@@ -12,6 +12,7 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
 
 </head>
 <body ng-controller="MainCtrl">
@@ -39,7 +40,7 @@
 				</div>
 			</div>
 			
-			<div class="col-md-4">
+			<div class="col-md-4" ng-hide="trigger">
 				<h2 class="text-center">
                     <a ng-href="{{url | trusted}}" target="_blank">
                         Preview <i class="fa fa-external-link"></i>
@@ -92,10 +93,12 @@
 
 
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-8"  ng-hide="trigger">
 				<h2>
                     Código
-                    <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank">Abrir código en otra pestaña</a>
+                    <a ng-href="{{html_url | trusted}}" id="code" class="btn btn-xs pull-right btn-primary"  target="blank"><i class="fa fa-external-link"></i> Abrir código en otra pestaña</a>
+
+                    <button ng-click="activate()" class="btn btn-xs pull-right btn-success edition"><i class="fa fa-toggle-on"></i> Activar modo edición</button>
                 </h2>
                 <p ng-bind-html="description"></p>
 
@@ -105,13 +108,57 @@
                 <div id="sharethis">¿Crees que merece la pena compartirlo?</div> <div class="addthis_sharing_toolbox"></div>
 
 			</div>
-		</div>
+            <!--
+                        <div class="col-md-12" ng-show="trigger">
+                            <p class="pull-left">El modo edición aún está en pruebas, puede que algunos ejemplos no funcionen correctamente.</p>
+                            <button ng-click="deactivate()" class="btn btn-xs pull-right btn-success">Desactivar modo edición</button>
+
+
+                        </div>-->
+
+            <div class="col-md-12" ng-show="trigger">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            Editor de código
+                            <a ng-href="{{html_url | trusted}}" class="btn btn-xs pull-right btn-primary"  target="blank"><i class="fa fa-external-link"></i> Abrir código en otra pestaña</a>
+
+                            <button ng-click="deactivate()" class="btn btn-xs pull-right btn-danger edition"><i class="fa fa-toggle-off"></i> Desactivar modo edición</button>
+                        </h2>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button ng-click="sendCode()" class="btn btn-block btn-info squared">Actualizar previsualización</button>
+                        <!--<textarea ng-model="source" style="width:100%;height: 650px" id="editor"></textarea>-->
+                        <div
+                            ng-model="source"
+                            ui-ace="{
+                                      useWrapMode : true,
+                                      showGutter: false,
+                                      theme:'chrome',
+                                      mode: 'html'
+                                    }"
+                        ></div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div id="iframeContainer">
+                            <iframe src="jsfiddle.html" id="jsfiddle" style="height: 650px;margin-top: 1em;" ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer class="text-center">
             <strong>Made with <i class="fa fa-heart-o"></i> using HTML5</strong> | <a href="https://github.com/esri-es/JavascriptAPI/labels/bugs">Errores</a> |
-            <a href="https://github.com/esri-es/JavascriptAPI/labels/enhancement">Sugerir nuevos tutoriales</a><!--| Live Editing |-->
+            <a href="https://github.com/esri-es/JavascriptAPI/labels/enhancement">Sugerir nuevos ejemplos</a><!--| Live Editing |-->
         </footer>
 	</div>
+
+
 
     <div class="modal large fade" id="askModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -123,7 +170,7 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tutorial</label>
+                            <label for="exampleInputEmail1">Ejemplo</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" value="{{tutoTitle}}" readonly="readonly">
                         </div>
                         <div class="form-group">
@@ -155,9 +202,12 @@
 
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js"></script>
+    <script type="text/javascript" src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-ace/ui-ace.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-sanitize.js"></script>
 	<script src="js/main.js"></script>
 
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56026e6347d3e8f6" async="async"></script>

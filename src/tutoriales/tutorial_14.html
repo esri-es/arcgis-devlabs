@@ -13,17 +13,16 @@
         body { margin:0; padding:0; }
         #map { position: absolute; top:0; bottom:0; right:0; left:0; }
     </style>
+
+    <!-- Include Leaflet.heat via rawgit.com, do not use in production -->
+    <script src="https://rawgit.com/Leaflet/Leaflet.heat/gh-pages/dist/leaflet-heat.js"></script>
+
+    <!-- Load Heatmap Feature Layer from CDN -->
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.heatmap-feature-layer/1.0.2/esri-leaflet-heatmap-feature-layer-src.js"></script>
 </head>
 <body>
 
-<!-- Include Leaflet.heat via rawgit.com, do not use in production -->
-<script src="https://rawgit.com/Leaflet/Leaflet.heat/gh-pages/dist/leaflet-heat.js"></script>
-
-<!-- Load Heatmap Feature Layer from CDN -->
-<script src="https://cdn.jsdelivr.net/leaflet.esri.heatmap-feature-layer/1.0.2/esri-leaflet-heatmap-feature-layer-src.js"></script>
-
 <div id="map"></div>
-
 <script>
     var map = L.map('map').setView([ 40.706, -73.926], 14);
 
@@ -34,6 +33,5 @@
         radius: 12
     }).addTo(map);
 </script>
-
 </body>
 </html>
