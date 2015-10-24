@@ -24,14 +24,14 @@
 
     // Cargamos los módulos que vamos a usar de la API:
     // esri/map:      Para poder crear el mapa -> http://bit.ly/1t0G4vn
+    // esri/layers/featureLayer Para poder cargar los datos
     // dojo/domReady! Para asegurar que el DOM termine de cargar antes
     //                de ejecutar el código
-    // esri/layers/featureLayer Para poder cargar la
     require([
       "esri/map",
-      "dojo/domReady!",
-      "esri/layers/FeatureLayer"
-    ], function(Map) {
+      "esri/layers/FeatureLayer",
+      "dojo/domReady!"
+    ], function(Map, FeatureLayer) {
 
       // Generamos un nuevo mapa con un mapa base tipo callejero
       // Otros tipos: "satellite", "hybrid", "topo", "gray", "oceans",
@@ -42,8 +42,8 @@
         basemap: "streets"
       });
 
-      //Anñadimos una capa de entidades al mapa
-      var featureLayer = new esri.layers.FeatureLayer("http://services3.arcgis.com/gzPLi0vbk0c1QVGb/arcgis/rest/services/Gasolinerasshape/FeatureServer/0");
+      //Añadimos una capa de entidades al mapa
+      var featureLayer = new FeatureLayer("http://services3.arcgis.com/gzPLi0vbk0c1QVGb/arcgis/rest/services/Gasolinerasshape/FeatureServer/0");
       map.addLayer(featureLayer);
 
     });
