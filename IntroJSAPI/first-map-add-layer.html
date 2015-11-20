@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Layer</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+  <link rel="stylesheet" href="//js.arcgis.com/3.14/dijit/themes/claro/claro.css">
+  <style>
+    html, body, #mapDiv{
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+  <script src="http://js.arcgis.com/3.14/"></script>
+  <script>
+
+    require(["esri/map", "esri/layers/FeatureLayer", "dojo/domReady!"], function(Map, FeatureLayer) {
+      var map = new Map("mapDiv", {
+        center: [-122.27, 47.58],
+        zoom: 14,
+        basemap: "dark-gray"
+      });
+
+      // Add a layer to the map
+
+      var codeViolations = new FeatureLayer("http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/coberturas/FeatureServer/0",{
+        outFields: ["*"]
+      });
+      map.addLayer(codeViolations);
+
+    });
+  </script>
+
+</head>
+<body class="claro">
+  <div id="mapDiv"></div>
+</body>
+</html>

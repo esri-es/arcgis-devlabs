@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+  <title>Create a Web Map</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+  <style>
+    html,body,#mapDiv,.map.container{
+      padding:0;
+      margin:0;
+      height:100%;
+    }
+  </style>
+
+  <script>var dojoConfig = { parseOnLoad: true };</script>
+  <script src="http://js.arcgis.com/3.14/"></script>
+  <script>
+    /*
+      1. Show slide with details on creating web map 
+      2. Go to api ref and show modules needed to load 
+      3. Open arcgis.com map and show symbology, basemap, extent and popup. 
+      4. Get webmap id and run app and show that info comes across
+      5. Open web map -change to heat map renderer, update basemap and refresh app
+      6. Point out other info we get with response (op layers, item info etc)
+    */
+    
+    require([
+      "esri/map",
+      "esri/arcgis/utils",
+      "dojo/domReady!"
+      ], function (Map, arcgisUtils) {
+        arcgisUtils.createMap("9fd1475b3408403db2ab5059f06a9021", "mapDiv").then(function (response) {
+          console.log(response);
+    });
+    });
+  </script>
+
+  </head>
+
+  <body>
+    <div id="mapDiv"></div>
+  </body>
+  </html>
