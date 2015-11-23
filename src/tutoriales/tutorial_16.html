@@ -1,89 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Ejemplo 16: Cargar mapas vectoriales</title>
-  <meta name="description" content="Este ejemplo cargar algunos de los <a href='http://blogs.esri.com/esri/arcgis/2015/11/18/introducing-esri-vector-basemaps-beta/'>mapas vectoriales</a> disponibles en la versión 4.0 (beta 2)." />
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Ejemplo 16: Pintar un mapa de calor con la API Javascript</title>
+  <meta name="description" content="Este es un ejemplo simplificado de cómo pintar un mapa de calor, 
+  en la página de ejemplos de la documentación encontrarás <a href='https://developers.arcgis.com/javascript/jssamples/#search/heatmap'>dos ejemplos más avanzados</a>." />
+  <link rel="stylesheet" href="//js.arcgis.com/3.14/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="//js.arcgis.com/3.14/esri/css/esri.css">
   <style>
-    html,
-    body {
-      padding: 0;
+    html, body, #map {
+      width: 100%;
+      height: 100%;
       margin: 0;
-    }
-
-    #basemapsDIV {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 12px;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
+      padding: 0;
     }
   </style>
-
-  <link rel="stylesheet" href="https://js.arcgis.com/4.0beta2/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.0beta2/"></script>
-
+  <script src="//js.arcgis.com/3.14/"></script>
   <script>
     var map;
-
     require([
-      "esri/Map",
-      "esri/views/MapView",
-      "esri/layers/VectorTileLayer",
-      "dojo/dom",
-      "dojo/on",
-      "dojo/domReady!"
-    ], function(Map, MapView, VectorTileLayer, dom, on) {
+        "esri/layers/FeatureLayer",
+        "esri/map",
+        "esri/renderers/HeatmapRenderer",
+        "dojo/domReady!"
+      ],
+      function (FeatureLayer, Map, HeatmapRenderer){
 
-      map = new Map();
-
-      var view = new MapView({
-        container: "viewDiv",
-        map: map,
-        center: [-3.688510, 40.453010],
-        zoom: 10
-      });
-
-      var tileLyr = new VectorTileLayer({
-        url: "https://www.arcgis.com/sharing/rest/content/items/f96366254a564adda1dc468b447ed956/resources/styles/root.json"
-      });
-
-      map.add(tileLyr);
-
-      on(dom.byId("changeBasemap"), "change", function (ev) {
-        var select = ev.target;
-        var basemap = select.options[select.selectedIndex].value;
-
-        map.removeAll();
-
-        var tileLyr = new VectorTileLayer({
-          url: basemap
+        map = new Map("map", {
+          basemap: "gray",
+          center: [-119.11, 36.65],
+          zoom: 6,
+          minZoom: 6,
+          maxZoom: 9
         });
-
-        map.add(tileLyr);
+        
+        var serviceURL = "//services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/2012_CA_NHTSA/FeatureServer/0";
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL, { mode: FeatureLayer.MODE_SNAPSHOT});
+        var heatmapRenderer = new HeatmapRenderer();
+        heatmapFeatureLayer.setRenderer(heatmapRenderer);
+        map.addLayer(heatmapFeatureLayer);
       });
-    });
   </script>
-</head>
-<body>
-  <div id="viewDiv"></div>
-  <div id="basemapsDIV">
-    <table>
-      <tr>
-        <td>Mapa:</td>
-        <td>
-          <select id="changeBasemap">
-            <option value="https://www.arcgis.com/sharing/rest/content/items/f96366254a564adda1dc468b447ed956/resources/styles/root.json">Callejero (Nocturno)</option>
-            <option value="http://www.arcgis.com/sharing/rest/content/items/00cd8e843bae49b3a040423e5d65416b/resources/styles/root.json?f=json">Navegación</option>
-            <option value="https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap/VectorTileServer">Streets</option>
-            <option value="http://www.arcgis.com/sharing/rest/content/items/bdf1eec3fa79456c8c7c2bb62f86dade/resources/styles/root.json">Gris claro</option>
-          </select>
-        </td>
-      </tr>
-    </table>
-  </div>
-</body>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
 </html>

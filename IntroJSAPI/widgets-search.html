@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.15/esri/css/esri.css">
+  <style>
+    html, body, #mapDiv{
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+    #searchDiv{
+      position: absolute;
+      top:90px;
+      left:20px;
+    }
+  </style>
+  <script src="http://js.arcgis.com/3.15/"></script>
+  <script>
+  /*
+      1. Look at API ref for search 
+      2. Point out addLayersFromMap, enableButtonMode, showInfoWindowOnSelect etc
+    */
+    var map;
+    require([
+      "esri/map", 
+      "esri/graphic",
+      "esri/symbols/SimpleFillSymbol",
+      "esri/symbols/SimpleLineSymbol",
+      "esri/geometry/Extent",
+      "esri/layers/FeatureLayer", 
+      "esri/renderers/UniqueValueRenderer", 
+      "esri/symbols/SimpleMarkerSymbol", 
+      "esri/Color", 
+      "esri/dijit/PopupTemplate", 
+      "esri/dijit/Search",
+      "dojo/domReady!"
+      ], function(
+        Map, 
+        Graphic,
+        SimpleFillSymbol, SimpleLineSymbol,
+        Extent,
+        FeatureLayer, 
+        UniqueValueRenderer, 
+        SimpleMarkerSymbol, 
+        Color, 
+        PopupTemplate, 
+        Search
+      ) {
+      map = new Map("mapDiv", {
+        center: [55.14, 25.24],
+        zoom: 11,
+        basemap: "streets"
+      });
+
+      map.on("load", function(){
+        // Add search widget 
+        var search = new Search({
+          map: map,
+          enableButtonMode: true
+        }, "searchDiv");
+
+        /*
+
+        var source = search.get("sources")[0];
+        var extent = map.extent;
+        source.searchExtent = [new Extent(extent.toJson())];
+
+        var sfs = new SimpleFillSymbol().setOutline(
+          new SimpleLineSymbol(
+            SimpleLineSymbol.STYLE_DASHDOT,
+            new Color([255,0,0]), 
+            2
+          )
+        );
+        
+        map.graphics.add(new Graphic(extent, sfs));
+
+        */
+        search.startup();        
+     });
+
+      // Define poupup template 
+      var template = new PopupTemplate({
+        title: "Code Violations",
+        description: "{Description}"
+      });
+
+    
+      // Add a layer to the map
+      var codeViolations = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Code_Violation_Cases/FeatureServer/0",{
+        outFields: ["*"],
+        infoTemplate: template
+      });
+
+      // Apply renderer 
+      var defaultSymbol = new SimpleMarkerSymbol();
+      var uv = new UniqueValueRenderer(defaultSymbol, "Status");
+
+      // Add symbols for each of the values you want to symbolize
+      uv.addValue("VOLUNTARY COMPLIANCE", new SimpleMarkerSymbol().setColor(new Color("#493f74")));
+      uv.addValue("ENFORCED COMPLIANCE", new SimpleMarkerSymbol().setColor(new Color("#dfddab")));
+      uv.addValue("ADMINISTRATIVE CLOSURE", new SimpleMarkerSymbol().setColor(new Color("#c55c5c")));
+      uv.addValue("OPEN", new SimpleMarkerSymbol().setColor(new Color("#6666cc")));
+      uv.addValue("CLOSED", new SimpleMarkerSymbol().setColor(new Color("#99cc66")));
+      uv.addValue("TRANSFERRED TO EXTERNAL AGENCY", new SimpleMarkerSymbol().setColor(new Color("#ffcc33")));
+      uv.addValue("COMPLAINT/APPLICATN WITHDRAWN", new SimpleMarkerSymbol().setColor(new Color("#cc6666")));
+      uv.addValue("NO VIOLATION", new SimpleMarkerSymbol().setColor(new Color("#33cc99")));
+      uv.addValue("VIOLATION",  new SimpleMarkerSymbol().setColor(new Color("#493f74")));
+      codeViolations.setRenderer(uv);
+
+      map.addLayer(codeViolations);
+
+    });
+
+  </script>
+
+</head>
+<body>
+  <div id="mapDiv"></div>
+  <div id="searchDiv"></div>
+</body>
+</html>

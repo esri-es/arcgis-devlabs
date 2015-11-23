@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+  <style>
+    html, body, #mapDiv{
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+  <script src="http://js.arcgis.com/3.14/"></script>
+  <script>
+    /*
+      1. Show events slide
+      2. Talk about dojo/on
+      3. Click on map then show dev console
+    */
+
+    require([
+      "esri/map", 
+      "esri/layers/FeatureLayer", 
+      "esri/renderers/UniqueValueRenderer", 
+      "esri/symbols/SimpleMarkerSymbol", 
+      "esri/Color", 
+      "esri/dijit/PopupTemplate", 
+      "dojo/on", 
+      "dojo/domReady!"
+      ], function(
+        Map, 
+        FeatureLayer, 
+        UniqueValueRenderer, 
+        SimpleMarkerSymbol, 
+        Color, 
+        PopupTemplate, 
+        on
+      ) {
+      var map = new Map("mapDiv", {
+        center: [-122.27, 47.58],
+        zoom: 14,
+        basemap: "dark-gray"
+      });
+      // Define poupup template 
+      var template = new PopupTemplate({
+        title: "Code Violations",
+        description: "{Description}"
+      });
+
+      /************************************************/
+       map.on("click", buffer);
+
+      // or 
+      //on(map, "click", buffer);
+
+      function buffer(e){
+        //e.mapPoint
+        console.log("clicked")
+      }
+      /************************************************/
+     
+      // Add a layer to the map
+      var codeViolations = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Code_Violation_Cases/FeatureServer/0",{
+        outFields: ["*"],
+        infoTemplate: template
+      });
+      map.addLayer(codeViolations);
+
+      // Apply renderer 
+      var defaultSymbol = new SimpleMarkerSymbol();
+      var uv = new UniqueValueRenderer(defaultSymbol, "Status");
+
+      // Add symbols for each of the values you want to symbolize
+      uv.addValue("VOLUNTARY COMPLIANCE", new SimpleMarkerSymbol().setColor(new Color("#493f74")));
+      uv.addValue("ENFORCED COMPLIANCE", new SimpleMarkerSymbol().setColor(new Color("#dfddab")));
+      uv.addValue("ADMINISTRATIVE CLOSURE", new SimpleMarkerSymbol().setColor(new Color("#c55c5c")));
+      uv.addValue("OPEN", new SimpleMarkerSymbol().setColor(new Color("#6666cc")));
+      uv.addValue("CLOSED", new SimpleMarkerSymbol().setColor(new Color("#99cc66")));
+      uv.addValue("TRANSFERRED TO EXTERNAL AGENCY", new SimpleMarkerSymbol().setColor(new Color("#ffcc33")));
+      uv.addValue("COMPLAINT/APPLICATN WITHDRAWN", new SimpleMarkerSymbol().setColor(new Color("#cc6666")));
+      uv.addValue("NO VIOLATION", new SimpleMarkerSymbol().setColor(new Color("#33cc99")));
+      uv.addValue("VIOLATION",  new SimpleMarkerSymbol().setColor(new Color("#493f74")));
+      codeViolations.setRenderer(uv);
+    });
+  </script>
+
+</head>
+<body>
+  <div id="mapDiv"></div>
+</body>
+</html>
