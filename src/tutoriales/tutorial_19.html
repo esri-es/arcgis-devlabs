@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Ejemplo 19: Cargando una Web Scene publicada en un Portal</title>
+  <meta name="description" content="Este ejemplo como cargar <a href='http://demos.esri.es/portal/home/webscene/viewer.html?webscene=2df972acfa35414e993749b7e1fc140b'>Web Scene generada con ArcGIS Pro</a> y publicada en un servidor con Portal for ArcGIS. Además añade una feature Layer con Popups habilitados en modo 'dock'." />
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0beta2/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.0beta2/"></script>
+
+  <script>
+    var view;
+
+    require([
+      "esri/views/SceneView",
+
+      "esri/portal/PortalItem",
+
+      "esri/WebScene",
+
+      "esri/layers/FeatureLayer",
+
+      "esri/PopupTemplate",
+      "esri/widgets/Popup",
+
+      "esri/renderers/SimpleRenderer",
+      
+      "esri/symbols/PointSymbol3D",
+      "esri/symbols/IconSymbol3DLayer",
+
+      "dojo/domReady!"
+    ], function(
+        SceneView, 
+        PortalItem, 
+        WebScene,
+        FeatureLayer,
+        PopupTemplate, Popup,
+        SimpleRenderer, 
+        PointSymbol3D, IconSymbol3DLayer
+    ) {
+
+      var scene = new WebScene({
+        portalItem: new PortalItem({
+          id: "2df972acfa35414e993749b7e1fc140b",
+          portal: "http://demos.esri.es/portal"
+        })
+      });
+
+      view = new SceneView({
+        map: scene,
+        container: "viewDiv"
+      });
+      iconSymbolRenderer = new SimpleRenderer({
+        symbol: new PointSymbol3D({
+          symbolLayers: [
+            new IconSymbol3DLayer({
+              size: 24,
+              resource: {
+                href: "../../img/icon.png"
+              }
+            })
+          ]
+        })
+      });
+        
+      featureLayer = new FeatureLayer({
+        url: "http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Ciudad_financiera_de_Santander_POIs/FeatureServer/0",
+        renderer: iconSymbolRenderer,
+        outFields: ['*'],
+        popupTemplate: new PopupTemplate({
+          title: '{name}',
+          content: '<img src="{photo}">',
+          showAttachments: false
+        }),
+        maxScale: 0,
+        minScale: 0
+      });
+
+      view.map.add(featureLayer);
+      view.map.spatialReference = {wkid: 102100, latestWkid: 3857}
+      view.then(function() {
+        view.popup.set("docked", true);
+      });
+      view.popup.set("dockOptions", {
+        responsiveDockEnabled: true,
+        dockAtSize: {
+          width: 400,
+          height: 600
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
