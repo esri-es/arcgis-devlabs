@@ -51,14 +51,23 @@
 
       var scene = new WebScene({
         portalItem: new PortalItem({
-          id: "2df972acfa35414e993749b7e1fc140b",
-          portal: "http://demos.esri.es/portal"
+          id: "7cc48a93984e44ccacfde422d7128b72"
         })
       });
 
       view = new SceneView({
         map: scene,
-        container: "viewDiv"
+        container: "viewDiv",
+        camera: {
+           position: [2.8227, 41.9879, 177.5645],
+           heading: 101.6485,
+           tilt: 72.1548
+        },
+        environment: {
+          lighting: {
+            date: new Date("Sun Mar 15 2015 12:00:00 GMT+0100 (CET)")
+          }
+        }
       });
       iconSymbolRenderer = new SimpleRenderer({
         symbol: new PointSymbol3D({
@@ -82,11 +91,18 @@
           content: '<img src="{photo}">',
           showAttachments: false
         }),
+        elevationInfo: {
+          mode: "relativeToGround",
+          offset: 45
+        },
         maxScale: 0,
         minScale: 0
       });
 
       view.map.add(featureLayer);
+
+      
+
       view.map.spatialReference = {wkid: 102100, latestWkid: 3857}
       view.then(function() {
         view.popup.set("docked", true);
