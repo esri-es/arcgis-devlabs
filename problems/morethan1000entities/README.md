@@ -4,15 +4,17 @@
 **Razón**: por defecto una consulta a un feature alojado en ArcGIS Online devuelve un máximo de 1000 entidades ([*Max Record Count*](http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0)).
 
 # Soluciones
-Si somos administradores del servicio publicado podríamos solucionarlo cambiando el número de registros máximo que queremos que devuelva nuestro feature por petición, esto lo podemos hacer directamente cambiando el *schema*. Para ello si nuestro servicio es:
-```http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0```
+Si somos administradores del servicio publicado podríamos solucionarlo cambiando el número de registros máximo que queremos que devuelva nuestro feature por cada petición, esto lo podemos hacer directamente cambiando el *schema*. 
+
+Para ello si nuestro servicio es:
+```http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0 ```
+
 Podemos acceder a la URL:
-```http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/admin/services/Catastro_de_Viladecans/FeatureServer/0```
+```http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/admin/services/Catastro_de_Viladecans/FeatureServer/0 ```
+
 Y accediendo a la operación *updateDefinition* cambiamos el **maxRecordCount** y lo establecemos a un valor superior al número de features que tiene nuestro servicio.
 
 > **Importante**: esta opción puede tener problemas de rendimiento. Ver ejemplo: [ArcGIS JS API](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature.html) | [Esri Leaflet](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature_leaflet.html)
-
-Así podríamos cargarlo
 
 Otras opciones de evitar esta limitación.
 
