@@ -59,9 +59,11 @@
 
         map.removeAll();
         if(basemap.indexOf("http") != -1){
+          map.basemap = null;
           var tileLyr = new VectorTileLayer({
             url: basemap
           });
+
 
           map.add(tileLyr);
         }else{
