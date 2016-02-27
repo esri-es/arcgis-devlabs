@@ -25,7 +25,12 @@
 
   L.esri.basemapLayer('Gray').addTo(map);
   L.esri.featureLayer({
-    url: 'http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0'
+    url: 'http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0',
+    style: function (feature) {
+      
+        return {color: 'blue', weight: 1 };
+      
+    }
   }).addTo(map);
 </script>
 
