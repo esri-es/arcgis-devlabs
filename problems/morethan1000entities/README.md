@@ -14,7 +14,7 @@ Pintar feature en modo SNAPSHOT: [ver demo](http://esri-es.github.io/JavascriptA
   * Los features se van cargando de 1000 en 1000, por tanto tardan en verse todos los features
 
 ## 2) Tiled + Feature (SNAPSHOT)
-Pintar una capa cacheada y encima feature (SNAPSHOT) con opacidad 0, [ver demo](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature_snapshot.html)
+Pintar una capa cacheada y encima feature (SNAPSHOT) con opacidad 0, [ver demo](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/tiled_feature_snapshot.html)
 * **PROS**: 
   * Las entidades (polígonos) se visualizan más rápida que en la solución 1), el problema es que no sabemos qué entidades son interactivos en cada momento (porque se van cargando poco a poco).
 * **CONTRAS**:
