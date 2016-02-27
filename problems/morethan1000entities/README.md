@@ -1,6 +1,6 @@
 # Crear un mapa con más de 1000 entidades interactivas
 **Problema**: al intentar cargar un feature layer con más de 1000 entidades en un mapa sólo se visualizan un máximo de 1000 entidades
-**Razón**: por defecto una consulta a un feature alojado en ArcGIS Online devuelve un máximo de 1000 entidades.
+**Razón**: por defecto una consulta a un feature alojado en ArcGIS Online devuelve un máximo de 1000 entidades ([*Max Record Count*](http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0)).
 
 # Soluciones
 Existen varias formas de evitar esta limitación.
