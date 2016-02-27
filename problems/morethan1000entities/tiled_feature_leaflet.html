@@ -24,12 +24,16 @@
   var map = L.map('map').setView([41.3143, 2.0272], 13);
 
   L.esri.basemapLayer('Gray').addTo(map);
+  
+  L.esri.tiledMapLayer({
+    url: "//tiles.arcgis.com/tiles/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/MapServer"
+  }).addTo(map);
+  
   var layer = L.esri.featureLayer({
-    url: 'http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0',
+    url: '//services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0',
     style: function (feature) {
-      
-        return {color: 'blue', weight: 1 };
-      
+      //return {color: 'rgba(0,0,0,0)', weight: 0 };
+      return {color: 'blue', weight: 1 };
     }
   }).addTo(map);
 
