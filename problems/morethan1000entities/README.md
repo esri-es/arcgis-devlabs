@@ -4,7 +4,7 @@
 **Razón**: por defecto una consulta a un feature alojado en ArcGIS Online devuelve un máximo de 1000 entidades ([*Max Record Count*](http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0)).
 
 # Soluciones
-Si somos administradores del servicio publicado podríamos solucionarlo cambiando el número de registros máximo que queremos que devuelva nuestro feature por cada petición, esto lo podemos hacer directamente cambiando el *schema*. 
+Si somos administradores del servicio publicado podríamos solucionarlo cambiando el número de registros máximo que queremos que devuelva nuestro feature por cada petición, esto lo podemos hacer directamente [cambiando el *schema*](https://blogs.esri.com/esri/arcgis/files/2014/10/How-to-Update-Hosted-Feature-Service-Schemas1.pdf). 
 
 Para ello si nuestro servicio es:
 ```http://services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0 ```
