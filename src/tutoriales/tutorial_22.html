@@ -1,0 +1,58 @@
+	<html>
+		<head>
+		    <meta charset="UTF-8">
+		    <title>Bar Chart Example</title>
+		    <!-- Cargamos las tres librerias necesarias -->
+			<script type="text/javascript" src="//esri.github.io/cedar/js/d3.min.js"></script>
+			<script type="text/javascript" src="//esri.github.io/cedar/js/vega.js"></script>
+			<script type="text/javascript" src="//esri.github.io/cedar/js/cedar.js"></script>
+		</head>
+		<body>
+			<h1>Bar Chart: World cities population</h1>
+			<!-- Definimos el div donde se creará el gráfico -->
+			<div id="chart"></div>
+			
+		</body>
+			<script>
+			var serviceUrl = "http://maps2.dcgis.dc.gov/dcgis/rest/services/SampleWorldCities/MapServer/0",
+				xField = "POP_CLASS",
+				toolTipTitle = "{POP_CLASS}";
+			// Creamos el gráfico con las propiedades:
+			var chart = new Cedar({
+			  //Tipo de gráfico
+			  "type": "bar",
+			  //Dataset
+			  "dataset": {
+			    "url":serviceUrl,
+			    //En esta query lo que hacemos es un conteo de las ciudades que hay en cada POP_CLASS
+			    "query": {
+			      "groupByFieldsForStatistics": xField,
+			      "outStatistics": [{
+			        "statisticType": "count", 
+			        "onStatisticField": "OBJECTID", 
+			        "outStatisticFieldName": "count_SUM"
+			      }]
+			    },
+			    //En mappings definimos que representamos: En X cada POP_CLASS y en Y el conteo de las ciudades en cada POP_CLASS
+			    "mappings":{
+			      "x": {"field":xField,"label":"Population ranks"},
+			      "y": {"field":"count_SUM","label":"Number of cities"},
+			      "sort": "count_SUM DESC"	
+			  	}
+			  },
+			  //En tooltip definimos la ventana emergente al pasar el ratón por encima
+			  "tooltip": {
+			    "id": "tooltip-url",
+			    "title": toolTipTitle,
+			    "content": "{count_SUM} Cities"
+			  }
+			});
+
+		    //Mostramos el gráfico
+		    chart.show({
+		      elementId: "#chart",
+		      autolabels: true
+		    });
+			</script>
+
+	</html>
