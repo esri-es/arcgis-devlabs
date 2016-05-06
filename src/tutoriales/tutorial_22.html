@@ -11,7 +11,6 @@
 	<script type="text/javascript" src="//esri.github.io/cedar/js/cedar.js"></script>
 </head>
 <body>
-	<h1>Gráfico de barras utilizando Cedar: Rangos de población en las ciudades del mundo</h1>
 	<!-- Definimos el div donde se creará el gráfico -->
 	<div id="chart"></div>
 	
@@ -19,7 +18,7 @@
 		var serviceUrl = "http://maps2.dcgis.dc.gov/dcgis/rest/services/SampleWorldCities/MapServer/0",
 				xField = "POP_CLASS",
 				toolTipTitle = "{POP_CLASS}";
-				
+
 		// Creamos el gráfico con las propiedades:
 		var chart = new Cedar({
 		  //Tipo de gráfico
