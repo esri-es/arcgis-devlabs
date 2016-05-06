@@ -11,7 +11,7 @@
 			<script type="text/javascript" src="//esri.github.io/cedar/js/cedar.js"></script>
 		</head>
 		<body>
-			<h1>Bar Chart: World cities population</h1>
+			<h1>Gráfico de barras utilizando Cedar: Rangos de población en las ciudades del mundo</h1>
 			<!-- Definimos el div donde se creará el gráfico -->
 			<div id="chart"></div>
 			
@@ -38,8 +38,8 @@
 			    },
 			    //En mappings definimos que representamos: En X cada POP_CLASS y en Y el conteo de las ciudades en cada POP_CLASS
 			    "mappings":{
-			      "x": {"field":xField,"label":"Population ranks"},
-			      "y": {"field":"count_SUM","label":"Number of cities"},
+			      "x": {"field":xField,"label":"Rangos de población"},
+			      "y": {"field":"count_SUM","label":"Número de ciudades"},
 			      "sort": "count_SUM DESC"	
 			  	}
 			  },
@@ -47,7 +47,7 @@
 			  "tooltip": {
 			    "id": "tooltip-url",
 			    "title": toolTipTitle,
-			    "content": "{count_SUM} Cities"
+			    "content": "{count_SUM} Ciudades"
 			  }
 			});
 
