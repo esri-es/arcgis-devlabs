@@ -1,0 +1,61 @@
+<html>
+	<head>
+	    <meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+			<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+			<title>Ejemplo 22: Gráfico de barras usando Cedar</title>
+			<meta name="description" content="Este ejemplo permite generar gráficos de barras con la información de un servicio utilizando la API de Cedar de Esri." src="https://esri.github.io/cedar/" />
+	    <!-- Cargamos las tres librerias necesarias -->
+		<script type="text/javascript" src="//esri.github.io/cedar/js/d3.min.js"></script>
+		<script type="text/javascript" src="//esri.github.io/cedar/js/vega.js"></script>
+		<script type="text/javascript" src="//esri.github.io/cedar/js/cedar.js"></script>
+	</head>
+	<body>
+		<h1>Gráfico de barras utilizando Cedar: Rangos de población en las ciudades del mundo</h1>
+		<!-- Definimos el div donde se creará el gráfico -->
+		<div id="chart"></div>
+		
+	</body>
+		<script>
+		var serviceUrl = "http://maps2.dcgis.dc.gov/dcgis/rest/services/SampleWorldCities/MapServer/0",
+			xField = "POP_CLASS",
+			toolTipTitle = "{POP_CLASS}";
+		// Creamos el gráfico con las propiedades:
+		var chart = new Cedar({
+		  //Tipo de gráfico
+		  "type": "bar",
+		  //Dataset
+		  "dataset": {
+		    "url":serviceUrl,
+		    //En esta query lo que hacemos es un conteo de las ciudades que hay en cada POP_CLASS
+		    "query": {
+		      "groupByFieldsForStatistics": xField,
+		      "outStatistics": [{
+		        "statisticType": "count", 
+		        "onStatisticField": "OBJECTID", 
+		        "outStatisticFieldName": "count_SUM"
+		      }]
+		    },
+		    //En mappings definimos que representamos: En X cada POP_CLASS y en Y el conteo de las ciudades en cada POP_CLASS
+		    "mappings":{
+		      "x": {"field":xField,"label":"Rangos de población"},
+		      "y": {"field":"count_SUM","label":"Número de ciudades"},
+		      "sort": "count_SUM DESC"	
+		  	}
+		  },
+		  //En tooltip definimos la ventana emergente al pasar el ratón por encima
+		  "tooltip": {
+		    "id": "tooltip-url",
+		    "title": toolTipTitle,
+		    "content": "{count_SUM} Ciudades"
+		  }
+		});
+
+	    //Mostramos el gráfico
+	    chart.show({
+	      elementId: "#chart",
+	      autolabels: true
+	    });
+		</script>
+
+</html>
