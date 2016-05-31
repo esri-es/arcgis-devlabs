@@ -3,7 +3,9 @@
 
 **Razón**: por defecto una consulta a un feature alojado en ArcGIS Online devuelve un máximo de 1000 entidades ([*Max Record Count*](http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0)).
 
-# Soluciones
+> **Nota**: En training.esri.com existe una charla titulada [Drawing Millions of Features in ArcGIS: Advanced Techniques](http://training.esri.com/Courses/ts_LargeData/player.cfm) con más información al respecto
+
+# Posibles soluciones
 Si somos administradores del servicio publicado podríamos solucionarlo cambiando el número de registros máximo que queremos que devuelva nuestro feature por cada petición, esto lo podemos hacer directamente [cambiando el *schema*](https://blogs.esri.com/esri/arcgis/files/2014/10/How-to-Update-Hosted-Feature-Service-Schemas1.pdf). 
 
 Para ello si nuestro servicio es:
@@ -14,7 +16,7 @@ Podemos acceder a la URL:
 
 Y accediendo a la operación *updateDefinition* cambiamos el **maxRecordCount** y lo establecemos a un valor superior al número de features que tiene nuestro servicio.
 
-> **Importante**: esta opción puede tener problemas de rendimiento. Ver ejemplo: [ArcGIS JS API](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature.html) | [Esri Leaflet](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature_leaflet.html)
+> **Importante**: esta opción puede tener problemas de rendimiento, si nuestros datos ocupan varios MB vamos a tener que seguir esperando tanto a que se descarguen como a que se pinten. Ver ejemplo: [ArcGIS JS API](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature.html) | [Esri Leaflet](http://esri-es.github.io/JavascriptAPI/problems/morethan1000entities/feature_leaflet.html)
 
 Otras opciones de evitar esta limitación.
 
