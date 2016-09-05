@@ -3,9 +3,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Ejemplo 23: Esri Leaflet + Mapillary-js (360 photo)</title>
+  <title>Ejemplo 23: Esri Leaflet + Mapillary-js (Foto perspectiva)</title>
   <meta name="description" content="Este ejemplo permite generar gráficos de barras con la información de un servicio utilizando la API de Cedar de Esri."/>
-
+  
   <link rel="stylesheet" href="https://npmcdn.com/mapillary-js@1.0.1/dist/mapillary-js.min.css">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.css" />
   <style>
@@ -66,7 +66,7 @@
     mvtSource = new L.TileLayer.MVTSource(mlyVectorLayerConfig);
     map.addLayer(mvtSource);
 
-    latLon = [48.917849435781356, 2.3513791020523804];
+    latLon = [56.04958221173251, 12.689836318219475];
     map.setView(latLon, 15);
 
     marker = L.marker({
@@ -78,7 +78,10 @@
 
     mly = new Mapillary.Viewer('mly',
       'Y2xnZ25jd3RUZnFnSmlyTGNMazI2ZzpiNTVlMjA0OWU4MzllMjI5',  // Replace this with your own ClientID
-      'ytfE1_iD_N-jmHfTHkj1Ug');
+      'zarcRdNFZwg3FkXNcsFeGw');
+
+    // Starts from:
+    // https://www.mapillary.com/map/im/zarcRdNFZwg3FkXNcsFeGw/photo
 
     mly.on('nodechanged', function (node) {
       var latLon = [node.latLon.lat, node.latLon.lon];
