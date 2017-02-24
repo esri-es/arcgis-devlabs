@@ -1,0 +1,48 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Usando Leaflet</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet from CDN-->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.js"></script>
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="//cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.7/esri-leaflet.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+  var map = L.map('map').setView([41.3143, 2.0272], 13);
+
+  L.esri.basemapLayer('Gray').addTo(map);
+  
+  L.esri.tiledMapLayer({
+    url: "//tiles.arcgis.com/tiles/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/MapServer"
+  }).addTo(map);
+  
+  var layer = L.esri.featureLayer({
+    url: '//services.arcgis.com/Q6ZFRRvMTlsTTFuP/arcgis/rest/services/Catastro_de_Viladecans/FeatureServer/0',
+    style: function (feature) {
+      //return {color: 'rgba(0,0,0,0)', weight: 0 };
+      return {color: 'blue', weight: 1 };
+    }
+  }).addTo(map);
+
+  layer.on("click", function (evt) {
+    attrs = evt.layer.feature.properties;
+    alert(JSON.stringify(attrs,null,2))
+    console.log("attributes=", attrs);
+  });
+</script>
+
+</body>
+</html>

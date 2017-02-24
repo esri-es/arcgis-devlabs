@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Feature Layer (SNAPSHOT)</title>
+  <meta name="description" content="Cargamos una capa en modo SNAPSHOT" />
+
+  <link rel="stylesheet" href="http://js.arcgis.com/3.15/esri/css/esri.css">
+  
+  <style>
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+
+  <!-- Cargamos la versión de la API a través del CDN de ArcGIS -->
+  <script src="http://js.arcgis.com/3.15/"></script>
+  <script>
+    var map, featureLayer, attrs;
+
+    require([
+      "esri/map",
+      "esri/layers/FeatureLayer",
+      "dojo/domReady!"
+    ], function(Map, FeatureLayer) {
+
+      map = new Map("mapDiv", {
+        center: [2.0272, 41.3143],
+        zoom: 14,
+        basemap: "gray"
+      });
+
+      featureLayer = new FeatureLayer("http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0",{
+        mode: FeatureLayer.MODE_SNAPSHOT,
+        outFields: ["*"]
+      });
+      map.addLayer(featureLayer);
+
+      featureLayer.on("click", function(evt){
+          attrs = evt.graphic.attributes;
+          alert(JSON.stringify(attrs,null,2))
+          console.log("attributes=", attrs);
+      });
+
+      //featureLayer.setDefinitionExpression("AREA > 800")
+
+    });
+  </script>
+</head>
+<body class="claro">
+  <div id="mapDiv"></div>
+</body>
+</html>
