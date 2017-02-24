@@ -3,6 +3,8 @@
 
 **Razón**: por defecto una consulta a un feature alojado en ArcGIS Online devuelve un máximo de 1000 entidades ([*Max Record Count*](http://services5.arcgis.com/6gwZHZyCCsxPuNBv/arcgis/rest/services/Viladecans/FeatureServer/0)).
 
+Para averiguar el límite de elementos gráficos que se pueden pintar simultáneamente con al API de JavaScript en el navegador te recomendamos leer la página ["Determining Limits for Client-side Map Graphics"](https://developers.arcgis.com/javascript/3/jshelp/limits_for_graphics.html) y experimentar con esta [app de ejemplo](https://developers.arcgis.com/javascript/3/samples/graphics-performance-points/index.html)
+
 > **Nota**: En training.esri.com existe una charla titulada [Drawing Millions of Features in ArcGIS: Advanced Techniques](http://training.esri.com/Courses/ts_LargeData/player.cfm) con más información al respecto
 
 # Posibles soluciones
