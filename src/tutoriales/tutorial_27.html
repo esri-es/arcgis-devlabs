@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+  <title>Example 27: Draw a polyline</title>
+  <meta name="description" content="How to draw a <a href='https://developers.arcgis.com/javascript/3/jsapi/polyline-amd.html#polyline2'>polyline</a>." />
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/themes/calcite/dijit/calcite.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/themes/calcite/esri/esri.css">
+  <style>
+    html, body, #mapDiv {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+  <script src="https://js.arcgis.com/3.19/"></script>
+  <script>
+    require([
+        "esri/map",
+        "esri/layers/GraphicsLayer",
+        "esri/geometry/Polyline",
+        "esri/symbols/SimpleLineSymbol",
+        "esri/graphic",
+        "dojo/domReady!"
+    ], function(Map, GraphicsLayer, Polyline, SimpleLineSymbol, Graphic){
+      var map = new Map("mapDiv", {
+        center: [
+            2.112170, // Longitud
+            41.3885249  // Latitud
+        ],
+        zoom: 15,
+        basemap: "streets-navigation-vector"
+      });
+
+      var gl = new GraphicsLayer();
+
+      map.addLayer(gl);
+
+      var routePoints = {
+        "paths":[[
+            [2.112170,41.3885249],
+            [2.112600,41.390155],
+            [2.109595,41.387949]
+
+          ]],
+        "spatialReference": {"wkid":4326}
+      };
+
+      routeSymbol = new SimpleLineSymbol();
+
+
+      var polyline = new Polyline(routePoints);
+
+      gl.add(new Graphic(polyline,routeSymbol));
+
+
+    });
+  </script>
+  </head>
+  <body class="calcite">
+    <div id="mapDiv"></div>
+  </body>
+</html>
