@@ -47,14 +47,23 @@
         require([
             "esri/map",
             "esri/arcgis/utils",
+            "esri/geometry/geometryEngine",
             "jquery",
             "dojo/domReady!"
-        ], function(Map, arcgisUtils, $){
+        ], function(Map, arcgisUtils, geometryEngine, $){
             arcgisUtils.createMap("8c80f5aa729f4a3cb8860f1431d4848a", "mapDiv").then(function (response) {
                 map = response.map;
+                window.gE = geometryEngine;
                 var gl = map.getLayer("PuntosAleatoriosMadrid_5016");
-                gl.on("update-end", function(layer){
+                var gl2 = map.getLayer("PuntosAleatoriosMadrid_5016_690");
 
+                gl.on("update-end", function(layer){
+                  $("#number").text(gl.graphics.length);
+                });
+                gl2.on("update-end", function(layer){
+                  $("#number").text(gl.graphics.length);
+                });
+                map.on("extent-change", function(layer){
                   $("#number").text(gl.graphics.length);
                 })
 
