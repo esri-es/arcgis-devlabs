@@ -47,25 +47,60 @@
         require([
             "esri/map",
             "esri/arcgis/utils",
+            "esri/geometry/Polygon",
+            "esri/geometry/Multipoint",
             "esri/geometry/geometryEngine",
             "jquery",
             "dojo/domReady!"
-        ], function(Map, arcgisUtils, geometryEngine, $){
+        ], function(Map, arcgisUtils, Polygon, Multipoint, geometryEngine, $){
             arcgisUtils.createMap("8c80f5aa729f4a3cb8860f1431d4848a", "mapDiv").then(function (response) {
                 map = response.map;
                 window.gE = geometryEngine;
-                var gl = map.getLayer("PuntosAleatoriosMadrid_5016");
-                var gl2 = map.getLayer("PuntosAleatoriosMadrid_5016_690");
+                gl = map.getLayer("PuntosAleatoriosMadrid_5016");
+                gl2 = map.getLayer("PuntosAleatoriosMadrid_5016_690");
+
+                var updateOnScreenCounter = function(){
+                  extent = map.extent;
+                  var polygonJson  = {"rings":[[
+                    [extent.xmin,extent.ymin],
+                    [extent.xmin,extent.ymax],
+                    [extent.xmax,extent.ymax],
+                    [extent.xmax,extent.ymin],
+                    [extent.xmin,extent.ymin]
+                  ]],"spatialReference":{"wkid": 102100 }};
+                  window.polygon = new Polygon(polygonJson);
+
+                  var mpJson = {"points":[],"spatialReference":({" wkid":102100 })};
+                  var layer = null;
+                  if(gl.graphics.length > 0){
+                    layer = gl;
+                  }else{
+                    layer = gl2;
+                  }
+                  layer.graphics.forEach(function(elem,i){
+                    mpJson.points.push([elem.geometry.x,elem.geometry.y])
+                  });
+                  var multipoint = new Multipoint(mpJson);
+
+                  var onScreen = gE.intersect(polygon, multipoint);
+                  $("#onScreen").text(onScreen.points.length);
+                };
 
                 gl.on("update-end", function(layer){
                   $("#number").text(gl.graphics.length);
+                  updateOnScreenCounter();
                 });
                 gl2.on("update-end", function(layer){
-                  $("#number").text(gl.graphics.length);
+                  $("#number").text(gl2.graphics.length);
+                  updateOnScreenCounter();
                 });
+
                 map.on("extent-change", function(layer){
                   $("#number").text(gl.graphics.length);
-                })
+                  updateOnScreenCounter();
+                });
+
+
 
 
             });
@@ -75,6 +110,6 @@
 
 <body>
   <div id="mapDiv"></div>
-  <div id="gl">Graphics elements drawn: <span id="number"></span>
+  <div id="gl">Graphics elements drawn: <span id="number"></span>, <span id="onScreen"></span> on current extent</div>
 </body>
 </html>
