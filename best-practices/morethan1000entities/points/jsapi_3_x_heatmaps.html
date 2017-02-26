@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo 7: Cargar un webmap</title>
+    <meta name="description" content="Los <a href='https://doc.arcgis.com/es/arcgis-online/reference/what-is-web-map.htm'>webmaps</a> en definitiva son ficheros JSON que incluyen <a href='http://resources.arcgis.com/en/help/arcgis-web-map-json/index.html#//02qt00000007000000'>la configuración de un mapa</a> (capas incluidas, mapa base, marcadores, etc.). En este ejemplo vemos cómo cargar <a href='http://hhkaos2.maps.arcgis.com/home/webmap/viewer.html?webmap=64c9b7fe34304c0fae24e8d9edc86924'>este webmap</a>." />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.19/esri/css/esri.css">
+    <style>
+        html,body,#mapDiv,.map.container{
+            padding:0;
+            margin:0;
+            height:100%;
+        }
+        #gl{
+          position: absolute;
+          top: 1rem;
+          left: 5rem;
+          background-color: rgba(255,255,255,.8);
+          border: 1px solid #fff;
+          color: #000;
+          padding: .5rem 1rem;
+          text-shadow: 0px 0 6px white; 
+        }
+    </style>
+
+    <script>
+    var dojoConfig = (function () {
+        return {
+            async: true,
+            isDebug: false,
+            parseOnLoad: false,
+            packages: [
+                {
+                    name: 'jquery',
+                    location: 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1',
+                    main: 'jquery'
+                }
+            ]
+        };
+    })();
+    </script>
+    <script src="http://js.arcgis.com/3.19/"></script>
+    <script>
+        require([
+            "esri/map",
+            "esri/arcgis/utils",
+            "jquery",
+            "dojo/domReady!"
+        ], function(Map, arcgisUtils, $){
+            arcgisUtils.createMap("8c80f5aa729f4a3cb8860f1431d4848a", "mapDiv").then(function (response) {
+                map = response.map;
+                var gl = map.getLayer("PuntosAleatoriosMadrid_5016");
+                gl.on("update-end", function(layer){
+
+                  $("#number").text(gl.graphics.length);
+                })
+
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+  <div id="mapDiv"></div>
+  <div id="gl">Graphics elements drawn: <span id="number"></span>
+</body>
+</html>
