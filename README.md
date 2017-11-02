@@ -30,7 +30,7 @@ Después de jugar un poco con los tutoriales, vamos a ver cómo resolver problem
 * [Direcciones](#direcciones)
 
 ### Geocodificación
-La geocodificación hace referencia a la posibilidad de traducir una o varias direcciones a sus respectivas coodernadas y vicebersa.
+La geocodificación hace referencia a la posibilidad de traducir una o varias direcciones a sus respectivas coodernadas y viceversa.
 
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocodificacion.png" />&nbsp;
 <img src="https://raw.githubusercontent.com/esri-es/JavascriptAPI/master/img/geocoding.png" />&nbsp;
