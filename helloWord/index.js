@@ -1,5 +1,3 @@
-'use strict';
-
 require([ 
   "esri/Map",  
   "esri/views/MapView", 
@@ -10,10 +8,10 @@ require([
     MapView,  
     GraphicsLayer,  
     Graphic) { 
-      const map = new Map({ 
+      var map = new Map({ 
         basemap: "streets-navigation-vector" 
       }); 
-      const view = new MapView({ 
+      view = new MapView({ 
         container: "wrapper-map", 
         map: map, 
         center: [-3.690504, 41.670161], 

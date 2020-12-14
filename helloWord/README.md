@@ -1,5 +1,4 @@
 # HelloWord! con la API de JavaScript de ArcGIS
-========
 
 Antes de empezar a trabajar con la API de JavaScritp tendremos que crearnos una cuenta gratuita de [developer](https://developers.arcgis.com/sign-up/) para aceptar los términos de uso. Este tipo de [cuenta gratuita](https://esri-es.github.io/licenciamiento-developers/#/desarrollo/README?id=arcgis-developer-plans-adp) incluye las licencias para usar SDKs, APIs, generación de aplicaciones... en entornos de desarrollo y pruebas sin ningún coste y por tiempo ilimitado.
 
@@ -28,4 +27,52 @@ html, body, #wrapper-map {
 }
 ```
 
-En el script de JavaScript utilizaremos un ```require``` que recibe dos parámetros, un array con las clases que vamos a utilizar y una función a modo de "callback" que recibirá todas las clases en los argumentos.
+En el script de JavaScript utilizaremos un ```require``` que recibe dos parámetros, un array con las clases que vamos a utilizar y una función a modo de "callback" que recibirá todas las clases en los argumentos. Por ahora, vamos a incluir todas las que necesitamos para el ejemplo y las iremos explicando según las vayamos usando. 
+
+Una vez incluidas nuestro script quedará así:
+
+```
+require([ 
+  "esri/Map",  
+  "esri/views/MapView", 
+  "esri/layers/GraphicsLayer",  
+  "esri/Graphic"],  
+  function ( 
+    Map,  
+    MapView,  
+    GraphicsLayer,  
+    Graphic) { 
+      
+    });
+```
+
+## ¿Por dónde empezamos?
+
+Comenzaremos añadiendo un mapa en 2D. Dentro de la función que acabamos de crear añadiremos la clase [Map](https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html) seleccionando un mapa de fondo de todos los que tenemos disponibles en ArcGIS. En este caso hemos elegido un mapa de las calles pero prueba con otros estilos como "dark-gray-vector", "streets", "satellite", "hybrid", "terrain", "topo", "gray", "oceans", "national-geographic", "osm", "streets-night-vector"...
+
+```
+const map = new Map ({
+  basemap: "streets-navigation-vector"
+});
+```
+
+Ahora este mapa lo añadiremos a la vista para visualizarlo en el navegador para lo que utilizaremos la clase [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html). Para instanciar esta clase es obligatorio especificar el ID del elemento HTML donde se va a cargar.
+
+```
+const view = new MapView ({
+  container: "wrapper-map",
+  map,
+  center: [-3.690504, 41.670161], 
+  zoom: 11
+});
+```
+
+De esta forma, ya tenemos un mapa centrado y con un zoom.
+
+***
+### Tip!
+![bulb-light](https://static.thenounproject.com/png/25705-200.png)
+
+Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` 
+
+![Comandos en la consola con el punto del mapa](/img/consola-sanSebastian.png)
