@@ -1,0 +1,6 @@
+html, body, #wrapper-map { 
+  padding: 0; 
+  margin: 0; 
+  height: 85vh; 
+  width: 100%; 
+}
