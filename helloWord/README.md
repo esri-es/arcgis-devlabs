@@ -136,3 +136,7 @@ Por último, añadiremos el punto a la capa de gráficos que creamos y añadimos
 ```
 graphicsLayer.add(pointGraphic);
 ```
+
+Este es el resultado final:
+
+![](img/final.png)

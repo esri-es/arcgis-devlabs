@@ -26,6 +26,10 @@ require([
         //   }
         // }
       }); 
+
+      const graphicsLayer = new GraphicsLayer();
+      map.add(graphicsLayer);
+
       const point = { 
         type: 'point', 
         longitude: -3.688167, 
