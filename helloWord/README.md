@@ -71,7 +71,7 @@ De esta forma, ya tenemos un mapa centrado y con un zoom.
 
 ***
 ### Tip!
-![bulb-light](https://static.thenounproject.com/png/25705-200.png)
+![bulb-light](https://static.thenounproject.com/png/25705-200.png =10x)
 
 Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` 
 
