@@ -70,7 +70,7 @@ const view = new MapView ({
 De esta forma, ya tenemos un mapa centrado y con un zoom.
 
 ***
-![bulb-light](https://static.thenounproject.com/png/25705-200.png =25x25)
+![bulb-light](https://static.thenounproject.com/png/25705-200.png)
 ### Quick Tip!
 
 Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` y veremos las coordenadas x e y.
@@ -79,7 +79,7 @@ Si declaramos la variable ```view``` de forma global podremos acceder al punto c
 ***
 
 ***
-![bulb-light](https://upload.wikimedia.org/wikipedia/commons/8/87/Light_Bulb_or_Idea_Flat_Icon_Vector.svg =25x25)
+![bulb-light](https://upload.wikimedia.org/wikipedia/commons/8/87/Light_Bulb_or_Idea_Flat_Icon_Vector.svg)
 ### Pro Tip!
 
 Otra forma de centrar el mapa es con la extensión que determina el cuadro de visión del mapa y se establece definiendo los vértices del cuadro. Podems acceder y definirla desde ```view.extent```.
