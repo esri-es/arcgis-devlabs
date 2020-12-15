@@ -70,9 +70,73 @@ const view = new MapView ({
 De esta forma, ya tenemos un mapa centrado y con un zoom.
 
 ***
-### Tip!
-![bulb-light](https://static.thenounproject.com/png/25705-200.png =10x)
+![bulb-light](https://static.thenounproject.com/png/25705-200.png =25x25)
+### Quick Tip!
 
-Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` 
+Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` y veremos las coordenadas x e y.
 
 ![](img/consola-sanSebastian.png)
+***
+
+***
+![bulb-light](https://upload.wikimedia.org/wikipedia/commons/8/87/Light_Bulb_or_Idea_Flat_Icon_Vector.svg =25x25)
+### Pro Tip!
+
+Otra forma de centrar el mapa es con la extensión que determina el cuadro de visión del mapa y se establece definiendo los vértices del cuadro. Podems acceder y definirla desde ```view.extent```.
+
+![](img/extent.png)
+***
+
+## Pintar un punto en el mapa
+
+Ahora que ya tenemos el mapa vamos a pintar un punto. Como tan solo es uno, vamos a hacerlo a mano, diciendo las coordenadas X e Y del punto. 
+
+En ArcGIS se trabaja superponiendo capas, de la misma forma que se trabaja con un programa de edición de fotos como Photoshop o usar papel [cebolla](https://www.youtube.com/watch?v=x48dnIRlHwk&ab_channel=CrystalWagner). Hay diferentes tipos de capas y, en este caso, vamos utilizar una capa gráfica que nos permite dibujar libremente lo que queramos.
+
+Primero crearemos la capa de gráficos con la clase [GraphicsLayer](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-GraphicsLayer.html) y la añadimos al mapa.
+
+```
+const graphicsLayer = new GraphicsLayer();
+map.add(graphicsLayer);
+```
+
+Ahora declararemos el punto dándole las coordenadas de longitud y latitud. Este punto lo vamos a declarar utilizando la clase [geometry](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry.html) que no vamos a usar explícitamente sino un objeto con las propiedades que la clase [Graphic](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) parseará e instanciará, a este proceso le llamamos [Autocasting](https://developers.arcgis.com/javascript/latest/guide/programming-patterns/#autocasting).
+
+
+```
+const point = {
+  type: 'point',
+  longitude: -3.688167, 
+  latitude: 41.671088 
+};
+```
+
+Vamos a definir cómo se va a pintar el punto. En este caso, va a ser un símbolo sencillo pero hay muchos más tipos de símbolo como los siguientes, [aquí](https://developers.arcgis.com/javascript/3/samples/playground/index.html) puedes probarlos.
+
+![](img/Markers.png)
+
+```
+const simpleMarkerSymbol = { 
+  type: "simple-marker", 
+  color: [226, 119, 40], 
+  outline: { 
+    color: [255, 255, 255], 
+    width: 1 
+  } 
+}; 
+```
+
+Una vez que tenemos todo definido vamos a combinarlo, en la clase [Graphic](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) asignaremos la ubicación y la simbología.
+
+```
+const pointGraphic = new Graphic ({
+  geometry: point,
+  symbol: simpleMarkerSymbol
+});
+```
+
+Por último, añadiremos el punto a la capa de gráficos que creamos y añadimos al mapa.
+
+```
+graphicsLayer.add(pointGraphic);
+```
