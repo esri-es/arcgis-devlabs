@@ -14,7 +14,7 @@ En el ```head``` de nuestro archivo html añadiremos los estilos e importamos la
   <link  type="text/css" href="style.css" rel="stylesheet" />
 ```
 
-En este caso hemos añadido el tema Ligth, aquí puedes ver [más estilos](https://developers.arcgis.com/javascript/latest/guide/styling/). Además, si queremos trabajar con archivos JavaScript y CSS, será ahí donde los añadiremos. (???)
+En este caso hemos añadido el tema Ligth, aquí puedes ver [más estilos](https://developers.arcgis.com/javascript/latest/guide/styling/). Además, si queremos trabajar con archivos JavaScript y CSS, será ahí donde los añadiremos.
 
 Vamos a aplicar estos estilos para que el mapa ocupe casi toda la pantalla.
 style.css
@@ -75,8 +75,6 @@ De esta forma, ya tenemos un mapa centrado y con un zoom.
 Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` y veremos las coordenadas x e y.
 
 ![](img/consola-sanSebastian.png)
-***
-
 ***
 ### 💡💡 Pro Tip!
 
