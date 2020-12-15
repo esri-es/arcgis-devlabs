@@ -79,7 +79,7 @@ Si declaramos la variable ```view``` de forma global podremos acceder al punto c
 ***
 
 ***
-![bulb-light](https://upload.wikimedia.org/wikipedia/commons/8/87/Light_Bulb_or_Idea_Flat_Icon_Vector.svg)
+![bulb-light](https://upload.wikimedia.org/wikipedia/commons/8/87/Light_Bulb_or_Idea_Flat_Icon_Vector.svg | width=10)
 ### Pro Tip!
 
 Otra forma de centrar el mapa es con la extensión que determina el cuadro de visión del mapa y se establece definiendo los vértices del cuadro. Podems acceder y definirla desde ```view.extent```.
