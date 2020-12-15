@@ -75,4 +75,4 @@ De esta forma, ya tenemos un mapa centrado y con un zoom.
 
 Si declaramos la variable ```view``` de forma global podremos acceder al punto central del mapa. Para ello, en la consola tendremos que acceder a ```view.center``` 
 
-![Comandos en la consola con el punto del mapa](/img/consola-sanSebastian.png)
+![](img/consola-sanSebastian.png)
