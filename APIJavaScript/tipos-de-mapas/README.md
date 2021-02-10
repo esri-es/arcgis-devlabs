@@ -1,6 +1,6 @@
 # Tipos de Mapa o "Mapas base"
 
-A los conocidos estilos de mapa como: "Satélite", "Relieve", "Callejero", ... se les conoce por diferentes nombres. Por ejemplo: Google Maps los llama "tipos de mapa", OSM/Mapbox/... "Tiled map" (mapas de teselas), en ArcGIS "Mapas base" (o basemaps).
+A los conocidos estilos de mapa como: "Satélite", "Relieve", "Callejero", ... se les conoce por diferentes nombres. Por ejemplo: Google Maps los llama "tipos de mapa", OSM/Mapbox/... "Tiled map" (mapas de teselas), en ArcGIS **"Mapas base" (o basemaps)**.
 
 ![Vector tiles](https://github.com/esri-es/arcgis-vector-tiles/raw/master/images/Vector%20Tile%20Showcase.gif?raw=true)
 
