@@ -8,7 +8,7 @@ Una vez creada, ya podemos empezar a trabajar en local sobre nuestra aplicación
 
 En el ```head``` de nuestro archivo html añadiremos los estilos e importamos la librería de ArcGIS. 
 
-```
+```html
   <link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.17/"></script>
   <script src="index.js" type="text/javascript"></script>
@@ -33,7 +33,7 @@ En el script de JavaScript utilizaremos un ```require``` que recibe dos parámet
 
 Una vez incluidas nuestro script quedará así:
 
-```
+```js
 require([ 
   "esri/Map",  
   "esri/views/MapView", 
@@ -52,7 +52,7 @@ require([
 
 Comenzaremos añadiendo un mapa en 2D. Dentro de la función que acabamos de crear añadiremos la clase [Map](https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html) seleccionando un mapa de fondo de todos los que tenemos disponibles en ArcGIS. En este caso hemos elegido un mapa de las calles pero prueba con otros estilos como "dark-gray-vector", "streets", "satellite", "hybrid", "terrain", "topo", "gray", "oceans", "national-geographic", "osm", "streets-night-vector"...
 
-```
+```js
 const map = new Map ({
   basemap: "streets-navigation-vector"
 });
@@ -60,7 +60,7 @@ const map = new Map ({
 
 Ahora este mapa lo añadiremos a la vista para visualizarlo en el navegador para lo que utilizaremos la clase [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html). Para instanciar esta clase es obligatorio especificar el ID del elemento HTML donde se va a cargar.
 
-```
+```js
 const view = new MapView ({
   container: "wrapper-map",
   map,
@@ -101,7 +101,7 @@ map.add(graphicsLayer);
 Ahora declararemos el punto dándole las coordenadas de longitud y latitud. Este punto lo vamos a declarar utilizando la clase [geometry](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry.html) que no vamos a usar explícitamente sino un objeto con las propiedades que la clase [Graphic](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) parseará e instanciará, a este proceso le llamamos [Autocasting](https://developers.arcgis.com/javascript/latest/guide/programming-patterns/#autocasting).
 
 
-```
+```js
 const point = {
   type: 'point',
   longitude: -3.688167, 
@@ -113,7 +113,7 @@ Vamos a definir cómo se va a pintar el punto. En este caso, va a ser un símbol
 
 ![](img/Markers.png)
 
-```
+```js
 const simpleMarkerSymbol = { 
   type: "simple-marker", 
   color: [226, 119, 40], 
@@ -126,7 +126,7 @@ const simpleMarkerSymbol = {
 
 Una vez que tenemos todo definido vamos a combinarlo, en la clase [Graphic](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html) asignaremos la ubicación y la simbología.
 
-```
+```js
 const pointGraphic = new Graphic ({
   geometry: point,
   symbol: simpleMarkerSymbol
@@ -135,7 +135,7 @@ const pointGraphic = new Graphic ({
 
 Por último, añadiremos el punto a la capa de gráficos que creamos y añadimos al mapa.
 
-```
+```js
 graphicsLayer.add(pointGraphic);
 ```
 
