@@ -29,3 +29,26 @@ const view = new MapView({
   container: "viewDiv" // Div element
 });
 ```
+
+
+Para restringir el uso de la API recomendamos introducir:
+* El dominio y el protocolo
+* Y no usar la ruta (path) ya que algunos navegadores lo eliminan por cuestiones de privacidad
+
+Si al introducir la restricción te aparece un error en consola como el siguiente:
+
+![Error loading token](./img/arcgis-invalid-api-token.png)
+
+En este caso “Invalid token” hace referencia a que el “referrer” no está bien configurado, para saber qué “referrer” introducir filtra en la pestaña network/red e introduce un filtro usando la API Key:
+
+![Filter loading token](./img/arcgis-filter-network-api-key.png)
+
+Y en la pestaña “Headers” observa cuál es el “referrer” que está enviando el navegador:
+
+![Filter loading token](./img/arcgis-find-request-referrer.png)
+
+A continuación introduce el mismo “referrer” en las configuraciones de la API Key:
+
+![Filter loading token](./img/arcgis-configure-referrer.png)
+
+Puede que tarde unos segundos en funcionar, pero en no más de 30 segundos este debería funcionar.
