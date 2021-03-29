@@ -17,7 +17,15 @@ import esriConfig from "https://js.arcgis.com/4.18/@arcgis/core/config.js";
 
 esriConfig.apiKey = "AAPKf68f70fbe48946a9ac34d40f1866ce27REhFORagxUZVr4zy0hXN1rsCmfRKfz-v_00vAK0Gc2Q2MXbPBeJHsRoh1Ik1nLS7";
 
-const basemaps = ["arcgis-imagery", "arcgis-imagery-standard", "arcgis-imagery-labels", "arcgis-light-gray", "arcgis-dark-gray", "arcgis-navigation", "arcgis-navigation-night", "arcgis-streets", "arcgis-streets-night", "arcgis-streets-relief", "arcgis-topographic", "arcgis-oceans", "osm-standard", "osm-standard-relief", "osm-streets", "osm-streets-relief", "osm-light-gray", "osm-dark-gray", "arcgis-terrain", "arcgis-community", "arcgis-charted-territory", "arcgis-colored-pencil", "arcgis-nova", "arcgis-modern-antique", "arcgis-midcentury", "arcgis-newspaper", "arcgis-hillshade-light", "arcgis-hillshade-dark"];
+const basemaps = [
+   "arcgis-imagery", "arcgis-imagery-standard", "arcgis-imagery-labels", "arcgis-light-gray", 
+   "arcgis-dark-gray", "arcgis-navigation", "arcgis-navigation-night", "arcgis-streets",
+   "arcgis-streets-night", "arcgis-streets-relief", "arcgis-topographic", "arcgis-oceans", 
+   "osm-standard", "osm-standard-relief", "osm-streets", "osm-streets-relief", "osm-light-gray", 
+   "osm-dark-gray", "arcgis-terrain", "arcgis-community", "arcgis-charted-territory", 
+   "arcgis-colored-pencil", "arcgis-nova", "arcgis-modern-antique", "arcgis-midcentury", 
+   "arcgis-newspaper", "arcgis-hillshade-light", "arcgis-hillshade-dark"
+];
 
 const map = new Map({
   basemap: basemaps[0]
