@@ -9,3 +9,4 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 4. [Añadir un webmap](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/webmap) creado en ArcGIS Online a una aplicación web con la API de JavaScript de ArcGIS.
 5. [Simbología única](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/simpleRenderer) Añadir una simbología única a una capa.
 6. [Crear una rampa de color](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/rampaColor)
+7. [ClassBreakRenderer](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/classBreakRenderer)

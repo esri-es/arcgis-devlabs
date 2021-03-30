@@ -1,8 +1,8 @@
 # Crear una rampa color
 
-![Distribución de la población en 2018](images/rampaColor.png)
+![Distribución de la población en 2018](images/rampaColor2.png)
 
-A partir de una [feature layer sobre la España despoblada](https://www.arcgis.com/home/item.html?id=0beaf63767ee47fdb272dc76aeb3ac5b) disponible en el [Living Atlas ](https://livingatlas.arcgis.com/) hemos creado esta visualización con el número de habitantes por hectárea.
+A partir de una [feature layer sobre la España despoblada](https://www.arcgis.com/home/item.html?id=0beaf63767ee47fdb272dc76aeb3ac5b) disponible en el [Living Atlas ](https://livingatlas.arcgis.com/) hemos creado esta [rampa de color](https://developers.arcgis.com/javascript/latest/esri-color-ramps/) con el número de habitantes por hectárea.
 
 ## Pasos
 1. Creación del mapa y su vista.
@@ -57,14 +57,14 @@ const populationRenderer = {
       type: "color",
       field: "HabHa", // Campo elegido
       stops: [
-        {
+         {
           value: 0.5,
-          color: "#b5e5e1",
+          color: "#ffe6f1",
           label: "<0.5"
         },
         {
           value: 5,
-          color: "#143936",
+          color: "#002624",
           label: "> 5"
         }
       ]

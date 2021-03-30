@@ -32,12 +32,12 @@ const populationRenderer = {
       stops: [
         {
           value: 0.5,
-          color: "#b5e5e1",
+          color: "#ffe6f1",
           label: "<0.5"
         },
         {
           value: 5,
-          color: "#143936",
+          color: "#002624",
           label: "> 5"
         }
       ]
