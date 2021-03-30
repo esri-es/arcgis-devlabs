@@ -61,7 +61,7 @@ const gasStationLayer = new FeatureLayer({
 
 
 ### 💡 Pro Tip!
->Para filtrar los datos tan solo tenemos que declarar una expresión a la hora de cargar la capa. En este caso hemos optado por filtrar por provincia:
+Para filtrar los datos tan solo tenemos que declarar una expresión a la hora de cargar la capa. En este caso hemos optado por filtrar por provincia:
 ```js
 const gasStationLayer = new FeatureLayer({
   url: "https://services1.arcgis.com/nCKYwcSONQTkPA4K/ArcGIS/rest/services/Gasolineras_Pro/FeatureServer/0",
