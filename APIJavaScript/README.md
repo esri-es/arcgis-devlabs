@@ -7,4 +7,4 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 2. [HelloWorld! con ES6 modules](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/helloWorldES6)
 3. [Mapas base y uso de la API key](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/tipos-de-mapas)
 4. [Añadir un webmap](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/webmap) creado en ArcGIS Online a una aplicación web con la API de JavaScript de ArcGIS.
-5. [Simbología - SimpleRenderer](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/simpleRenderer) Añadir una simbología única a una capa.
+5. [Simbología única](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/simpleRenderer) Añadir una simbología única a una capa.
