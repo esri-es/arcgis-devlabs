@@ -1,7 +1,6 @@
 import Map from "https://js.arcgis.com/4.18/@arcgis/core/Map.js";
 import MapView from "https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js";
 import Graphic from "https://js.arcgis.com/4.18/@arcgis/core/Graphic.js";
-import GraphicsLayer from "https://js.arcgis.com/4.18/@arcgis/core/layers/GraphicsLayer.js";
 
 const map = new Map({
   basemap: "gray-vector"
@@ -169,7 +168,4 @@ var polygonGraphic = new Graphic({
   symbol: fillSymbol
 });
 
-const graphicsLayer = new GraphicsLayer();
-graphicsLayer.addMany([simpleMarkerGraphic, pictureGraphic, textGraphic, polylineGraphic, simpleFillGraphic, pictureFillGraphic, polygonGraphic]);
-
-map.add(graphicsLayer);
+view.graphics.addMany([simpleMarkerGraphic, pictureGraphic, textGraphic, polylineGraphic, simpleFillGraphic, pictureFillGraphic, polygonGraphic]);

@@ -148,12 +148,8 @@ var fillSymbol = {
 };
 ```
 # Añadir gráficos al mapa
-Para añadir los gráficos al mapa tendremos que utilizar una capa gráfica que albergue todos los gráficos y añadirla al mapa.
+Podremos añadir todos los gráficos directamente a la capa gráfica de la vista.
 
 ```js
-const graphicsLayer = new GraphicsLayer();
-
-graphicsLayer.addMany([simpleMarkerGraphic, textGraphic]);
-
-map.add(graphicsLayer);
+view.graphics.addMany([simpleMarkerGraphic, textGraphic]);
 ```
