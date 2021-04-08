@@ -38,7 +38,6 @@ view.on('click', function(evt) {
       y: evt.mapPoint.y,
       spatialReference: evt.mapPoint.spatialReference.wkid
     },
-    geodesic: true,
     radius: 1500,
     radiusUnit: "meters"
   });
