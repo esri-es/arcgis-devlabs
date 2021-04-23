@@ -13,8 +13,4 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 * [Crear una rampa de color](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/rampaColor) e implementación de leyenda.
 * [ClassBreakRenderer](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/classBreakRenderer). Simbología en función del valor de un campo cuantitativo.
 * [UniqueValueRenderer y popup](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/uniqueValueRenderer). Simbología en función del valor de un campo cualitativo e implementación de popup.
-
-
-******* 
-## Mini-apps
-1. [Coordenadas y extensiones](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/coordenadas). Aplicación que te da las coordenadas de un punto en longitud y latitud y la extensión del mapa.
+* [Coordenadas y extensiones](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/coordenadas). Aplicación que te da las coordenadas de un punto en longitud y latitud y la extensión del mapa.
