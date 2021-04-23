@@ -39,7 +39,8 @@ view.on('click', function(evt) {
       spatialReference: evt.mapPoint.spatialReference.wkid
     },
     radius: 1500,
-    radiusUnit: "meters"
+    radiusUnit: "meters",
+    geodesic: true
   });
 
   var graphic = new Graphic(circle, {type: 'simple-fill'});

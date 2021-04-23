@@ -3,22 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>Get lat and long</title>
+    <title>Locator task</title>
     <style>
-      html,body,#viewDiv {
+      html,body,#viewDiv{
         padding:0;
         margin:0;
         height:100%;
         width:100%
       }
-      #extensionButton {
+      .locator {
         position: absolute;
-        top: 10px;
+        top: 0;
         right: 30px;
+        text-align: center;
+        padding-top: 5px;
+      }
+      #btnLocate {
+        margin-top: 5px;
       }
     </style>
     <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/css/calcite-web.min.css">
 
     <script src="https://js.arcgis.com/4.19/"></script>
     <script type="module" src="map.js"></script>
@@ -26,7 +31,10 @@
 
   <body>
     <div id="viewDiv">
-      <button id="extensionButton" class="btn btn-secondary">Get extension</button>
+      <div class="locator">
+        <input type="text" id="address" class="input-search" placeholder="Dirección">
+        <button id="btnLocate" class="btn modifier-class">Buscar</button>
+      </div>
     </div>
   </body>
 </html>

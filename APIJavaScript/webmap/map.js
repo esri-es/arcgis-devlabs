@@ -1,4 +1,3 @@
-
 import MapView from "https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js";
 import WebMap from "https://js.arcgis.com/4.18/@arcgis/core/WebMap.js";
 
