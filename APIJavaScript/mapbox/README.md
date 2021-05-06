@@ -11,7 +11,7 @@ Este es un ejemplo de cómo integrar [Mapbox GL JS](https://docs.mapbox.com/mapb
 
 Sin embargo, aunque no necesitemos la API de ArcGIS, si que tenemos que utilizar la API key de ArcGIS Platform.
 
-> Es necesario que estés registrado en https://developers.arcgis.com/ para generarla.
+> **Nota:** Es necesario que estés registrado en https://developers.arcgis.com/ para generarla.
 
 
 
@@ -19,7 +19,7 @@ Sin embargo, aunque no necesitemos la API de ArcGIS, si que tenemos que utilizar
 ### 1. Creación del mapa.
 Vamos a generar un mapa de Mapbox pero utilizando los mapas base de Esri.
 ```js
-const apiKeyEsri = 'API-key';
+const apiKeyEsri = 'your-api-key';
 
 const basemapStyle = 'ArcGIS:DarkGray';
 

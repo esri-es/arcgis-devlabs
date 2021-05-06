@@ -2,9 +2,12 @@ import Map from "https://js.arcgis.com/4.18/@arcgis/core/Map.js";
 import MapView from "https://js.arcgis.com/4.18/@arcgis/core/views/MapView.js";
 import Graphic from "https://js.arcgis.com/4.18/@arcgis/core/Graphic.js";
 import Locator from "https://js.arcgis.com/4.18/@arcgis/core/tasks/Locator.js";
+import esriConfig from "https://js.arcgis.com/4.18/@arcgis/core/config.js";
+
+esriConfig.apiKey = "AAPK1008d4b22a644cc5b56fb43d57e3122cg3TmsxUiiAzSUiR27UN1N0wGdN9Y2os_R9Qq-m2naCcwc_7kAKB3LUaqgeLvExPk";
 
 const map = new Map({
-  basemap: "streets-navigation-vector"
+  basemap: "dark-gray"
 });
 
 const view = new MapView({
@@ -21,16 +24,15 @@ const view = new MapView({
   }
 });
 
-const taskLocator = new Locator("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer");
-
-document.getElementById("btnLocate").addEventListener("click", doAddressToLocations);
-
 const checkIfEnter = (evt) => {
-  if (evt.keyCode === 13) doAddressToLocations();
+  if (evt.keyCode === 13) getAddressLocation();
 };
 
+document.getElementById("btnLocate").addEventListener("click", getAddressLocation);
+
 document.getElementById('address').addEventListener("keyup", checkIfEnter);
-function doAddressToLocations() {
+
+function getAddressLocation() {
   view.graphics.removeAll();
 
   var objAddress = {
@@ -42,13 +44,15 @@ function doAddressToLocations() {
     outFields: ["*"]
   };
 
+  const taskLocator = new Locator("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer");
+
   taskLocator
     .addressToLocations(params)
     .then(response => showResults(response));
 };
 
 function showResults(candidates) { 
-  var geometryLocation;
+  let geometryLocation;
   if (candidates.length !== 0) {
     const bestCandidate = candidates[0];
 
@@ -60,16 +64,9 @@ function showResults(candidates) {
       outline: { width: 2 }
     };
 
-    var attributesCandidate = {
-      address: bestCandidate.address,
-      score: bestCandidate.score,
-      locatorName: bestCandidate.attributes.Loc_name
-    };
-
-    var graphicResult = new Graphic(
+    const graphicResult = new Graphic(
       geometryLocation, 
-      simpleMarkerSymbol, 
-      attributesCandidate
+      simpleMarkerSymbol
     );
 
     const textSymbol = {
@@ -91,10 +88,12 @@ function showResults(candidates) {
     );
 
     view.graphics.addMany([graphicResult, textGraphicResult]);
-  };
-
-  if (geometryLocation !== undefined) {
+    
     view.center = [geometryLocation.longitude, geometryLocation.latitude];
     view.zoom = 10;
+  };
+  if (geometryLocation === undefined) {
+    view.center = [-3.769188,39.921330];
+    view.zoom = 6;
   };
 };
