@@ -1,6 +1,7 @@
 # Class Break Renderer
 
 ![Representación de la población en España con ClassBreakRenderer](images/classBreak.png)
+[Demo](http://esri-es.github.io/arcgis-devlabs/APIJavaScript/classBreakRenderer/)
 
 En este tutorial se implementa el uso de la clase [ClassBreakRenderer](https://developers.arcgis.com/javascript/latest/api-reference/esri-renderers-ClassBreaksRenderer.html) que nos permite asignar una simbología en función del valor del campo. 
 

@@ -1,6 +1,7 @@
 # HelloWorld! con ES6 modules
 
 ![](images/HelloWorldES6.png)
+[Demo](http://esri-es.github.io/arcgis-devlabs/APIJavaScript/helloWorldES6/)
 
 Vamos a construir un mapa y añadir un marcador utilizando la versión 4 de la [API de JavaScript](https://developers.arcgis.com/javascript/latest/) y los [ES6 modules](https://hacks.mozilla.org/2015/08/es6-in-depth-modules/).
 

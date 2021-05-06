@@ -1,6 +1,7 @@
 # Gráficos: añadir puntos, líneas y polígonos 
 
 ![Puntos, líneas y polígonos](images/graficos.png)
+[Demo](http://esri-es.github.io/arcgis-devlabs/APIJavaScript/graphicPoint/)
 
 En este tutorial utilizaremos una capa gráfica para añadir diferentes gráficos como puntos, líneas y polígonos.
 
