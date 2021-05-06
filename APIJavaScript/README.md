@@ -14,3 +14,4 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 * [ClassBreakRenderer](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/classBreakRenderer). Simbología en función del valor de un campo cuantitativo.
 * [UniqueValueRenderer y popup](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/uniqueValueRenderer). Simbología en función del valor de un campo cualitativo e implementación de popup.
 * [Coordenadas y extensiones](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/coordenadas). Aplicación que te da las coordenadas de un punto en longitud y latitud y la extensión del mapa.
+* [Geocodificación de lugares](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/locatorTask). Creación de un buscador de lugares con el servicio de geocodificación.
