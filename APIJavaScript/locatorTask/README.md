@@ -39,7 +39,7 @@ En este caso, necesitaremos añadir dos elementos más al clásico *div* que ten
   </div>
 </div>
 ```
-> **Nota:** Para mejora la interfaz hemos utilizado la librería [Calcite](https://developers.arcgis.com/calcite-design-system/) propia de Esri gracias a la cual mejoramos mucho la interfaz.
+> **Nota:** Para mejorar la interfaz hemos utilizado la librería [Calcite](https://developers.arcgis.com/calcite-design-system/) propia de Esri.
 
 ### 3. Búsqueda del lugar
 * Cuando cliquemos sobre el botón, se ejecutará la función que nos devuelva el resultado.

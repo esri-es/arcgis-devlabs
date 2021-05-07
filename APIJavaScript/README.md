@@ -15,3 +15,6 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 * [UniqueValueRenderer y popup](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/uniqueValueRenderer). Simbología en función del valor de un campo cualitativo e implementación de popup.
 * [Coordenadas y extensiones](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/coordenadas). Aplicación que te da las coordenadas de un punto en longitud y latitud y la extensión del mapa.
 * [Geocodificación de lugares](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/locatorTask). Creación de un buscador de lugares con el servicio de geocodificación.
+* [Integración Mapbox GL JS y ArcGIS](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/mapbos). Tutorial de la integración de la librería open-source Mapbox GL JS y la API de ArcGIS.
+* [Widget de direcciones](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/directions). Implementación de un widget para obtener las indicaciones entre dos puntos.
+* [Creación de rutas](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/routeTask). Uso del servicio de creación de rutas de la API REST de ArcGIS.

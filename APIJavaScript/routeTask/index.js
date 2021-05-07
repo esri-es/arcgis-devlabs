@@ -28,10 +28,8 @@ const view = new MapView({
   }
 });
 
-const routeTask = new RouteTask({
-  url: "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World"
-});
 
+console.log(view.graphics)
 view.on("click", function (event) {
 
   if (view.graphics.length === 0) {
@@ -65,13 +63,16 @@ function getRoute() {
     stops: new FeatureSet({
       features: view.graphics.toArray()
     }),
-
     returnDirections: true
+  });
 
+  const routeTask = new RouteTask({
+    url: "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World"
   });
 
   routeTask.solve(routeParams)
     .then(function (data) {
+      // Add path 
       data.routeResults.forEach(function (result) {
         result.route.symbol = {
           type: "simple-line",
@@ -99,11 +100,8 @@ function getRoute() {
         view.ui.empty("top-right");
         view.ui.add(directions, "top-right");
       }
-
     })
-
     .catch(function (error) {
       console.log(error);
     })
-
 }
