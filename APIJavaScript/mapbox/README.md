@@ -2,6 +2,8 @@
 
 ![Representación arbolado Sevilla](images/Arbolado.png)
 
+> **Nota:** También puedes ver este tutorial en formato [vídeo](https://www.youtube.com/watch?v=sHpdETXjfC0)
+
 Este es un ejemplo de cómo integrar [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/) y la [API de JavaScript de ArcGIS](https://developers.arcgis.com/mapbox-gl-js/). Para esta integración tan solo necesitamos cargar la librería de Mapbox. En este caso lo hemos cargado desde el CDN:
 
 ```html
