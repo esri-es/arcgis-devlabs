@@ -19,6 +19,7 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 * [Integración Mapbox GL JS y ArcGIS](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/mapbox). Tutorial de la integración de la librería open-source Mapbox GL JS y la API de ArcGIS.
 * [Widget de direcciones](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/directions). Implementación de un widget para obtener las indicaciones entre dos puntos.
 * [Creación de rutas](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/routeTask). Uso del servicio de creación de rutas de la API REST de ArcGIS.
+* [Integración Leaflet y ArcGIS](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/leaflet). Tutorial de la integración de Leaflet con la API REST de ArcGIS implementado un geocodificador y la creación de rutas.
 
 ### 3D
 * [Simbología 3D apilada](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/pile3Dsymbols). Ejemplo de dos contenedores de carga apilados.
