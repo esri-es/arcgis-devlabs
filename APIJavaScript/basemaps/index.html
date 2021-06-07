@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basemap</title>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css" />
+        <script src="https://js.arcgis.com/4.19/"></script>
+        <script type="module" src="index.js"></script>
+        <style>
+            html,
+            body,
+            #viewMap {
+                margin: 0;
+                padding: 10px;
+                width: 100%;
+                height: 80%;
+            }
+            h1 {
+                text-align: center;
+            }
+            #selectBasemap {
+                margin: 10px;
+                width: 450px;
+            }
+        </style>
+        <!-- Calcite -->
+        <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/css/calcite-web.min.css">
+    </head>
+
+    <body>
+        <h1>Mapas base de ArcGIS</h1>
+
+        <select name="basemap" id="selectBasemap" class="modifier-class">
+            <option value="streets">Streets</option>
+            <option value="satellite">Satellite</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="terrain">Terrain</option>
+            <option value="topo">Topo</option>
+            <option value="gray">Gray</option>
+            <option value="dark-gray">Dark gray</option>
+            <option value="oceans">Oceans</option>
+            <option value="national-geographic">National Geographic</option>
+            <option value="osm">OSM</option>
+            <option value="dark-gray-vector">Dark gray vector</option>
+            <option value="gray-vector">Gray vector</option>
+            <option value="streets-vector">Streets vector</option>
+            <option value="topo-vector">Topo vector</option>
+            <option value="streets-night-vector">Streets night vector</option>
+            <option value="streets-relief-vector">Streets relief vector</option>
+            <option value="streets-navigation-vector">Streets navigation vector</option>
+            <option value="arcgis-imagery">ArcGIS imagery</option>
+            <option value="arcgis-imagery-standard">ArcGIS imagery standard</option>
+            <option value="arcgis-imagery-labels">ArcGIS imagery labels</option>
+            <option value="arcgis-light-gray">ArcGIS light gray</option>
+            <option value="arcgis-dark-gray">ArcGIS dark gray</option>
+            <option value="arcgis-navigation">ArcGIS navigation</option>
+            <option value="arcgis-navigation-night">ArcGIS navigation night</option>
+            <option value="arcgis-streets">ArcGIS streets</option>
+            <option value="arcgis-streets-night">ArcGIS streets night</option>
+            <option value="arcgis-streets-relief">ArcGIS streets relief</option>
+            <option value="arcgis-topographic">ArcGIS topographic</option>
+            <option value="arcgis-oceans">ArcGIS oceans</option>
+            <option value="osm-standard">OSM standard</option>
+            <option value="osm-standard-relief">OSM standard relief</option>
+            <option value="osm-streets">OSM streets</option>
+            <option value="osm-streets-relief">OSM streets relief</option>
+            <option value="osm-light-gray">OSM light gray</option>
+            <option value="osm-dark-gray">OSM dark gray</option>
+            <option value="arcgis-terrain">ArcGIS terrain</option>
+            <option value="arcgis-community">ArcGIS community</option>
+            <option value="arcgis-charted-territory">ArcGIS charted territory</option>
+            <option value="arcgis-colored-pencil">ArcGIS colored pencil</option>
+            <option value="arcgis-nova">ArcGIS nova</option>
+            <option value="arcgis-modern-antique">ArcGIS modern antique</option>
+            <option value="arcgis-midcentury">ArcGIS midcentury</option>
+            <option value="arcgis-newspaper">ArcGIS newspaper</option>
+            <option value="arcgis-hillshade-light">ArcGIS hillshade light</option>
+            <option value="arcgis-hillshade-dark">ArcGIS hillshade dark</option>
+        </select>
+
+
+
+        <div id="viewMap"></div>
+        <script  src="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/js/calcite-web.min.js"></script>
+
+    </body>
+
+</html>
