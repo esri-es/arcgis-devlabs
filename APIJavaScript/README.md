@@ -7,6 +7,7 @@ Aquí encontrarás diferentes tutoriales de la [API Javascript de ArcGIS](https:
 * [HelloWorld! SIN ES6 modules](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/helloWorld) En este tutorial te explicamos cómo crear un mapa en 2D y cómo añadir un punto.
 * [HelloWorld! con ES6 modules](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/helloWorldES6)
 * [Mapas base y uso de la API key](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/tipos-de-mapas)
+* [Catálogo de mapas base de ArcGIS](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/basemaps)
 * [Añadir un webmap](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/webmap) creado en ArcGIS Online a una aplicación web con la API de JavaScript de ArcGIS.
 * [Añadir gráficos al mapa](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/graphicPoint). Creación de puntos, líneas y polígonos.
 * [Creación de un círculo o área de influencia](https://github.com/esri-es/arcgis-devlabs/tree/master/APIJavaScript/circle)
