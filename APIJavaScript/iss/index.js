@@ -52,7 +52,7 @@ const getPosition = () => {
         });
 };
 
-document.getElementById("toISS").addEventListener("click", () => centerView());
+document.getElementById("toISS").addEventListener("click", () => getPosition());
 
 function centerView() {
     const iss = view.graphics.items[0].geometry;
@@ -87,3 +87,5 @@ const getPeople = () => {
         })
     });
 };
+
+
