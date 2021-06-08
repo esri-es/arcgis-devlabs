@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>¿Dónde está la ISS?</title>
+
+        <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
+        <script src="https://js.arcgis.com/4.19/"></script>
+
+        <script type="module" src="index.js"></script>
+        <!-- Calcite -->
+        <script type="module" src="https://js.arcgis.com/calcite-components/1.0.0-beta.52/calcite.esm.js"></script>
+        <script nomodule="" src="https://js.arcgis.com/calcite-components/1.0.0-beta.52/calcite.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.0-beta.52/calcite.css" />
+
+        <link rel="icon" type="image/png" href="images/icon.png">
+        <style>
+            html,
+            body,
+            #viewMap {
+                margin: 0;
+                padding: 0px;
+                width: 100%;
+                height: 95%;
+                box-sizing: border-box;
+            }
+            .wrapperTitle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            #title {
+                text-align: center;
+            }
+            #toISS {
+                position: relative;
+                bottom: 81px;
+                left: 20px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="wrapperTitle">
+            <h1 id="title">¿Dónde está la Estación Espacial Internacional (ISS)?</h1>
+            <calcite-icon icon="information" id="infoIcon"></calcite-icon>
+        </div>
+        <calcite-modal aria-labelledby="modal-title" id="modal">
+            <div slot="header" id="modal-title">¿Qué es la ISS?</div>
+            <div slot="content">
+                La Estación Espacial Internacional (ISS) es una estación espacial modular ubicada en la órbita terrestres baja. 
+                Es un pryecto de colaboración multinacional entre las cinco agencias participantes: NASA (EEUU), Roscosmos (Rusia), JAXA (Japón), ESA (Europa) y la CSA (Canadá).
+                <br>
+                <br>
+                <calcite-link href="https://en.wikipedia.org/wiki/International_Space_Station">Leer más
+                </calcite-link>
+            </div>
+        </calcite-modal>
+        <div id="viewMap"></div>
+        <calcite-button 
+            appearance="solid" 
+            color="neutral" icon-start="satellite-3" id="toISS">¡A la ISS!</calcite-button>
+
+    </body>
+</html>
