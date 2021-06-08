@@ -38,16 +38,24 @@
                 bottom: 81px;
                 left: 20px;
             }
-
+            .icons {
+                margin-left: 30px;
+            }
+            .icon {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
         <div class="wrapperTitle">
             <h1 id="title">¿Dónde está la Estación Espacial Internacional (ISS)?</h1>
-            <calcite-icon icon="information" id="infoIcon"></calcite-icon>
+            <div class="icons">
+                <calcite-icon class="icon" icon="information" id="infoIcon"></calcite-icon>
+                <calcite-icon class="icon" icon="person2" id="peopleIcon"></calcite-icon>
+            </div>
         </div>
-        <calcite-modal aria-labelledby="modal-title" id="modal">
-            <div slot="header" id="modal-title">¿Qué es la ISS?</div>
+        <calcite-modal aria-labelledby="modal-title" id="modalInfo">
+            <div slot="header" >¿Qué es la ISS?</div>
             <div slot="content">
                 La Estación Espacial Internacional (ISS) es una estación espacial modular ubicada en la órbita terrestres baja. 
                 Es un pryecto de colaboración multinacional entre las cinco agencias participantes: NASA (EEUU), Roscosmos (Rusia), JAXA (Japón), ESA (Europa) y la CSA (Canadá).
@@ -55,6 +63,13 @@
                 <br>
                 <calcite-link href="https://en.wikipedia.org/wiki/International_Space_Station">Leer más
                 </calcite-link>
+            </div>
+        </calcite-modal>
+        <calcite-modal aria-labelledby="modal-title" id="modalPeople">
+            <div slot="header" >¿Quién hay en el espacio?</div>
+            <div slot="content" >
+                <p id="peopleContent"></p>
+                <ul id="peopleList"></ul>
             </div>
         </calcite-modal>
         <div id="viewMap"></div>

@@ -45,6 +45,7 @@ const getPosition = () => {
                     <br> Latitud: ${data.iss_position.latitude}`
                 }
             });
+            view.graphics.removeAll()
             view.graphics.add(issGraphic);
 
             centerView();
@@ -67,5 +68,22 @@ function centerView() {
     view.goTo(cam);
 }
 
-document.getElementById("infoIcon").addEventListener("click", () => document.getElementById('modal').active = true);
+document.getElementById("infoIcon").addEventListener("click", () => document.getElementById('modalInfo').active = true);
+document.getElementById("peopleIcon").addEventListener("click", () => {
+    document.getElementById('modalPeople').active = true;
+    getPeople();
+});
 
+const getPeople = () => {
+    fetch('http://api.open-notify.org/astros.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        console.log(document.getElementById('modalPeople'))
+        document.getElementById('peopleContent').innerHTML = `Ahora mismo hay ${data.number} personas en el espacio.`;
+        document.getElementById('peopleList').innerHTML = '';
+        data.people.map((person) => {
+            document.getElementById('peopleList').innerHTML += `<li>${person.name}</li>`
+        })
+    });
+};
