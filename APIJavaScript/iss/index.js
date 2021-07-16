@@ -1,14 +1,19 @@
-import Map from "https://js.arcgis.com/4.19/@arcgis/core/Map.js";
-import Camera from "https://js.arcgis.com/4.19/@arcgis/core/Camera.js";
-import Point from "https://js.arcgis.com/4.19/@arcgis/core/geometry/Point.js";
-import SceneView from "https://js.arcgis.com/4.19/@arcgis/core/views/SceneView.js";
-import Graphic from "https://js.arcgis.com/4.19/@arcgis/core/Graphic.js";
-import esriConfig from "https://js.arcgis.com/4.19/@arcgis/core/config.js";
+import Map from "https://js.arcgis.com/4.20/@arcgis/core/Map.js";
+import Camera from "https://js.arcgis.com/4.20/@arcgis/core/Camera.js";
+import Point from "https://js.arcgis.com/4.20/@arcgis/core/geometry/Point.js";
+import SceneView from "https://js.arcgis.com/4.20/@arcgis/core/views/SceneView.js";
+import Graphic from "https://js.arcgis.com/4.20/@arcgis/core/Graphic.js";
+import GraphicsLayer from "https://js.arcgis.com/4.20/@arcgis/core/layers/GraphicsLayer.js";
+import esriConfig from "https://js.arcgis.com/4.20/@arcgis/core/config.js";
+import esriRequest from "https://js.arcgis.com/4.20/@arcgis/core/request.js";
 
 esriConfig.apiKey = "AAPK38d0654e1eb749b7b6cfc3079bbfdf44KkQ5OBC4rat6o-i1VOw7ZF1KBDM5dz15O0LTwwLLOdzqFeLwVopKBOQQ0Z-qP4VJ";
 
+const graphicLayer = new GraphicsLayer();
+
 const map = new Map({
-    basemap: "satellite"
+    basemap: "satellite",
+    layers: [graphicLayer]
 });
 
 const view = new SceneView({
@@ -26,49 +31,43 @@ var iss3D = {
     height: 100
 };
 
+let long;
+let lat;
+const url = 'http://api.open-notify.org/iss-now.json'
 
 const getPosition = () => {
-    fetch('http://api.open-notify.org/iss-now.json')
-        .then(response => response.json())
-        .then(data => {
-            var issGraphic = new Graphic({
-                geometry: {
-                    type: 'point',
-                    x: data.iss_position.longitude,
-                    y: data.iss_position.latitude,
-                    z: 450 // in meters
-                },
-                symbol: iss3D,
-                popupTemplate: {
-                    title: 'Localización actual de la Estación Espacial Internacional',
-                    content: `Longitud: ${data.iss_position.longitude}
-                    <br> Latitud: ${data.iss_position.latitude}`
-                }
-            });
-            view.graphics.removeAll()
-            view.graphics.add(issGraphic);
-
-            centerView();
-        });
+    esriRequest(url, {
+        responseType: "json"
+    }).then(function (response) {
+        let geoJson = response.data;
+        locateISS(geoJson.iss_position.longitude, geoJson.iss_position.latitude)
+    });
 };
 
-document.getElementById("toISS").addEventListener("click", () => getPosition());
+function locateISS(longitude, latitude) {
 
-function centerView() {
-    const iss = view.graphics.items[0].geometry;
-    let cam = new Camera({
-        position: new Point({
-            x: iss.longitude, // lon
-            y: iss.latitude,      // lat
-            z: 20000,   // elevation in meters
-        }),
-        heading: 170, // facing due south
-        tilt: 0     // bird's eye view
+    console.log('longitude', longitude, latitude)
+    var issGraphic = new Graphic({
+        geometry: {
+            type: 'point',
+            x: longitude,
+            y: latitude,
+            z: 450 // in meters
+        },
+        symbol: iss3D,
+        popupTemplate: {
+            title: 'Localización actual de la Estación Espacial Internacional',
+            content: `Longitud: ${longitude}
+                        <br> Latitud: ${latitude}`
+        }
     });
-    view.goTo(cam);
-}
+    graphicLayer.add(issGraphic);
 
-document.getElementById("infoIcon").addEventListener("click", () => document.getElementById('modalInfo').active = true);
+    centerView(longitude, latitude);
+};
+
+document.getElementById("toISS").addEventListener("click", () => getLastPosition());
+
 document.getElementById("peopleIcon").addEventListener("click", () => {
     document.getElementById('modalPeople').active = true;
     getPeople();
@@ -88,4 +87,32 @@ const getPeople = () => {
     });
 };
 
+function getLastPosition () {
+    const iss = graphicLayer.graphics.items[0].geometry;
+    centerView(iss.longitude, iss.latitude)
+}
 
+function centerView(longitude, latitude) {
+    let cam = new Camera({
+        position: new Point({
+            x: longitude, // lon
+            y: latitude,      // lat
+            z: 999999.99999999999,   // elevation in meters
+        }),
+        heading: 0, // orientación
+        tilt: 0     // ángulo
+    });
+    view.goTo(cam);
+}
+
+document.getElementById("infoIcon").addEventListener("click", () => document.getElementById('modal').active = true);
+
+
+function updatePosition() {
+    graphicLayer.removeAll();
+    getPosition();
+    setTimeout(updatePosition, 60000); // 1min
+};
+updatePosition();
+
+view.on('click', () => console.log(view.camera.position));
